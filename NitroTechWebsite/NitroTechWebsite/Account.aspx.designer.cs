@@ -13,5 +13,23 @@ namespace NitroTechWebsite
 
     public partial class Account
     {
+
+        /// <summary>
+        /// newAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label newAccount;
+
+        /// <summary>
+        /// newPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label newPassword;
     }
 }
