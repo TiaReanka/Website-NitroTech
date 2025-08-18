@@ -11,7 +11,7 @@ namespace NitroTechWebsite
 {
 
 
-    public partial class Contact
+    public partial class ActiveQuotation
     {
     }
 }

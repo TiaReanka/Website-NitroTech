@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Generate Invoices" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Invoices.aspx.cs" Inherits="NitroTechWebsite.Invoices" %>
+﻿<%@ Page Title="Add Parts" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPart.aspx.cs" Inherits="NitroTechWebsite.Parts" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>

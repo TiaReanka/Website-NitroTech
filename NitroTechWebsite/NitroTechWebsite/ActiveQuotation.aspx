@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Statements" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Statements.aspx.cs" Inherits="NitroTechWebsite.Statements" %>
+﻿<%@ Page Title="Active Quotations" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ActiveQuotation.aspx.cs" Inherits="NitroTechWebsite.ActiveQuotation" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>

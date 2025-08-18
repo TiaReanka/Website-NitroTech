@@ -67,17 +67,74 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Job Cards">Job Cards</a></li>
-                        <li><a runat="server" href="~/Quotations">Quotations</a></li>
-                        <li><a runat="server" href="~/Invoices">Invoices</a></li>
-                        <li><a runat="server" href="~/Statements">Statements</a></li>
-                        <li><a runat="server" href="~/Customers">Customers</a></li>
+                        <!--Quotations-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Quotations <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/GenerateQuotations">Generate Quotation</a></li>
+                                <li><a runat="server" href="~/ActiveQuotation">Active Quotation</a></li>
+                                <li><a runat="server" href="~/ReviewQuotation">Review Quotation</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Invoices-->
+                        <li><a runat="server" href="~/Invoices"> Invoices </a></li>
+                        
+                        <!--Statements-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Statements <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/GenerateStatement">Generate Statement</a></li>
+                                <li><a runat="server" href="~/ReviewStatement">Review Statement</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Customer-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Customers <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/CustomerUpdate">Update Customer</a></li>
+                                <li><a runat="server" href="~/CustomerManage">Customer Management</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Payments-->
                         <li><a runat="server" href="~/Payments">Payments</a></li>
-                        <li><a runat="server" href="~/Parts">Parts</a></li>
-                        <li><a runat="server" href="~/Administration">Administration</a></li>
-                        <li><a runat="server" href="~/Account">Account</a></li>
-                        <li><a runat="server" href="~/">Home</a></li>
+
+                        <!--Parts-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Parts <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/AddPart">Add Part</a></li>
+                                <li><a runat="server" href="~/UpdatePart">Update Part</a></li>
+                                <li><a runat="server" href="~/ReviewPart">Review Parts History</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!--Account-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Account <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/Account">Login</a></li>
+                                <li><a runat="server" href="~/AddUser">Create an Account</a></li>
+                                <li><a runat="server" href="~/ArchiveUser">Archive User</a></li>
+                                <li><a runat="server" href="~/NewPassword">Forgot Password</a></li>
+                            </ul>
+                        </li>
+
+                        <!--About-->
                         <li><a runat="server" href="~/About">About</a></li>
+                        <!--Contact-->
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
                 </div>
