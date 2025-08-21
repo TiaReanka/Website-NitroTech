@@ -1,17 +1,117 @@
-﻿<%@ Page Title="Update Parts" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdatePart.aspx.cs" Inherits="NitroTechWebsite.UpdatePart" %>
+﻿<%@ Page Title="Parts" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdatePart.aspx.cs" Inherits="NitroTechWebsite.UpdatePart" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your contact page.</h3>
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #191919;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+        }
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group label {
+            width: 250px;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 75px;
+        }
+
+        .form-group input,
+        .form-group select {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: black; /* text inside inputs stays visible */
+        }
+
+        .form-container button {
+            display: block;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 12px;
+            background-color: #1a2db9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container button:hover {
+            background-color: purple;
+        }
+    </style>
+
+    <!-- Title & Heading outside tabs -->
+    
+    
+
+    <!-- Bootstrap Nav Tabs -->
+    <div class="form-container">
+        <h2 style="text-align:center;"><%: Title %></h2>
+        <h3 style="text-align:center;">Update Part</h3>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active">
+                <a href="#tab1" role="tab" data-toggle="tab">Increase Levels</a>
+            </li>
+            <li>
+                <a href="#tab2" role="tab" data-toggle="tab">Decrease Levels</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" style="margin-top:20px;">
+            <!-- First tab -->
+            <div class="tab-pane fade in active" id="tab1">
+                <div class="form-group">
+                    <label for="partName">Name of Part:</label>
+                    <select id="partNameInc" name="partName">
+                        <option value="">-- Select Name of Part --</option>
+                        <option value="PART1">Tires</option>
+                        <option value="PART2">Screws</option>
+                        <option value="PART3">Brake pads</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity to Add:</label>
+                    <input type="number" id="quantityInc" name="quantity" />
+                </div>
+
+                <button type="submit">Update Part Levels</button>
+            </div>
+
+            <!-- Second tab (empty for now) -->
+            <div class="tab-pane fade" id="tab2">
+                <div class="form-group">
+                    <label for="partName">Name of Part:</label>
+                    <select id="partNameDec" name="partName">
+                        <option value="">-- Select Name of Part --</option>
+                        <option value="PART1">Tires</option>
+                        <option value="PART2">Screws</option>
+                        <option value="PART3">Brake pads</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity Used:</label>
+                    <input type="number" id="quantityDec" name="quantity" />
+                </div>
+
+                <button type="submit">Update Part Levels</button>
+            </div>
+        </div>
+    </div>
 </asp:Content>
