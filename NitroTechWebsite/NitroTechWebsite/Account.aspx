@@ -17,6 +17,41 @@
             margin-bottom: 20px;
         }
 
+        .form-group input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fff;     /* white background */
+            color: #000;          /* black text */
+}
+
+        .btn1 a {
+            text-align: center;   /* center the anchor inside */
+            margin: 20px auto;
+            padding: 10px 20px;
+            color: #3c00a0;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: 0.5s;
+            margin-top: 20px;
+            letter-spacing: 4px;
+            line-height: 20px;
+            width: 15%;             /* stretch across the form */
+            display: flex;           /* use flexbox */
+            justify-content: center; /* center child horizontally */
+            margin-top: 20px;  
+        }
+
+        .btn1 a:hover {
+            background-color: #3c00a0;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+        }
+
         .form-group {
             display: flex;
             align-items: center;
@@ -83,7 +118,9 @@
             <input type="text" id="password" name="password" />
         </div>
 
-        <button type="submit">Login</button>
+        <div class="btn1">
+            <a href="#" onclick="document.forms[0].submit(); return false;">Login</a>
+        </div>
 
         <div class="text-align">
             <asp:Label ID="newAccount" runat="server" Text="Create an Account" Font-Underline="true"></asp:Label>
