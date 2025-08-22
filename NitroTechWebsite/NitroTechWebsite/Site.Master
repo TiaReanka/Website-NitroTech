@@ -76,6 +76,7 @@
                                 <li><a runat="server" href="~/GenerateQuotations">Generate Quotation</a></li>
                                 <li><a runat="server" href="~/ActiveQuotation">Active Quotation</a></li>
                                 <li><a runat="server" href="~/ReviewQuotation">Review Quotation</a></li>
+                                <li><a runat="server" href="~/CloseJob">Close Job</a></li>
                             </ul>
                         </li>
 
@@ -129,6 +130,7 @@
                                 <li><a runat="server" href="~/AddUser">Create an Account</a></li>
                                 <li><a runat="server" href="~/ArchiveUser">Archive User</a></li>
                                 <li><a runat="server" href="~/NewPassword">Forgot Password</a></li>
+                                <li><a runat="server" href="~/NewPassword">LogOut</a></li>
                             </ul>
                         </li>
 
@@ -145,7 +147,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - AMG Petronas</p>
             </footer>
         </div>
 

@@ -13,5 +13,30 @@ namespace NitroTechWebsite
         {
 
         }
+        protected void btnConfirmQuotation_Click(object sender, EventArgs e)
+        {
+            string quotationNum = quotationNumber.SelectedValue;
+
+            if (string.IsNullOrEmpty(quotationNum))
+            {
+                Response.Write("<script>alert('Please select a quotation number.');</script>");
+                return;
+            }
+
+            Response.Write($"<script>alert('Quotation {quotationNum} confirmed.');</script>");
+        }
+
+        protected void btnGenerateInvoice_Click(object sender, EventArgs e)
+        {
+            string quotationNum = quotationNumber.SelectedValue;
+
+            if (string.IsNullOrEmpty(quotationNum))
+            {
+                Response.Write("<script>alert('Please select a quotation number before generating invoice.');</script>"); 
+                return;
+            }
+
+            Response.Write($"<script>alert('Generating invoice for {quotationNum}...');</script>");
+        }
     }
 }
