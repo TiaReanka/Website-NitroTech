@@ -43,7 +43,7 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
             transition: transform 0.2s ease;
 
             /* Top header spacing */
-            margin: 65px auto 30px auto;
+            margin: 66px auto 30px auto;
             padding: 15px 30px;
             border-radius: 10px;
             display: flex;
