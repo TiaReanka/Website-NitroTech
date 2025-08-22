@@ -11,7 +11,34 @@ namespace NitroTechWebsite
 {
 
 
-    public partial class ReviewQuotation
+    public partial class AddJob
     {
+
+        /// <summary>
+        /// ddlQuotations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlQuotations;
+
+        /// <summary>
+        /// btnAddJob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddJob;
+
+        /// <summary>
+        /// gvJobs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvJobs;
     }
 }
