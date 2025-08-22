@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" 
 AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._Default" 
 %> 
- 
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Hidden audio -->
-    <audio id="introAudio">
+    <audio id="introAudio" preload="auto">
         <source src='<%= ResolveUrl("~/Audio/Ferrari V12 sound start up.mp3") %>' type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
@@ -42,8 +42,8 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
             cursor: pointer;
             transition: transform 0.2s ease;
 
-            /* Top header styling with space from top */
-            margin: 65px auto 30px auto; /* Added top margin */
+            /* Top header spacing */
+            margin: 65px auto 30px auto;
             padding: 15px 30px;
             border-radius: 10px;
             display: flex;
@@ -75,10 +75,10 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
         }
     </style>
 
-    <!-- Top rectangle header (scrolls with page) -->
+    <!-- Top rectangle header -->
     <div class="fade-box" id="clickableBox">
         <h1>Welcome To NitroTech</h1>
-        <img src="~/Images/Made with insMind-Logo.png" alt="Logo" runat="server" />
+        <img src='<%= ResolveUrl("~/Images/Made with insMind-Logo.png") %>' alt="Logo" />
     </div>
 
     <div class="content-wrapper">
@@ -87,7 +87,7 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
 
         <!-- Banner image -->
         <div style="display: flex; justify-content: center; margin-bottom: 30px;" class="fade-on-scroll">
-            <img src="~/Images/banner.jpg" alt="Banner" style="max-width: 70%; height: auto;" runat="server" />
+            <img src='<%= ResolveUrl("~/Images/banner.jpg") %>' alt="Banner" style="max-width: 70%; height: auto;" />
         </div>
 
         <!-- Bottom paragraph -->
@@ -122,16 +122,15 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
             elements.forEach(el => observer.observe(el));
         });
 
-        // Play audio and subtle springy bounce on first click
+        // Play audio on first click anywhere
         document.addEventListener("DOMContentLoaded", () => {
             const audio = document.getElementById("introAudio");
             const box = document.getElementById("clickableBox");
 
-            box.addEventListener("click", () => {
-                // Play audio
+            document.addEventListener("click", function playAudio() {
                 audio.play().catch(err => console.log("Audio blocked:", err));
 
-                // Subtle springy bounce
+                // Subtle bounce for the header
                 box.animate([
                     { transform: 'scale(1)' },
                     { transform: 'scale(0.97)' },
@@ -141,9 +140,13 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
                     easing: 'ease-out',
                     fill: 'forwards'
                 });
+
+                // Remove listener after first click
+                document.removeEventListener("click", playAudio);
             }, { once: true });
         });
     </script>
 
 </asp:Content>
+
 
