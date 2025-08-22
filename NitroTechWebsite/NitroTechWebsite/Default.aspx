@@ -95,7 +95,7 @@ height: auto;" runat="server" />
     <!-- Image under the line --> 
     <div style="display: flex; justify-content: center; margin-bottom: 30px;" class="fade-on
 scroll"> 
-        <img src="~/Images/banner.logo" alt="Banner" style="max-width: 70%; height: auto;" 
+        <img src="~/Images/banner.jpg" alt="Banner" style="max-width: 70%; height: auto;" 
 runat="server" /> 
     </div> 
  

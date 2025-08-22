@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\invoices.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\invoices.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\generatestatement.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -13,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\generatestatement.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\generatestatement.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\invoices.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\invoices.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\reviewstatement.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\closejob.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -70,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,7 +86,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "Site.Master",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Site.Master",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\Site.Master",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Site.Master",
+              "RelativeToolTip": "NitroTechWebsite\\Site.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-08-22T16:16:32.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Invoices.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Invoices.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\Invoices.aspx",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GenerateStatement.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateStatement.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateStatement.aspx.cs",
@@ -103,11 +120,12 @@
               "RelativeToolTip": "NitroTechWebsite\\GenerateStatement.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T16:03:47.032Z"
+              "WhenOpened": "2025-08-22T16:03:47.032Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GenerateStatement.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateStatement.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateStatement.aspx",
@@ -115,11 +133,12 @@
               "RelativeToolTip": "NitroTechWebsite\\GenerateStatement.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-08-22T16:03:33.767Z"
+              "WhenOpened": "2025-08-22T16:03:33.767Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ReviewStatement.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ReviewStatement.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\ReviewStatement.aspx",
@@ -131,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ReviewStatement.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ReviewStatement.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\ReviewStatement.aspx.cs",
@@ -139,11 +158,12 @@
               "RelativeToolTip": "NitroTechWebsite\\ReviewStatement.aspx.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAowCwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T16:02:39.71Z"
+              "WhenOpened": "2025-08-22T16:02:39.71Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ActiveQuotation.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ActiveQuotation.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\ActiveQuotation.aspx",
@@ -155,7 +175,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "Default.aspx",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Default.aspx",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\Default.aspx",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Default.aspx",
+              "RelativeToolTip": "NitroTechWebsite\\Default.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-08-22T15:41:29.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "ActiveQuotation.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ActiveQuotation.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\ActiveQuotation.aspx.cs",
@@ -167,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "CloseJob.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\CloseJob.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\CloseJob.aspx.cs",
@@ -179,7 +212,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "CloseJob.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\CloseJob.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\CloseJob.aspx",
@@ -191,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "ReviewQuotation.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ReviewQuotation.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\ReviewQuotation.aspx.cs",
@@ -203,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "ReviewQuotation.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ReviewQuotation.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\ReviewQuotation.aspx",
@@ -215,19 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Default.aspx",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Default.aspx",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\Default.aspx",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Default.aspx",
-              "RelativeToolTip": "NitroTechWebsite\\Default.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-08-22T15:41:29.959Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Account.aspx.designer.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx.designer.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\Account.aspx.designer.cs",
@@ -239,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Account.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\Account.aspx.cs",
@@ -251,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Account.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\Account.aspx",
