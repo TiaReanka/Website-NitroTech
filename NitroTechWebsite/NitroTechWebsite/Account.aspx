@@ -83,6 +83,13 @@
             <input type="text" id="password" name="password" />
         </div>
 
+        <div class="form-group">
+            <label style="width: auto; margin-left: 325px;">
+                <input type="checkbox" id="showPassword" onclick="togglePassword()" />
+                Show Password
+            </label>
+        </div>
+
         <button type="submit">Login</button>
 
         <div class="text-align">
