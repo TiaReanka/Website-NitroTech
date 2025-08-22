@@ -13,5 +13,32 @@ namespace NitroTechWebsite
 
     public partial class Invoices
     {
+
+        /// <summary>
+        /// quotationNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList quotationNumber;
+
+        /// <summary>
+        /// btnConfirmQuotation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmQuotation;
+
+        /// <summary>
+        /// btnGenerateInvoice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerateInvoice;
     }
 }

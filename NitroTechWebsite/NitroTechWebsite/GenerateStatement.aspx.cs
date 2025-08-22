@@ -13,5 +13,18 @@ namespace NitroTechWebsite
         {
 
         }
+        protected void btnGenerateStatement_Click(object sender, EventArgs e)
+        {
+            string customerId = customerID.SelectedValue;
+
+            if (string.IsNullOrEmpty(customerId))
+            {
+                Response.Write("<script>alert('Please select a customer ID.');</script>");
+                return;
+            }
+
+            // TODO: Fetch statement data from DB 
+            Response.Write($"<script>alert('Generating statement for {customerId}...');</script>");
+        }
     }
 }
