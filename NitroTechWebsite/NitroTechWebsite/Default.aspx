@@ -99,8 +99,7 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
                    fault, ensuring a precise and lasting repair. We're not just fixing cars; we're restoring confidence
                    and performance. Our commitment to excellence extends to every part of our business, which
                    is why we're moving forward with a new, highly-efficient system. This upgrade allows us to serve
-                   you with unmatched speed and accuracy, ensuring that when you drive away, you're not just
-                   satisfied, you're thrilled. We're proud of the work we do and excited to welcome you into the JAE
+                   with unmatched speed and accuracy. We're proud of the work we do and excited to welcome you into the JAE
                    Auto family.
                 </p>
             </div>
