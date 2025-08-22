@@ -75,7 +75,7 @@ relative;">
             <div class="fade-box" id="clickableBox"> 
                 <h1 style="margin: 0; font-size: 100px;">Welcome To</h1> 
                 <h1 style="margin: 0; font-size: 110px;">NitroTech</h1> 
-                <img src="~/Images/logo.jpg" alt="Logo" style="margin-top: 30px; max-width: 80%; 
+                <img src="~/Images/Made with insMind-Logo.png" alt="Logo" style="margin-top: 30px; max-width: 80%; 
 height: auto;" runat="server" /> 
             </div> 
         </div> 
