@@ -1,17 +1,133 @@
-﻿<%@ Page Title="Change Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewPassword.aspx.cs" Inherits="NitroTechWebsite.NewPassword" %>
+﻿<%@ Page Title="Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewPassword.aspx.cs" Inherits="NitroTechWebsite.NewPassword" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your contact page.</h3>
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+    <style>
+        .form-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #191919;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        }
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+        .form-container h2,
+        .form-container h3 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group label {
+            width: 220px;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 50px;
+            color: white;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group img {
+            margin-left: 15px;
+            cursor: pointer;
+            width: 32px;
+        }
+
+        .radio-options {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .form-container button {
+            display: block;
+            margin-left: 15px;
+            padding: 12px 20px;
+            background-color: #1a2db9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container button:hover {
+            background-color: purple;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            max-width: 450px;
+            margin: 20px auto 0 auto;
+        }
+    </style>
+
+    <div class="form-container">
+        <h2><%: Title %></h2>
+        <h3>Change Password</h3>
+
+        <!-- Username -->
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" />
+            <button type="button">Load Security Question</button>
+        </div>
+
+        <!-- New Password -->
+        <div class="form-group">
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" name="newPassword" />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" />
+            <img src="eye-icon.png" alt="Toggle Password" />
+        </div>
+
+        <!-- Reset Options -->
+        <div class="form-group">
+            <label>Password Reset Options:</label>
+            <div class="radio-options">
+                <label>
+                    <input type="radio" name="resetOption" value="oldPassword" checked />
+                    Use Old Password
+                </label>
+                <label>
+                    <input type="radio" name="resetOption" value="securityQuestion" />
+                    Use Security Question
+                </label>
+            </div>
+        </div>
+
+        <!-- Security Question -->
+        <div class="form-group">
+            <label for="securityAnswer">Security Question:</label>
+            <input type="text" id="securityAnswer" name="securityAnswer" />
+        </div>
+
+        <!-- Buttons Row -->
+        <div class="button-row">
+            <button type="submit">Change Password</button>
+            <button type="button">Close</button>
+        </div>
+    </div>
 </asp:Content>
