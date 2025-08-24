@@ -33,7 +33,7 @@
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            color: black; /* text inside inputs stays visible */
+            color: black; 
         }
 
         .form-container button {
@@ -54,11 +54,6 @@
         }
     </style>
 
-    <!-- Title & Heading outside tabs -->
-    
-    
-
-    <!-- Bootstrap Nav Tabs -->
     <div class="form-container">
         <h2 style="text-align:center;"><%: Title %></h2>
         <h3 style="text-align:center;">Update Part</h3>
@@ -71,9 +66,7 @@
             </li>
         </ul>
 
-        <!-- Tab Content -->
         <div class="tab-content" style="margin-top:20px;">
-            <!-- First tab -->
             <div class="tab-pane fade in active" id="tab1">
                 <div class="form-group">
                     <label for="partName">Name of Part:</label>
@@ -93,7 +86,6 @@
                 <button type="submit">Update Part Levels</button>
             </div>
 
-            <!-- Second tab (empty for now) -->
             <div class="tab-pane fade" id="tab2">
                 <div class="form-group">
                     <label for="partName">Name of Part:</label>

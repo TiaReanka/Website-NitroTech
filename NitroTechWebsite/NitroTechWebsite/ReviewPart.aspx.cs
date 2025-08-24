@@ -20,7 +20,6 @@ namespace NitroTechWebsite
 
         private void LoadDummyData()
         {
-            // Create a sample table in memory
             DataTable dt = new DataTable();
             dt.Columns.Add("PartID");
             dt.Columns.Add("PartName");

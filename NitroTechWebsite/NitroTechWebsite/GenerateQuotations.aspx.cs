@@ -17,7 +17,6 @@ namespace NitroTechWebsite
             {
                 txtQuotationDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-                // Populate sample parts for fault tab 
                 cmbPart.Items.Add(new ListItem("Tires"));
                 cmbPart.Items.Add(new ListItem("Brake Pads"));
                 cmbPart.Items.Add(new ListItem("Screws"));

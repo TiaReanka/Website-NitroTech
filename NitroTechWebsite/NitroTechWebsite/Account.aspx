@@ -3,10 +3,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         .form-container {
-            max-width: 800px;       /* limit width so it doesn't stretch */
-            margin: 50px auto;      /* center horizontally and add space on top */
+            max-width: 800px;    
+            margin: 50px auto;   
             padding: 20px;
-            background: #191919;    /* light background */
+            background: #191919;  
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
         }
@@ -21,15 +21,15 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            max-width: 600px;       /* shrink form fields area */
-            margin-left: auto;      /* center horizontally */
+            max-width: 600px;      
+            margin-left: auto;    
             margin-right: auto;
         }
 
         .form-group label {
-            width: 250px;          /* same width for all labels */
+            width: 250px;    
             font-weight: bold;
-            text-align: right;      /* align text close to input */
+            text-align: right;  
             margin-right: 75px;
         }
 
@@ -38,14 +38,14 @@
                 padding: 8px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
-                color: black; /* text color */
-                background-color: #fff; /* optional: make input background white for contrast */
+                color: black; 
+                background-color: #fff; 
             }
 
         .form-container button {
             display: block;
             max-width: 600px;
-            margin: 20px auto;      /* center under form */
+            margin: 20px auto;    
             padding: 12px;
             background-color: #1a2db9;
             color: white;
@@ -59,9 +59,9 @@
             background-color: purple;
         }
 
-        .text-align { /* same width for all labels */
+        .text-align { 
             font-weight: bold;
-            text-align: center;      /* align text close to input */
+            text-align: center;      
             color: grey;
         }
 

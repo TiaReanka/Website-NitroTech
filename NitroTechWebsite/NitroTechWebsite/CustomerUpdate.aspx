@@ -12,12 +12,12 @@
             color: white;
         }
 
-            .form-container h2,
-            .form-container h3 {
-                text-align: center;
-                margin-bottom: 20px;
-                color: white;
-            }
+        .form-container h2,
+        .form-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
 
         .form-row {
             display: flex;
@@ -32,23 +32,23 @@
             flex: 1;
         }
 
-            .form-group label {
-                width: 120px;
-                font-weight: bold;
-                text-align: right;
-                margin-right: 10px;
-            }
+        .form-group label {
+            width: 120px;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 10px;
+        }
 
-            .form-group input,
-            .form-group select {
-                flex: 1;
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 14px;
-                color: black;
-                background-color: white;
-            }
+        .form-group input,
+        .form-group select {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            color: black;
+            background-color: white;
+        }
 
         .form-container button {
             display: block;
@@ -63,9 +63,9 @@
             font-size: 16px;
         }
 
-            .form-container button:hover {
-                background-color: purple;
-            }
+        .form-container button:hover {
+            background-color: purple;
+        }
 
         .grid-container {
             margin-top: 20px;
@@ -79,11 +79,11 @@
             color: black;
         }
 
-            .table th, .table td {
-                border: 1px solid #ccc;
-                padding: 8px;
-                text-align: left;
-            }
+        .table th, .table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
 
         .section-title {
             margin-top: 30px;
@@ -96,7 +96,7 @@
         .search-container {
             display: flex;
             flex-direction: column;
-            align-items: center; /* center whole block in page */
+            align-items: center; 
             margin-bottom: 20px;
         }
 
@@ -104,19 +104,19 @@
             display: flex;
             align-items: center;
             margin: 10px 0;
-            width: 400px; /* fixed width so both align */
+            width: 400px; 
         }
 
             .search-group label {
-                width: 180px; /* same width for labels */
+                width: 180px; 
                 font-weight: bold;
                 color: white;
-                text-align: right; /* push label text right */
-                margin-right: 20px; /* space between label & textbox */
+                text-align: right; 
+                margin-right: 20px; 
             }
 
             .search-group input {
-                flex: 1; /* take remaining space */
+                flex: 1; 
                 padding: 8px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
@@ -144,7 +144,6 @@
         <h2><%: Title %></h2>
         <h3>Customer</h3>
 
-        <!-- Search Section -->
         <div class="search-container">
             <div class="search-group">
                 <label for="txtSearchCustomer">Search by Customer ID:</label>
@@ -157,7 +156,6 @@
             <button type="submit">Search</button>
         </div>
 
-        <!-- Results Grid -->
         <div class="grid-container">
             <asp:GridView ID="gvResults" runat="server" AutoGenerateColumns="False" CssClass="table">
                 <Columns>
@@ -175,7 +173,6 @@
             </asp:GridView>
         </div>
 
-        <!-- Customer Info Section -->
         <div class="section-title">Customer Information</div>
         <div class="form-row">
             <div class="form-group">
@@ -204,7 +201,6 @@
             </div>
         </div>
 
-        <!-- Vehicle Info Section -->
         <div class="section-title">Vehicle Information</div>
         <div class="form-row">
             <div class="form-group">
