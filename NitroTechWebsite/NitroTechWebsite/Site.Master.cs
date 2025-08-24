@@ -14,8 +14,10 @@ namespace NitroTechWebsite
             if (!IsPostBack)
             {
                 SetMenuVisibility();
+                ShowProfileIcon(); // show profile icon if logged in
             }
         }
+
         private void SetMenuVisibility()
         {
             bool loggedIn = Session["UserId"] != null;
@@ -26,7 +28,6 @@ namespace NitroTechWebsite
             liLogout.Visible = loggedIn;
 
             // Default: hide restricted items
-            
             liInvoices.Visible = false;
             liStatements.Visible = false;
             liQuotations.Visible = false;
@@ -35,7 +36,6 @@ namespace NitroTechWebsite
             liParts.Visible = false;
             liAddUser.Visible = false;
             liArchiveUser.Visible = false;
-
 
             // Role-specific access
             switch (role.ToLower())
@@ -75,5 +75,20 @@ namespace NitroTechWebsite
                     break;
             }
         }
+
+        // NEW: Show profile icon if user is logged in
+        private void ShowProfileIcon()
+        {
+            if (Session["UserId"] != null)
+            {
+                profileIcon.Visible = true;
+                lblProfileName.InnerText = $"{Session["UserName"]} ({Session["Role"]})";
+            }
+            else
+            {
+                profileIcon.Visible = false;
+            }
+        }
     }
 }
+
