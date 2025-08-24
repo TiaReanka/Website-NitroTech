@@ -24,6 +24,10 @@
         .navbar-nav.navbar-right img {
             vertical-align: middle;
         }
+        /* Optional: white background for dropdown */
+        .navbar-nav .dropdown-menu {
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -142,19 +146,24 @@
                     </ul>
 
                     <!-- Profile Icon on the Right -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="profileIcon" runat="server" visible="false" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="~/Images/profileIcon.jpg" style="width:30px;height:30px;border-radius:50%; margin-right:5px;" />
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <span id="lblProfileName" runat="server" style="padding:5px 10px; display:block;"></span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="profileIcon" runat="server" visible="false" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img runat="server" id="imgProfileIcon" src="~/Images/profileIcon.jpg"
+                                     style="width:30px;height:30px;border-radius:50%; margin-right:5px;" />
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <span id="lblProfileName" runat="server" 
+                                          style="padding:5px 10px; display:block; color:black;"></span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
