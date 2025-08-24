@@ -68,76 +68,76 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <!--Quotations-->
-                        <li class="dropdown">
+                        <li id="liQuotations" runat="server" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Quotations <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/GenerateQuotations">Generate Quotation</a></li>
-                                <li><a runat="server" href="~/ActiveQuotation">Active Quotation</a></li>
-                                <li><a runat="server" href="~/ReviewQuotation">Review Quotation</a></li>
-                                <li><a runat="server" href="~/CloseJob">Close Job</a></li>
+                                <li id="liGenerateQuotation" runat="server"><a runat="server" href="~/GenerateQuotations">Generate Quotation</a></li>
+                                <li id="liActiveQuotation" runat="server"><a runat="server" href="~/ActiveQuotation">Active Quotation</a></li>
+                                <li id="liReviewQuotation" runat="server"><a runat="server" href="~/ReviewQuotation">Review Quotation</a></li>
+                                <li id="liCloseJob" runat="server"><a runat="server" href="~/CloseJob">Close Job</a></li>
                             </ul>
                         </li>
 
                         <!--Invoices-->
-                        <li><a runat="server" href="~/Invoices"> Invoices </a></li>
+                        <li id="liInvoices" runat="server"><a runat="server" href="~/Invoices">Invoices</a></li>
                         
                         <!--Statements-->
-                        <li class="dropdown">
+                        <li id="liStatements" runat="server" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Statements <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/GenerateStatement">Generate Statement</a></li>
-                                <li><a runat="server" href="~/ReviewStatement">Review Statement</a></li>
+                                <li id="liGenerateStatement" runat="server"><a runat="server" href="~/GenerateStatement">Generate Statement</a></li>
+                                <li id="liReviewStatement" runat="server"><a runat="server" href="~/ReviewStatement">Review Statement</a></li>
                             </ul>
                         </li>
 
                         <!--Customer-->
-                        <li class="dropdown">
+                        <li id="liCustomers" runat="server" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Customers <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/CustomerUpdate">Update Customer</a></li>
-                                <li><a runat="server" href="~/CustomerManage">Customer Management</a></li>
+                                <li id="liCustomerUpdate" runat="server"><a runat="server" href="~/CustomerUpdate">Update Customer</a></li>
+                                <li id="liCustomerManage" runat="server"><a runat="server" href="~/CustomerManage">Customer Management</a></li>
                             </ul>
                         </li>
 
                         <!--Payments-->
-                        <li><a runat="server" href="~/Payments">Payments</a></li>
+                        <li id="liPayments" runat="server"><a runat="server" href="~/Payments">Payments</a></li>
 
                         <!--Parts-->
-                        <li class="dropdown">
+                        <li id="liParts" runat="server" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Parts <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/AddPart">Add Part</a></li>
-                                <li><a runat="server" href="~/UpdatePart">Update Part</a></li>
-                                <li><a runat="server" href="~/ReviewPart">Review Parts History</a></li>
+                                <li id="liAddPart" runat="server"><a runat="server" href="~/AddPart">Add Part</a></li>
+                                <li id="liUpdatePart" runat="server"><a runat="server" href="~/UpdatePart">Update Part</a></li>
+                                <li id="liReviewParts" runat="server"><a runat="server" href="~/ReviewPart">Review Parts History</a></li>
                             </ul>
                         </li>
                         
                         <!--Account-->
-                        <li class="dropdown">
+                        <li id="liAccount" runat="server" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Account <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/Account">Login</a></li>
-                                <li><a runat="server" href="~/AddUser">Create an Account</a></li>
-                                <li><a runat="server" href="~/ArchiveUser">Archive User</a></li>
-                                <li><a runat="server" href="~/NewPassword">Forgot Password</a></li>
-                                <li><a runat="server" href="~/NewPassword">LogOut</a></li>
+                                <li id="liLoginOption" runat="server"><a runat="server" href="~/Account">Login</a></li>
+                                <li id="liAddUser" runat="server"><a runat="server" href="~/AddUser">Create an Account</a></li>
+                                <li id="liArchiveUser" runat="server"><a runat="server" href="~/ArchiveUser">Archive User</a></li>
+                                <li id="liForgotPassword" runat="server"><a runat="server" href="~/NewPassword">Forgot Password</a></li>
+                                <li id="liLogout" runat="server"><a runat="server" href="~/NewPassword">LogOut</a></li>
                             </ul>
                         </li>
 
                         <!--About-->
-                        <li><a runat="server" href="~/About">About</a></li>
+                        <li id="liAbout" runat="server"><a runat="server" href="~/About">About</a></li>
                         <!--Contact-->
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li id="liContact" runat="server"><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
                 </div>
             </div>

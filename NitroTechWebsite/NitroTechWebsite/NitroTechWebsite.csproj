@@ -327,6 +327,7 @@
     <Compile Include="CustomerUpdate.aspx.designer.cs">
       <DependentUpon>CustomerUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -33,12 +33,14 @@
             margin-right: 75px;
         }
 
-        .form-group input {
-            flex: 1;               /* take remaining space */
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+            .form-group input {
+                flex: 1;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                color: black; /* text color */
+                background-color: #fff; /* optional: make input background white for contrast */
+            }
 
         .form-container button {
             display: block;
@@ -75,12 +77,12 @@
 
         <div class="form-group">
             <label for="Username">Username:</label>
-            <input type="text" id="username" name="username" />
+            <asp:TextBox ID="txtUsername" runat="server" />
         </div>
 
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="text" id="password" name="password" />
+            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" />
         </div>
 
         <div class="form-group">
