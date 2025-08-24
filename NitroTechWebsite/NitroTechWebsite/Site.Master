@@ -15,21 +15,21 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-</head>
-<body>
     <style>
-        body{
+        body {
             margin: 0;
             background: linear-gradient(to right, purple, #1a2db9);
             color: white;
         }
+        .navbar-nav.navbar-right img {
+            vertical-align: middle;
+        }
     </style>
-    
+</head>
+<body>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
@@ -42,7 +42,6 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
@@ -65,7 +64,9 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">NitroTech</a>
                 </div>
+
                 <div class="navbar-collapse collapse">
+                    <!-- Left Menu -->
                     <ul class="nav navbar-nav">
                         <!--Quotations-->
                         <li id="liQuotations" runat="server" class="dropdown">
@@ -82,7 +83,7 @@
 
                         <!--Invoices-->
                         <li id="liInvoices" runat="server"><a runat="server" href="~/Invoices">Invoices</a></li>
-                        
+
                         <!--Statements-->
                         <li id="liStatements" runat="server" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -119,7 +120,7 @@
                                 <li id="liReviewParts" runat="server"><a runat="server" href="~/ReviewPart">Review Parts History</a></li>
                             </ul>
                         </li>
-                        
+
                         <!--Account-->
                         <li id="liAccount" runat="server" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -139,9 +140,22 @@
                         <!--Contact-->
                         <li id="liContact" runat="server"><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
-                </div>
-            </div>
-        </div>
+
+                    <!-- Profile Icon on the Right -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="profileIcon" runat="server" visible="false" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="~/Images/profileIcon.jpg" style="width:30px;height:30px;border-radius:50%; margin-right:5px;" />
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <span id="lblProfileName" runat="server" style="padding:5px 10px; display:block;"></span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -150,7 +164,6 @@
                 <p>&copy; <%: DateTime.Now.Year %> - AMG Petronas</p>
             </footer>
         </div>
-
     </form>
 </body>
 </html>
