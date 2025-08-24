@@ -185,7 +185,6 @@
     <Content Include="Account.aspx" />
     <Content Include="ActiveQuotation.aspx" />
     <Content Include="AddUser.aspx" />
-    <Content Include="Administration.aspx" />
     <Content Include="ArchiveUser.aspx" />
     <Content Include="CloseJob.aspx" />
     <Content Include="Contact.aspx" />
@@ -275,13 +274,6 @@
     </Compile>
     <Compile Include="AddUser.aspx.designer.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Administration.aspx.cs">
-      <DependentUpon>Administration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Administration.aspx.designer.cs">
-      <DependentUpon>Administration.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

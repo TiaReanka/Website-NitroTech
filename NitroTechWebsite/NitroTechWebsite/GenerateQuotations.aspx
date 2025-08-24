@@ -33,7 +33,6 @@ border-radius:6px; background:#1a2db9; color:white; border:none; cursor:pointer;
     <div class="form-container"> 
         <h2>Generate Quotation</h2> 
  
-        <!-- Tab Headers --> 
         <div class="tabs"> 
             <div class="tab-header active" onclick="showTab('pnlCustomer', this)">Customer 
 Info</div> 
@@ -41,7 +40,6 @@ Info</div>
             <div class="tab-header" onclick="showTab('pnlFaults', this)">Faults</div> 
         </div> 
  
-        <!-- Customer Info --> 
         <asp:Panel ID="pnlCustomer" runat="server" CssClass="tab-panel active" 
 ClientIDMode="Static"> 
             <div class="form-group"><label>Customer ID:</label><asp:TextBox ID="txtCustID" 
@@ -61,7 +59,6 @@ OnClientClick="showTab('pnlVehicle', document.querySelectorAll('.tab-header')[1]
 /> 
         </asp:Panel> 
  
-        <!-- Vehicle Info --> 
         <asp:Panel ID="pnlVehicle" runat="server" CssClass="tab-panel" ClientIDMode="Static"> 
             <div class="form-group"><label>VIN:</label><asp:TextBox ID="txtVIN" runat="server" 
 ClientIDMode="Static" /></div> 
@@ -90,7 +87,6 @@ OnClientClick="showTab('pnlFaults', document.querySelectorAll('.tab-header')[2])
 /> 
         </asp:Panel> 
  
-    <!-- Faults Info --> 
     <asp:Panel ID="pnlFaults" runat="server" CssClass="tab-panel" ClientIDMode="Static"> 
         <div class="form-group"><label>Fault Description:</label><asp:TextBox ID="txtFault" 
 runat="server" ClientIDMode="Static" /></div> 

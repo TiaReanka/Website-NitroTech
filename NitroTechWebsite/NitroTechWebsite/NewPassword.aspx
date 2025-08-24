@@ -83,27 +83,23 @@
         <h2><%: Title %></h2>
         <h3>Change Password</h3>
 
-        <!-- Username -->
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" />
             <button type="button">Load Security Question</button>
         </div>
 
-        <!-- New Password -->
         <div class="form-group">
             <label for="newPassword">New Password:</label>
             <input type="password" id="newPassword" name="newPassword" />
         </div>
 
-        <!-- Confirm Password -->
         <div class="form-group">
             <label for="confirmPassword">Confirm Password:</label>
             <input type="password" id="confirmPassword" name="confirmPassword" />
             <img src="eye-icon.png" alt="Toggle Password" />
         </div>
 
-        <!-- Reset Options -->
         <div class="form-group">
             <label>Password Reset Options:</label>
             <div class="radio-options">
@@ -118,13 +114,11 @@
             </div>
         </div>
 
-        <!-- Security Question -->
         <div class="form-group">
             <label for="securityAnswer">Security Question:</label>
             <input type="text" id="securityAnswer" name="securityAnswer" />
         </div>
 
-        <!-- Buttons Row -->
         <div class="button-row">
             <button type="submit">Change Password</button>
             <button type="button">Close</button>

@@ -33,11 +33,10 @@ AutoEventWireup="true" CodeBehind="AddJob.aspx.cs" Inherits="NitroTechWebsite.Ad
             color: white; 
         } 
  
-        /* Centered dropdown directly under the label */ 
         .form-group select { 
             display: block; 
             margin: 0 auto; 
-            width: 400px;               /* fixed nice width */ 
+            width: 400px;               
             padding: 12px; 
             border: 1px solid #ccc; 
             border-radius: 8px; 
@@ -67,7 +66,7 @@ AutoEventWireup="true" CodeBehind="AddJob.aspx.cs" Inherits="NitroTechWebsite.Ad
             background-color: purple; 
         } 
  
-        /* GridView styling */ 
+        
         .gridview { 
             width: 90%; 
             margin: 30px auto; 

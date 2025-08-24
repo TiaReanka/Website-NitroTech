@@ -18,7 +18,6 @@
             color: white; 
         } 
  
-        /* Horizontal form layout */ 
         .form-group { 
             display: flex; 
             justify-content: space-between; 
@@ -63,8 +62,7 @@
         .btn:hover { 
             background-color: purple; 
         } 
- 
-        /* GridView styling */ 
+
         .gridview { 
             width: 90%; 
             margin: 30px auto; 

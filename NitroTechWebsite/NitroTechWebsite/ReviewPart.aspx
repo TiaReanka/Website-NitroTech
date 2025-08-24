@@ -96,7 +96,6 @@
             <button type="submit">Search</button>
         </div>
 
-        <!-- GridView to show results -->
         <div class="grid-container">
             <asp:GridView ID="PartsGrid" runat="server" AutoGenerateColumns="true" />
         </div>

@@ -11,11 +11,11 @@
             box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
         }
 
-            .form-container h2, .form-container h3 {
-                text-align: center;
-                margin-bottom: 20px;
-                color: white;
-            }
+        .form-container h2, .form-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
 
         .form-group {
             display: flex;
@@ -26,20 +26,20 @@
             margin-right: auto;
         }
 
-            .form-group label {
-                width: 250px;
-                font-weight: bold;
-                text-align: right;
-                margin-right: 75px;
-                color: white;
-            }
+        .form-group label {
+            width: 250px;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 75px;
+            color: white;
+        }
 
-            .form-group input {
-                flex: 1;
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
+        .form-group input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
         .form-container button {
             display: block;
@@ -54,9 +54,9 @@
             font-size: 16px;
         }
 
-            .form-container button:hover {
-                background-color: purple;
-            }
+        .form-container button:hover {
+            background-color: purple;
+        }
     </style>
 
     <div class="form-container">

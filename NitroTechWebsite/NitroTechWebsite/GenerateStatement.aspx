@@ -3,9 +3,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server"> 
     <style> 
     .form-container { 
-        max-width: 1000px;          /* wider panel */ 
-        margin: 60px auto;          /* more vertical centering */ 
-        padding: 40px;              /* more inner padding */ 
+        max-width: 1000px;          
+        margin: 60px auto;         
+        padding: 40px;             
         background: #191919; 
         border-radius: 12px; 
         box-shadow: 0px 6px 15px rgba(0,0,0,0.25); 
@@ -14,22 +14,22 @@
     .form-container h2, 
     .form-container h3 { 
         text-align: center; 
-        margin-bottom: 30px;        /* more space under headings */ 
+        margin-bottom: 30px;        
         color: white; 
     } 
  
     .form-group { 
         display: flex; 
         align-items: center; 
-        justify-content: space-between; /* balance label + input */ 
-        margin-bottom: 25px;            /* more spacing between groups */ 
+        justify-content: space-between;
+        margin-bottom: 25px;            
         max-width: 700px; 
         margin-left: auto; 
         margin-right: auto; 
     } 
  
     .form-group label { 
-        width: 220px;                   /* slightly smaller to give input more space */ 
+        width: 220px;                  
         font-weight: bold; 
         text-align: right; 
         margin-right: 50px; 
@@ -39,7 +39,7 @@
     .form-group select, 
     .form-group .aspNetDropDown { 
         flex: 1; 
-        padding: 12px;                  /* bigger inputs */ 
+        padding: 12px;               
         border: 1px solid #ccc; 
         border-radius: 8px; 
         font-size: 15px; 
@@ -51,8 +51,8 @@
     .form-container button, 
     .btn { 
         display: block; 
-        max-width: 300px;               /* button narrower for balance */ 
-        margin: 30px auto;              /* more spacing above button */ 
+        max-width: 300px;               
+        margin: 30px auto;              
         padding: 14px; 
         background-color: #1a2db9; 
         color: white; 

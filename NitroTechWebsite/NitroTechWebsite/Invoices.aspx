@@ -3,9 +3,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server"> 
     <style> 
         .form-container { 
-            max-width: 1000px;          /* wider panel */ 
-            margin: 60px auto;          /* more vertical centering */ 
-            padding: 40px;              /* more inner padding */ 
+            max-width: 1000px;          
+            margin: 60px auto;          
+            padding: 40px;            
             background: #191919; 
             border-radius: 12px; 
             box-shadow: 0px 6px 15px rgba(0,0,0,0.25); 
@@ -14,7 +14,7 @@
         .form-container h2, 
         .form-container h3 { 
             text-align: center; 
-            margin-bottom: 30px;        /* more space under headings */ 
+            margin-bottom: 30px;       
             color: white; 
         } 
  
@@ -22,16 +22,16 @@
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            margin-bottom: 25px;        /* more spacing between groups */ 
+            margin-bottom: 25px;       
             max-width: 700px; 
             margin-left: auto; 
             margin-right: auto; 
         } 
  
         .form-group label { 
-            width: 220px;               /* slightly smaller so input has more space */ 
+            width: 220px;              
             font-weight: bold; 
-            text-align: right;          /* fixed typo (was centre) */ 
+            text-align: right;          
             margin-right: 50px; 
             color: white; 
         } 
@@ -51,8 +51,8 @@
         .form-container button, 
         .btn { 
             display: block; 
-            max-width: 300px;           /* consistent narrower button */ 
-            margin: 30px auto;          /* more spacing between buttons */ 
+            max-width: 300px;          
+            margin: 30px auto;        
             padding: 14px; 
             background-color: #1a2db9; 
             color: white; 

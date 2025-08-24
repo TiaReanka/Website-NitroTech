@@ -21,7 +21,6 @@ namespace NitroTechWebsite
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            // Currently just rebind dummy data; you can later filter by customer name & quotation number
             BindDummyGrid();
         }
 
@@ -33,7 +32,6 @@ namespace NitroTechWebsite
             dt.Columns.Add("Date");
             dt.Columns.Add("TotalAmount");
 
-            // Sample data 
             dt.Rows.Add("QUO001", "Alice", "2025-08-01", "R 1500.00");
             dt.Rows.Add("QUO002", "Bob", "2025-08-05", "R 2200.00");
             dt.Rows.Add("QUO003", "Charlie", "2025-08-10", "R 1800.00");

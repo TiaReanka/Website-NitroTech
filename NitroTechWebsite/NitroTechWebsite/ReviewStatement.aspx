@@ -60,7 +60,6 @@
             background-color: purple; 
         } 
  
-        /* GridView styling */ 
         .gridview { 
             width: 90%; 
             margin: 30px auto; 
