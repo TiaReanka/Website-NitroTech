@@ -89,6 +89,24 @@ namespace NitroTechWebsite
                 profileIcon.Visible = false;
             }
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            // Clear session
+            Session.Clear();
+            Session.Abandon();
+
+            // Optional: clear authentication cookie if using Forms Authentication
+            if (Request.Cookies[".ASPXAUTH"] != null)
+            {
+                var cookie = new HttpCookie(".ASPXAUTH");
+                cookie.Expires = DateTime.Now.AddDays(-1d);
+                Response.Cookies.Add(cookie);
+            }
+
+            // Redirect to home or login page
+            Response.Redirect("~/Default.aspx");
+        }
     }
 }
 
