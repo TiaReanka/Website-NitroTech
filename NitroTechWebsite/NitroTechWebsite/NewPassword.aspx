@@ -11,13 +11,13 @@
             box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
         }
 
-        .form-container h2,
-        .form-container h3 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: white;
-        }
+            .form-container h2,
+            .form-container h3 {
+                text-align: center;
+                font-size: 28px;
+                margin-bottom: 10px;
+                color: white;
+            }
 
         .form-group {
             display: flex;
@@ -28,31 +28,39 @@
             margin-right: auto;
         }
 
-        .form-group label {
-            width: 220px;
-            font-weight: bold;
-            text-align: right;
-            margin-right: 50px;
-            color: white;
-        }
+            .form-group label {
+                width: 220px;
+                font-weight: bold;
+                text-align: right;
+                margin-right: 50px;
+                color: white;
+            }
 
-        .form-group input {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+            .form-group input {
+                flex: 1;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
 
-        .form-group img {
-            margin-left: 15px;
-            cursor: pointer;
-            width: 32px;
-        }
+            .form-group img {
+                margin-left: 15px;
+                cursor: pointer;
+                width: 32px;
+            }
 
         .radio-options {
             display: flex;
             gap: 20px;
             align-items: center;
+        }
+
+        
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            color: #000 !important;
+            background-color: #fff; 
         }
 
         .form-container button {
@@ -67,9 +75,9 @@
             font-size: 16px;
         }
 
-        .form-container button:hover {
-            background-color: purple;
-        }
+            .form-container button:hover {
+                background-color: purple;
+            }
 
         .button-row {
             display: flex;
@@ -85,42 +93,50 @@
 
         <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" />
-            <button type="button">Load Security Question</button>
+            <input type="text" id="username" runat="server" />
+            <button id="loadSQButton" runat="server" onserverclick="LoadSecurityQuestion_Click">Load Security Question</button>
+
+        </div>
+
+        <div class="form-group">
+            <label for="oldPassword">Old Password:</label>
+            <input type="password" id="oldPassword" runat="server" />
+            <img src="eye-icon.png" alt="" />
         </div>
 
         <div class="form-group">
             <label for="newPassword">New Password:</label>
-            <input type="password" id="newPassword" name="newPassword" />
+            <input type="password" id="newPassword" runat="server" />
+            <img src="eye-icon.png" alt="" />
         </div>
 
         <div class="form-group">
             <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" />
-            <img src="eye-icon.png" alt="Toggle Password" />
+            <input type="password" id="confirmPassword" runat="server" />
+            <img src="eye-icon.png" alt="" />
         </div>
 
         <div class="form-group">
             <label>Password Reset Options:</label>
             <div class="radio-options">
                 <label>
-                    <input type="radio" name="resetOption" value="oldPassword" checked />
+                    <input type="radio" id="oldPasswordRadio" runat="server" name="resetOption" checked/>
                     Use Old Password
                 </label>
                 <label>
-                    <input type="radio" name="resetOption" value="securityQuestion" />
+                    <input type="radio" id="securityQuestionRadio" runat="server" name="resetOption" />
                     Use Security Question
                 </label>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="securityAnswer">Security Question:</label>
-            <input type="text" id="securityAnswer" name="securityAnswer" />
+            <asp:Label ID="securityQuestionLabel" runat="server" ForeColor="White"></asp:Label>
+            <input type="text" id="securityAnswer" runat="server" />
         </div>
 
         <div class="button-row">
-            <button type="submit">Change Password</button>
+            <button id="changePasswordBtn" runat="server" onserverclick="ChangePassword_Click">Change Password</button>
             <button type="button">Close</button>
         </div>
     </div>

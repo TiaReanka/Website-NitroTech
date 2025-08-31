@@ -44,6 +44,12 @@ namespace NitroTechWebsite
             gvFaults.DataSource = dt;
             gvFaults.DataBind();
 
+            // Update summary textbox 
+            txtFaultSummary.Text = string.Join(Environment.NewLine,
+                dt.AsEnumerable().Select(r =>
+                    $"{r["Part"]} - {r["FaultDescription"]} (Qty: {r["Quantity"]})"));
+
+            // Reset input fields 
             cmbPart.SelectedIndex = 0;
             txtFault.Text = "";
             nudQuantity.Text = "1";
