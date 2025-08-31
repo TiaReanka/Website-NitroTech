@@ -135,6 +135,9 @@ namespace NitroTechWebsite
                 cmd.ExecuteNonQuery();
             }
 
+            Session.Clear();     
+            Session.Abandon();
+
             // Show success + redirect
             ShowMessageAndRedirect("Password updated successfully!", "Login.aspx");
         }
