@@ -33,21 +33,12 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
-        /// newAccount control.
+        /// lnkForgotPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label newAccount;
-
-        /// <summary>
-        /// newPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label newPassword;
+        protected global::System.Web.UI.WebControls.HyperLink lnkForgotPassword;
     }
 }

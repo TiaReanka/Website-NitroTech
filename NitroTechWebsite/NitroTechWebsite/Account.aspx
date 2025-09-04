@@ -85,21 +85,13 @@
             <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" />
         </div>
 
-        <div class="form-group">
-            <label style="width: auto; margin-left: 325px;">
-                <input type="checkbox" id="showPassword" onclick="togglePassword()" />
-                Show Password
-            </label>
-        </div>
-
         <button type="submit">Login</button>
 
         <div class="text-align">
-            <asp:Label ID="newAccount" runat="server" Text="Create an Account" Font-Underline="true"></asp:Label>
-        </div>
-
-        <div class="text-align">
-            <asp:Label ID="newPassword" runat="server" Text="Forgot Password?" Font-Underline="true"></asp:Label>
+            <asp:HyperLink ID="lnkForgotPassword"
+                runat="server"
+                NavigateUrl="~/NewPassword.aspx"
+                Text="Forgot Password?" />
         </div>
 
     </div>

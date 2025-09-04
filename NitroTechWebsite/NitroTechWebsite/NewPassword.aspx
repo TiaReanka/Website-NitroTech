@@ -44,10 +44,21 @@
             }
 
             .form-group img {
-                margin-left: 15px;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
                 cursor: pointer;
-                width: 32px;
+                width: 22px;
+                opacity: 0.6;
+                transition: opacity 0.2s ease;
+                display: block; 
             }
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: block; /* don't hide them */
+        }
 
         
         .radio-options {
