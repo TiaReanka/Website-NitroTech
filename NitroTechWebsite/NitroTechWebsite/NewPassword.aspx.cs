@@ -16,6 +16,7 @@ namespace NitroTechWebsite
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 bool isLoggedIn = Session["UserId"] != null;
@@ -27,6 +28,8 @@ namespace NitroTechWebsite
                     username.Attributes["readonly"] = "readonly";
                     loadSQButton.Visible = false;
                     oldPasswordRadio.Disabled = false;
+                    oldPasswordRadio.Checked = false;
+                    securityQuestionRadio.Checked = true;
                 }
                 else
                 {
@@ -34,8 +37,11 @@ namespace NitroTechWebsite
                     username.Value = "";
                     username.Attributes.Remove("readonly");
                     loadSQButton.Visible = true;
-                    oldPasswordRadio.Disabled = true;
+                    oldPasswordRadio.Disabled = true;         
+                    oldPasswordRadio.Checked = false;
                     securityQuestionRadio.Checked = true;
+                    oldPassword.Attributes["disabled"] = "disabled";
+                    btnChangePassword.Attributes["disabled"] = "disabled";   // Disable
                 }
             }
         }
@@ -50,7 +56,7 @@ namespace NitroTechWebsite
                 if (result != null)
                 {
                     securityQuestionLabel.Text = "Please answer your security question: " + result.ToString();
-                    changePasswordBtn.Attributes["disabled"] = "disabled";   // Disable
+                    btnChangePassword.Attributes.Remove("disabled"); // Enable
                 }
                 else
                 {
@@ -100,7 +106,7 @@ namespace NitroTechWebsite
                     string dbPassword = reader["userPassword"].ToString();
                     string dbAnswer = reader["userSQAnswer"].ToString();
 
-                    if (oldPasswordRadio.Checked)
+                    if (oldPasswordRadio.Checked == true)
                     {
                         if (HashPassword(inputAnswer) != dbPassword)
                         {
@@ -108,7 +114,7 @@ namespace NitroTechWebsite
                             return;
                         }
                     }
-                    else if (securityQuestionRadio.Checked)
+                    else if (securityQuestionRadio.Checked == true)
                     {
                         if (!string.Equals(inputAnswer, dbAnswer, StringComparison.OrdinalIgnoreCase))
                         {
@@ -139,7 +145,7 @@ namespace NitroTechWebsite
             Session.Abandon();
 
             // Show success + redirect
-            ShowMessageAndRedirect("Password updated successfully!", "Login.aspx");
+            ShowMessageAndRedirect("Password updated successfully!", "Account.aspx");
         }
 
         private void ShowMessage(string message)
@@ -178,10 +184,13 @@ namespace NitroTechWebsite
                 oldPassword.Attributes.Remove("disabled");
                 securityAnswer.Disabled = true;
                 securityQuestionRadio.Checked = false;
+                btnChangePassword.Attributes.Remove("disabled"); // Enable
+
             }
             else if (securityQuestionRadio.Checked)
             {
                 oldPassword.Attributes["disabled"] = "disabled";
+                btnChangePassword.Attributes["disabled"] = "disabled";   // Disable
                 securityAnswer.Disabled = false;
                 oldPasswordRadio.Checked = false;
 

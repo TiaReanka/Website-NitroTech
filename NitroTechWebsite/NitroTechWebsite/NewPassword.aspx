@@ -136,8 +136,8 @@
         </div>
 
         <div class="button-row">
-            <button id="changePasswordBtn" runat="server" onserverclick="ChangePassword_Click">Change Password</button>
-            <button type="button">Close</button>
+            <asp:Button ID="btnChangePassword" runat="server" Text="Change Password" CssClass="button" OnClick="ChangePassword_Click" />
+            <asp:Button ID="CloseButton" runat="server" Text="Close" CssClass="button" PostBackUrl="~/Default.aspx" />
         </div>
     </div>
 </asp:Content>
