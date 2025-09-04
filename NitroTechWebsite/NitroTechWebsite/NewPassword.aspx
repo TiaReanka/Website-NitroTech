@@ -49,11 +49,21 @@
                 width: 32px;
             }
 
+        
         .radio-options {
             display: flex;
-            gap: 20px;
+            flex-direction: column; /* stack vertically */
+            gap: 10px;
+        }
+
+        .radio-line {
+            display: flex;
             align-items: center;
         }
+
+            .radio-line input[type="radio"] {
+                margin: 0 6px 0 0; /* small gap between circle and text */
+            }
 
         
         input[type="text"],
@@ -137,8 +147,23 @@
         <div class="form-group">
             <label>Password Reset Options:</label>
             <div class="radio-options">
-                <asp:RadioButton CssClass="radio.options" ID="oldPasswordRadio1" runat="server" GroupName="resetOption" Text="Use Old Password" AutoPostBack="true" OnCheckedChanged="OptionChanged" />
-                <asp:RadioButton CssClass="radio.options" ID="securityQuestionRadio1" runat="server" GroupName="resetOption" Text="Use Security Question" AutoPostBack="true" OnCheckedChanged="OptionChanged" />
+                <div class="radio-line">
+                    <asp:RadioButton ID="oldPasswordRadio1"
+                        runat="server"
+                        GroupName="resetOption"
+                        AutoPostBack="true"
+                        OnCheckedChanged="OptionChanged" />
+                    <span>Use Old Password</span>
+                </div>
+
+                <div class="radio-line">
+                    <asp:RadioButton ID="securityQuestionRadio1"
+                        runat="server"
+                        GroupName="resetOption"
+                        AutoPostBack="true"
+                        OnCheckedChanged="OptionChanged" />
+                    <span>Use Security Question</span>
+                </div>
             </div>
         </div>
 
