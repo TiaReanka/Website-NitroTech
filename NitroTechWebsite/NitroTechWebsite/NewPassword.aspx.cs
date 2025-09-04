@@ -16,7 +16,9 @@ namespace NitroTechWebsite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            oldPassword.Visible = false;
+            oldPasswordLabel.Visible = false;
+            loadSQButton.Visible = true;
             if (!IsPostBack)
             {
                 bool isLoggedIn = Session["UserId"] != null;
@@ -26,22 +28,22 @@ namespace NitroTechWebsite
                     // User logged in → show readonly username and both options
                     username.Value = Session["Name"].ToString();
                     username.Attributes["readonly"] = "readonly";
-                    loadSQButton.Visible = false;
-                    oldPasswordRadio.Disabled = false;
-                    oldPasswordRadio.Checked = false;
-                    securityQuestionRadio.Checked = true;
+                    oldPasswordRadio1.Enabled = true;
+                    oldPasswordRadio1.Checked = false;
+                    securityQuestionRadio1.Checked = true;
                 }
                 else
                 {
                     // User not logged in → must use security question
                     username.Value = "";
                     username.Attributes.Remove("readonly");
-                    loadSQButton.Visible = true;
-                    oldPasswordRadio.Disabled = true;         
-                    oldPasswordRadio.Checked = false;
-                    securityQuestionRadio.Checked = true;
+                    oldPasswordRadio1.Enabled = false;         
+                    oldPasswordRadio1.Checked = false;
+                    securityQuestionRadio1.Checked = true;
                     oldPassword.Attributes["disabled"] = "disabled";
                     btnChangePassword.Attributes["disabled"] = "disabled";   // Disable
+                    
+
                 }
             }
         }
@@ -106,7 +108,7 @@ namespace NitroTechWebsite
                     string dbPassword = reader["userPassword"].ToString();
                     string dbAnswer = reader["userSQAnswer"].ToString();
 
-                    if (oldPasswordRadio.Checked == true)
+                    if (oldPasswordRadio1.Checked == true)
                     {
                         if (HashPassword(inputAnswer) != dbPassword)
                         {
@@ -114,7 +116,7 @@ namespace NitroTechWebsite
                             return;
                         }
                     }
-                    else if (securityQuestionRadio.Checked == true)
+                    else if (securityQuestionRadio1.Checked == true)
                     {
                         if (!string.Equals(inputAnswer, dbAnswer, StringComparison.OrdinalIgnoreCase))
                         {
@@ -179,20 +181,30 @@ namespace NitroTechWebsite
 
         protected void OptionChanged(object sender, EventArgs e)
         {
-            if (oldPasswordRadio.Checked)
+            if (oldPasswordRadio1.Checked)
             {
                 oldPassword.Attributes.Remove("disabled");
                 securityAnswer.Disabled = true;
-                securityQuestionRadio.Checked = false;
+                securityQuestionRadio1.Checked = false;
                 btnChangePassword.Attributes.Remove("disabled"); // Enable
+                oldPassword.Visible = true;
+                oldPasswordLabel.Visible = true;
+                securityAnswer.Visible = false;
+                securityQuestionLabel.Visible = false;
+                loadSQButton.Visible = false;
 
             }
-            else if (securityQuestionRadio.Checked)
+            else if (securityQuestionRadio1.Checked)
             {
                 oldPassword.Attributes["disabled"] = "disabled";
                 btnChangePassword.Attributes["disabled"] = "disabled";   // Disable
                 securityAnswer.Disabled = false;
-                oldPasswordRadio.Checked = false;
+                oldPasswordRadio1.Checked = false;
+                oldPassword.Visible = false;
+                oldPasswordLabel.Visible = false;
+                securityAnswer.Visible = true;
+                securityQuestionLabel.Visible = true;
+                loadSQButton.Visible = true;
 
             }
         }

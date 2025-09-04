@@ -85,6 +85,24 @@
             max-width: 450px;
             margin: 20px auto 0 auto;
         }
+
+        .button {
+            display: block;
+            margin-left: 15px;
+            padding: 12px 20px;
+            background-color: #1a2db9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .button:hover {
+                background-color: purple;
+            }
+
+
     </style>
 
     <div class="form-container">
@@ -99,7 +117,7 @@
         </div>
 
         <div class="form-group">
-            <label for="oldPassword">Old Password:</label>
+            <asp:Label ID="oldPasswordLabel" runat="server" AssociatedControlID="oldPassword" Text="Old Password:" ForeColor="White"></asp:Label>
             <input type="password" id="oldPassword" runat="server" />
             <img src="eye-icon.png" alt="" />
         </div>
@@ -119,19 +137,13 @@
         <div class="form-group">
             <label>Password Reset Options:</label>
             <div class="radio-options">
-                <label>
-                    <input type="radio" id="oldPasswordRadio" runat="server" name="resetOption" checked/>
-                    Use Old Password
-                </label>
-                <label>
-                    <input type="radio" id="securityQuestionRadio" runat="server" name="resetOption" />
-                    Use Security Question
-                </label>
+                <asp:RadioButton CssClass="radio.options" ID="oldPasswordRadio1" runat="server" GroupName="resetOption" Text="Use Old Password" AutoPostBack="true" OnCheckedChanged="OptionChanged" />
+                <asp:RadioButton CssClass="radio.options" ID="securityQuestionRadio1" runat="server" GroupName="resetOption" Text="Use Security Question" AutoPostBack="true" OnCheckedChanged="OptionChanged" />
             </div>
         </div>
 
         <div class="form-group">
-            <asp:Label ID="securityQuestionLabel" runat="server" ForeColor="White"></asp:Label>
+            <asp:Label ID="securityQuestionLabel" runat="server" AssociatedControlID="securityAnswer" Text="SecurityQuestion:" ForeColor="White"></asp:Label>
             <input type="text" id="securityAnswer" runat="server" />
         </div>
 

@@ -33,6 +33,15 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.HtmlControls.HtmlButton loadSQButton;
 
         /// <summary>
+        /// oldPasswordLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label oldPasswordLabel;
+
+        /// <summary>
         /// oldPassword control.
         /// </summary>
         /// <remarks>
@@ -60,22 +69,22 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword confirmPassword;
 
         /// <summary>
-        /// oldPasswordRadio control.
+        /// oldPasswordRadio1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton oldPasswordRadio;
+        protected global::System.Web.UI.WebControls.RadioButton oldPasswordRadio1;
 
         /// <summary>
-        /// securityQuestionRadio control.
+        /// securityQuestionRadio1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton securityQuestionRadio;
+        protected global::System.Web.UI.WebControls.RadioButton securityQuestionRadio1;
 
         /// <summary>
         /// securityQuestionLabel control.
