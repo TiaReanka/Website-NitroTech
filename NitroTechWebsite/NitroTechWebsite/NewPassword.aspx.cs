@@ -16,9 +16,9 @@ namespace NitroTechWebsite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            oldPassword.Visible = false;
-            oldPasswordLabel.Visible = false;
             loadSQButton.Visible = true;
+            securityQuestionRadio1.Checked = true;
+
             if (!IsPostBack)
             {
                 bool isLoggedIn = Session["UserId"] != null;
@@ -30,7 +30,9 @@ namespace NitroTechWebsite
                     username.Attributes["readonly"] = "readonly";
                     oldPasswordRadio1.Enabled = true;
                     oldPasswordRadio1.Checked = false;
-                    securityQuestionRadio1.Checked = true;
+                    oldPassword.Visible = false;
+                    oldPasswordLabel.Visible = false;
+
                 }
                 else
                 {
@@ -39,7 +41,8 @@ namespace NitroTechWebsite
                     username.Attributes.Remove("readonly");
                     oldPasswordRadio1.Enabled = false;         
                     oldPasswordRadio1.Checked = false;
-                    securityQuestionRadio1.Checked = true;
+                    oldPassword.Visible = false;
+                    oldPasswordLabel.Visible = false;
                     oldPassword.Attributes["disabled"] = "disabled";
                     btnChangePassword.Attributes["disabled"] = "disabled";   // Disable
                     
@@ -73,9 +76,10 @@ namespace NitroTechWebsite
             string newPass = newPassword.Value;
             string confirmPass = confirmPassword.Value;
             string inputAnswer = securityAnswer.Value;
+            string oldPass = oldPassword.Value;
 
             if (string.IsNullOrEmpty(uName) || string.IsNullOrEmpty(newPass) ||
-                string.IsNullOrEmpty(confirmPass) || string.IsNullOrEmpty(inputAnswer))
+                string.IsNullOrEmpty(confirmPass))
             {
                 ShowMessage("Please fill in all fields.");
                 return;
@@ -110,7 +114,7 @@ namespace NitroTechWebsite
 
                     if (oldPasswordRadio1.Checked == true)
                     {
-                        if (HashPassword(inputAnswer) != dbPassword)
+                        if (HashPassword(oldPass) != dbPassword)
                         {
                             ShowMessage("Old password is incorrect.");
                             return;
