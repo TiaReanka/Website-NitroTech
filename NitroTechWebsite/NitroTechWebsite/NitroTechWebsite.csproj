@@ -351,6 +351,7 @@
     <Compile Include="AddPart.aspx.designer.cs">
       <DependentUpon>AddPart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LogQueue.cs" />
     <Compile Include="NewPassword.aspx.cs">
       <DependentUpon>NewPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

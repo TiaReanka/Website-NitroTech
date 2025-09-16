@@ -92,6 +92,7 @@ namespace NitroTechWebsite
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            Account.LogUserLogoff(new HttpSessionStateWrapper(Session));
             // Clear session
             Session.Clear();
             Session.Abandon();

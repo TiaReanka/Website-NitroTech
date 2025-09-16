@@ -17,5 +17,14 @@ namespace NitroTechWebsite
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            var session = (HttpSessionState)HttpContext.Current?.Session;
+            if (session != null)
+            {
+                Account.LogUserLogoff(new HttpSessionStateWrapper(session));
+            }
+        }
     }
 }

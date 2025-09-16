@@ -146,8 +146,17 @@ namespace NitroTechWebsite
                 cmd.Parameters.AddWithValue("@p", HashPassword(newPass));
                 cmd.ExecuteNonQuery();
             }
+            var logEntry = new UserResetPasswordEntry
+            {
+                AdminUsername = Session["UserName"] != null ? Session["UserName"].ToString() : "SelfService",
+                TargetUser = uName,
+                ResetTime = DateTime.Now
+            };
 
-            Session.Clear();     
+            LogQueue.EnqueueResetPassword(logEntry);
+            
+
+                        Session.Clear();     
             Session.Abandon();
 
             // Show success + redirect
