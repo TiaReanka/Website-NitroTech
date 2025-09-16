@@ -52,7 +52,7 @@
                 width: 22px;
                 opacity: 0.6;
                 transition: opacity 0.2s ease;
-                display: block; 
+                display: block;
             }
 
         input[type="password"]::-ms-reveal,
@@ -60,7 +60,7 @@
             display: block; /* don't hide them */
         }
 
-        
+
         .radio-options {
             display: flex;
             flex-direction: column; /* stack vertically */
@@ -76,12 +76,12 @@
                 margin: 0 6px 0 0; /* small gap between circle and text */
             }
 
-        
+
         input[type="text"],
         input[type="password"],
         textarea {
             color: #000 !important;
-            background-color: #fff; 
+            background-color: #fff;
         }
 
         .form-container button {
@@ -122,8 +122,6 @@
             .button:hover {
                 background-color: purple;
             }
-
-
     </style>
 
     <div class="form-container">
