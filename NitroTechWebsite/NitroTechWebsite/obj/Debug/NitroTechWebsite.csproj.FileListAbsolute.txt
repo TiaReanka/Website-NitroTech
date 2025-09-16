@@ -560,3 +560,12 @@ C:\Users\gprin\OneDrive\Desktop\WEBPAGE_ISTN\ISTN3SI-Project\NitroTechWebsite\Ni
 C:\Users\gprin\OneDrive\Desktop\WEBPAGE_ISTN\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\obj\Debug\NitroTec.C1FEC9F3.Up2Date
 C:\Users\gprin\OneDrive\Desktop\WEBPAGE_ISTN\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\obj\Debug\NitroTechWebsite.dll
 C:\Users\gprin\OneDrive\Desktop\WEBPAGE_ISTN\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\obj\Debug\NitroTechWebsite.pdb
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\Newtonsoft.Json.Bson.dll
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Net.Http.Formatting.dll
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Web.Http.dll
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Web.Http.WebHost.dll
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\Newtonsoft.Json.Bson.pdb
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\Newtonsoft.Json.Bson.xml
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Net.Http.Formatting.xml
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Web.Http.xml
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Web.Http.WebHost.xml

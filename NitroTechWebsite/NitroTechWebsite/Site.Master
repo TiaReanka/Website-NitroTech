@@ -28,6 +28,105 @@
         .navbar-nav .dropdown-menu {
             background-color: white;
         }
+
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 55px;
+            height: 55px;
+            background-color: #0078d7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.2s ease;
+            overflow: hidden; /* keeps image inside circle */
+        }
+
+            #chatbot-toggle img {
+                width: 70%;
+                height: 70%;
+                object-fit: contain;
+            }
+
+            #chatbot-toggle:hover {
+                transform: scale(1.1);
+                background-color: #005fa3;
+            }
+
+
+        /* Chatbot Panel */
+        #chatbot-panel {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        #chatbot-header {
+            background: #0078d7;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        #chatbot-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+            #chatbot-input input {
+                flex: 1;
+                border: none;
+                padding: 10px;
+                outline: none;
+                color: black; /* <-- Add this line */
+            }
+
+            #chatbot-input button {
+                background: #0078d7;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                cursor: pointer;
+            }
+
+        #chatbot-messages div {
+            color: black; /* Make messages visible */
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+
+            #chatbot-messages div.user-message {
+                font-weight: bold; /* Optional: distinguish user messages */
+                color: #0078d7; /* Blue for user messages */
+            }
+
+            #chatbot-messages div.bot-message {
+                color: black; /* Bot messages */
+            }
+
+        
     </style>
 </head>
 <body>
@@ -166,6 +265,69 @@
                 </div>
             </div>
         </div>
+
+        <div id="chatbot-toggle" onclick="toggleChatbot()">
+            <img src="~/Images/robot.png" alt="Chatbot" />
+        </div>
+
+
+
+        <div id="chatbot-panel">
+            <div id="chatbot-header">Assistant</div>
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input">
+                <input type="text" id="chatbot-textbox" placeholder="Type your question..." />
+                <button type="button" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <script>
+            // Toggle the chatbot panel open/close
+            function toggleChatbot() {
+                var panel = document.getElementById("chatbot-panel");
+                panel.style.display = (panel.style.display === "flex") ? "none" : "flex";
+            }
+
+            // Send a message to the chatbot API
+            function sendMessage() {
+                let input = document.getElementById("chatbot-textbox");
+                let message = input.value.trim();
+                if (!message) return;
+
+                // Display user message
+                let msgDiv = document.createElement("div");
+                msgDiv.textContent = "You: " + message;
+                document.getElementById("chatbot-messages").appendChild(msgDiv);
+
+                input.value = "";
+
+                // Call your Web API
+                fetch("/api/chatbot/respond", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ text: message })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        let botDiv = document.createElement("div");
+                        botDiv.textContent = "Bot: " + data.reply;
+                        document.getElementById("chatbot-messages").appendChild(botDiv);
+
+                        // Scroll to bottom
+                        var chatMessages = document.getElementById("chatbot-messages");
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    })
+                    .catch(err => console.error("Chatbot API error:", err));
+            }
+
+            // Handle Enter key in the input box
+            document.getElementById("chatbot-textbox").addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault(); // Prevent form submission
+                    sendMessage();      // Send message
+                }
+            });
+        </script>
 
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
