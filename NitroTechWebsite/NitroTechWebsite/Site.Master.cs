@@ -15,7 +15,11 @@ namespace NitroTechWebsite
             {
                 SetMenuVisibility();
                 ShowProfileIcon(); // show profile icon if logged in
+                                   // In Page_Load
+                
+
             }
+            
         }
 
         private void SetMenuVisibility()
@@ -64,15 +68,16 @@ namespace NitroTechWebsite
                     liQuotations.Visible = true;
                     liCustomers.Visible = true;
                     liPayments.Visible = true;
-                    liReviewStatement.Visible = false; // admin cannot review statements
-                    liReviewQuotation.Visible = false; // admin cannot review quotations
+                    liReviewStatement.Visible = false; 
+                    liReviewQuotation.Visible = false; 
                     break;
                 case "clerk":
-                    // minimal access
                     liQuotations.Visible = true;
                     liCustomers.Visible = true;
-                    liReviewQuotation.Visible = false; // clerk cannot review quotations
+                    liReviewQuotation.Visible = false; 
                     break;
+                default:
+                    break; // no access to restricted items
             }
         }
 

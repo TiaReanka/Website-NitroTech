@@ -34,13 +34,12 @@ namespace NitroTechWebsite
 
             if (LoginUtility.ValidateUser(username, hashedPassword, Session))
             {
-                // Role is already stored in Session["Role"]
+
                 string role = Session["Role"].ToString();
 
-                // NEW: Store the username in session so it appears in profile dropdown
+                //Store the username in session so it appears in profile dropdown
                 Session["UserName"] = username;
 
-                // Redirect everyone to a common landing page (e.g. Menu)
                 // Tab visibility will be controlled in Site.Master based on role
                 LogQueue.EnqueueLogin(new LoginLogEntry
                 {
@@ -49,7 +48,10 @@ namespace NitroTechWebsite
                     LoginTime = DateTime.Now,
                     IpAddress = Request.UserHostAddress
                 });
+                Session["ShowGreeting"] = true;
                 StartLogSync();
+                Response.Redirect("Default.aspx");
+
 
                 Response.Redirect("Default.aspx");
                 return;

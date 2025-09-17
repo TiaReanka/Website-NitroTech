@@ -48,8 +48,8 @@
         }
 
             #chatbot-toggle img {
-                width: 70%;
-                height: 70%;
+                width: 110%;
+                height: 110%;
                 object-fit: contain;
             }
 
@@ -57,6 +57,44 @@
                 transform: scale(1.1);
                 background-color: #005fa3;
             }
+
+
+
+        #chatbot-greeting {
+            position: fixed;
+            bottom: 90px; /* just above robot */
+            left: 80px; /* to the right of robot */
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-size: 14px;
+            display: none; /* hidden until login */
+            z-index: 1000;
+            animation: fadeInOut 5s forwards;
+            color: black;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
 
 
         /* Chatbot Panel */
@@ -267,13 +305,42 @@
         </div>
 
         <div id="chatbot-toggle" onclick="toggleChatbot()">
-            <img src="~/Images/robot.png" alt="Chatbot" />
+            <img src="Images/robot.png" alt="Chatbot" />
         </div>
 
+        <div id="chatbot-greeting"></div>
+        <script>
+            window.onload = function () {
+                var showGreeting = '<%= Session["ShowGreeting"] != null ? "true" : "false" %>';
+                if (showGreeting === "true") {
+                    var userRole = '<%= Session["Role"] != null ? Session["Role"].ToString() : "" %>';
+        var userName = '<%= Session["UserName"] != null ? Session["UserName"].ToString() : "" %>';
+
+        var greeting = "";
+        if (userRole === "Admin") greeting = "Welcome back, Admin!";
+        else if (userRole === "Director") greeting = "Good day Boss!";
+        else if (userRole === "Manager") greeting = "Ready to work today?";
+        else if (userRole === "Clerk") greeting = "Let's get started shall we?";
+        else greeting = "Hello " + userName + "!";
+
+        var bubble = document.getElementById("chatbot-greeting");
+        bubble.textContent = greeting;
+        bubble.style.display = "block";
+
+        setTimeout(function () { bubble.style.display = "none"; }, 5000);
+
+        // Remove session so it only shows once
+        <% Session.Remove("ShowGreeting"); %>
+                }
+            };
+        </script>
 
 
+
+
+        
         <div id="chatbot-panel">
-            <div id="chatbot-header">Assistant</div>
+            <div id="chatbot-header">Plumeria</div>
             <div id="chatbot-messages"></div>
             <div id="chatbot-input">
                 <input type="text" id="chatbot-textbox" placeholder="Type your question..." />
@@ -310,7 +377,7 @@
                     .then(res => res.json())
                     .then(data => {
                         let botDiv = document.createElement("div");
-                        botDiv.textContent = "Bot: " + data.reply;
+                        botDiv.textContent = "Plumeria: " + data.reply;
                         document.getElementById("chatbot-messages").appendChild(botDiv);
 
                         // Scroll to bottom
