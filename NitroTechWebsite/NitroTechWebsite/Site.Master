@@ -327,7 +327,7 @@
         bubble.textContent = greeting;
         bubble.style.display = "block";
 
-        setTimeout(function () { bubble.style.display = "none"; }, 5000);
+        setTimeout(function () { bubble.style.display = "none"; }, 3000);
 
         // Remove session so it only shows once
         <% Session.Remove("ShowGreeting"); %>

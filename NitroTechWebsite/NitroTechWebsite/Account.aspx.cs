@@ -49,7 +49,7 @@ namespace NitroTechWebsite
                     IpAddress = Request.UserHostAddress
                 });
                 Session["ShowGreeting"] = true;
-                StartLogSync();
+                //StartLogSync();
                 Response.Redirect("Default.aspx");
 
 

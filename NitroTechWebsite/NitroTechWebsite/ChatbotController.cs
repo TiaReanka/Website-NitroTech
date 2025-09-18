@@ -30,24 +30,103 @@ public class ChatbotController : ApiController
     {
         userMessage = userMessage.Trim().ToLower();
 
-        // Direct navigation commands in the same message
         if (userMessage.Contains("navigate") || userMessage.Contains("find") || userMessage.Contains("locate") || userMessage.Contains("go to"))
         {
-            if (userMessage.Contains("home")) return "Taking you to the Home page: /Home";
-            if (userMessage.Contains("dashboard")) return "Opening your Dashboard: /Dashboard";
-            if (userMessage.Contains("profile")) return "Navigating to Profile: /Profile";
+            if (userMessage.Contains("home")) return "Click on NitroTech to take you to the Home Page";
+            if (userMessage.Contains("profile")) return "Click on the Profile Icon on the top right to view your username and role within the system.";
+
+            // Quotations
+            if (((userMessage.Contains("generate")) || ((userMessage.Contains("add"))) || (userMessage.Contains("create"))) && ((userMessage.Contains("quotation")) || (userMessage.Contains("quotation")))) return "Click on Quotations in the top menu, then select Generate Quotation from the dropdown.";
+            if ((userMessage.Contains("active")) && ((userMessage.Contains("quotation")) || (userMessage.Contains("quotation")))) return "Click on Quotations in the top menu, then select Active Quotations from the dropdown.";
+            if ((userMessage.Contains("add")) || (userMessage.Contains("job"))) return "Click on Quotations in the top menu, then select Add Job from the dropdown.";
+            if ((userMessage.Contains("close")) || (userMessage.Contains("job"))) return "Click on Quotations in the top menu, then select Close Job from the dropdown.";
+            if ((userMessage.Contains("quotations")) || (userMessage.Contains("quotation")))
+            {
+                state["expecting"] = "quotations";
+                return "What would you like to see under Quotations?";
+            }
+            // Invoices
+            if ((userMessage.Contains("invoices")) || (userMessage.Contains("invoice"))) return "Click on Invoices in the top menu to access invoices.";
+
+            // Statements
+            if (((userMessage.Contains("generate")) || ((userMessage.Contains("add"))) || (userMessage.Contains("create"))) && ((userMessage.Contains("statement")) || (userMessage.Contains("statements")))) return "Click on Statements in the top menu, then select Generate Statement from the dropdown.";
+            if (((userMessage.Contains("review")) || (userMessage.Contains("view")) && ((userMessage.Contains("statement"))) || (userMessage.Contains("statements")))) return "Click on Statements in the top menu, then select Review Statements from the dropdown.";
+            if ((userMessage.Contains("statements")) || (userMessage.Contains("statement")))
+            {
+                state["expecting"] = "statements";
+                return "What would you like to see under Statements?";
+            }
+
+            // Customers
+            if (((userMessage.Contains("update")) || (userMessage.Contains("change"))) && ((userMessage.Contains("details")) || (userMessage.Contains("information"))) && ((userMessage.Contains("customers")) || (userMessage.Contains("customer")))) return "Click on Customers in the top menu, then select Update Customer Details from the dropdown.";
+            if ((userMessage.Contains("transfer")) && (((userMessage.Contains("vehicle"))) || ((userMessage.Contains("vehicle"))))) return "Click on Customers in the top menu, then select Transfer Vehicles from the dropdown.";
+            if ((userMessage.Contains("customers")) || (userMessage.Contains("customer")))
+            {
+                state["expecting"] = "customers";
+                return "What would you like to see under Customers? (Update Customer Details, Transfer Vehicles)";
+            }
+
+            // Payments
+            if ((userMessage.Contains("payment")) || (userMessage.Contains("payments"))) return "Click on Payments in the top menu to access payment options.";
+
+            // Parts
+            if ((userMessage.Contains("add")) && ((userMessage.Contains("stock")) || (userMessage.Contains("part")))) return "Click on Parts in the top menu, then select Add Part from the dropdown.";
+            if ((userMessage.Contains("update")) && ((userMessage.Contains("stock")) || (userMessage.Contains("part")))) return "Click on Parts in the top menu, then select Update Part Levels from the dropdown.";
+            if (((userMessage.Contains("review")) || (userMessage.Contains("view")) || (userMessage.Contains("history"))) && ((userMessage.Contains("stock")) || (userMessage.Contains("part")))) return "Click on Parts in the top menu, then select Review Parts History from the dropdown.";
+            if (userMessage.Contains("parts") || userMessage.Contains("stock"))
+            {
+                state["expecting"] = "parts";
+                return "What would you like to see under Parts?";
+            }
+
+            // Account
+            if (((userMessage.Contains("add")) || (userMessage.Contains("create"))) && ((userMessage.Contains("user")) || (userMessage.Contains("account")))) return "Click on Account in the top menu, then select Create an Account from the dropdown.";
+            if ((userMessage.Contains("archive")) && ((userMessage.Contains("user")) || (userMessage.Contains("account")))) return "Click on Account in the top menu, then select Archive User from the dropdown.";
+            if (((userMessage.Contains("reset")) || (userMessage.Contains("reset"))) && (userMessage.Contains("password"))) return "Click on Account in the top menu, then select Reset Password from the dropdown. You can also log out and reset it from the login page by pressing the Reset Password hyperlink at the bottom.";
+            if ((userMessage.Contains("logout")) || (userMessage.Contains("log out")) || (userMessage.Contains("log off"))) return "Click on Account in the top menu, then select Logout from the dropdown.";
+            if ((userMessage.Contains("account")) || (userMessage.Contains("user")))
+            {
+                state["expecting"] = "account";
+                return "What would you like to see under Account? (Create an Account, Archive User, Reset Password, Logout)";
+            }
+
+            // About
+            if (userMessage.Contains("about")) return "Click on About in the top menu to view more information about NitroTech.";
+
+            // Feedback
+            if (userMessage.Contains("feedback")) return "Click on Feedback in the top menu to share your feedback to the developers.";
 
             // If no target found, ask follow-up
             state["expecting"] = "navigate";
-            return "Sure, where would you like to go? (Home / Dashboard / Profile)";
+            return "Sure, where would you like to go?";
+        }
+
+
+        if (userMessage.Contains("football"))
+        {
+            if (userMessage.Contains("best"))
+            {
+                if (userMessage.Contains("team"))
+                {
+                    return "Liverpool are the best team.";
+                }
+                if (userMessage.Contains("player"))
+                {
+                    return "Lionel Messi is the GOAT.";
+                }
+                state["expecting"] = "best";
+                return "The best team or player?";
+            }
+            state["expecting"] = "football";
+            return "What do you want to know about football?";
         }
 
         // Direct contact commands in the same message
         if (userMessage.Contains("contact"))
         {
-            if (userMessage.Contains("support")) return "You can reach support at support@yourdomain.com";
-            if (userMessage.Contains("sales")) return "Sales team: sales@yourdomain.com";
-            if (userMessage.Contains("office")) return "Our office is at 123 Main Street, City.";
+            if (userMessage.Contains("support")) return "You can reach support at support@pain.com";
+            if (userMessage.Contains("sales")) return "Sales team: sales@pain.com";
+            if (userMessage.Contains("office")) return "Our office is at 123 Calvin is tired Street, City.";
 
             // If no target found, ask follow-up
             state["expecting"] = "contact";
@@ -74,10 +153,56 @@ public class ChatbotController : ApiController
 
             if (expecting == "navigate")
             {
-                if (userMessage.Contains("home")) return "Taking you to the Home page: /Home";
-                if (userMessage.Contains("dashboard")) return "Opening your Dashboard: /Dashboard";
-                if (userMessage.Contains("profile")) return "Navigating to Profile: /Profile";
+                if (userMessage.Contains("home")) return "Click on NitroTech to take you to the Home Page";
+                if (userMessage.Contains("profile")) return "Click on the Profile Icon on the top right to view your username and role within the system.";
+                if ((userMessage.Contains("invoices")) || (userMessage.Contains("invoice"))) return "Click on Invoices in the top menu to access invoices.";
+                if ((userMessage.Contains("payment")) || (userMessage.Contains("payments"))) return "Click on Payments in the top menu to access payment options.";
+                if (userMessage.Contains("about")) return "Click on About in the top menu to view more information about NitroTech.";
+                if (userMessage.Contains("feedback")) return "Click on Feedback in the top menu to share your feedback to the developers.";
+
+                // Dropdown menus — redirect state
+                if (userMessage.Contains("quotations") || userMessage.Contains("quotation"))
+                {
+                    state["expecting"] = "quotations";
+                    return "What would you like to see under Quotations? (Generate Quotation, Active Quotations, Add Job, Close Job)";
+                }
+                if (userMessage.Contains("statements") || userMessage.Contains("statement"))
+                {
+                    state["expecting"] = "statements";
+                    return "What would you like to see under Statements? (Generate Statement, Review Statements)";
+                }
+                if (userMessage.Contains("customers") || userMessage.Contains("customer"))
+                {
+                    state["expecting"] = "customers";
+                    return "What would you like to see under Customers? (Update Customer Details, Transfer Vehicles)";
+                }
+                if (userMessage.Contains("parts") || userMessage.Contains("part"))
+                {
+                    state["expecting"] = "parts";
+                    return "What would you like to see under Parts? (Add Part, Update Part Levels, Review Parts History)";
+                }
+                if ((userMessage.Contains("account")) || userMessage.Contains("accounts"))
+                {
+                    state["expecting"] = "account";
+                    return "What would you like to see under Account? (Create an Account, Archive User, Reset Password, Logout)";
+                }
+
                 return "I didn’t recognize that page. Try one of our services instead!";
+            }
+            else if (expecting == "quotations")
+            {
+                if ((userMessage.Contains("generate")) || ((userMessage.Contains("add"))) || (userMessage.Contains("create"))) return "Click on Quotations in the top menu, then select Generate Quotation from the dropdown.";
+                if (userMessage.Contains("active")) return "Click on Quotations in the top menu, then select Active Quotations from the dropdown.";
+                if (userMessage.Contains("add") || userMessage.Contains("job")) return "Click on Quotations in the top menu, then select Add Job from the dropdown.";
+                if (userMessage.Contains("close") || userMessage.Contains("job")) return "Click on Quotations in the top menu, then select Close Job from the dropdown.";
+                return "Please pick one of our services (Generate, Active, Add, Close).";
+            }
+            else if (expecting == "parts")
+            {
+                if (userMessage.Contains("add")) return "Click on Parts in the top menu, then select Add Part from the dropdown.";
+                if (userMessage.Contains("update")) return "Click on Parts in the top menu, then select Update Part Levels from the dropdown.";
+                if (userMessage.Contains("review") || userMessage.Contains("view") || userMessage.Contains("history")) return "Click on Parts in the top menu, then select Review Parts History from the dropdown.";
+                return "Please select one of our services (Add, Update, Review)";
             }
             else if (expecting == "contact")
             {
@@ -86,12 +211,61 @@ public class ChatbotController : ApiController
                 if (userMessage.Contains("office")) return "Our office is at 123 Main Street, City.";
                 return "Please specify 'Support', 'Sales', or 'Office'.";
             }
+            else if (expecting == "statements")
+            {
+                if ((userMessage.Contains("generate")) || ((userMessage.Contains("add"))) || (userMessage.Contains("create"))) return "Click on Statements in the top menu, then select Generate Statement from the dropdown.";
+                if (userMessage.Contains("review") || userMessage.Contains("view")) return "Click on Statements in the top menu, then select Review Statements from the dropdown.";
+                return "Please pick one of our services.";
+            }
+            else if (expecting == "customers")
+            {
+                if (((userMessage.Contains("update")) || ((userMessage.Contains("change")))) && ((userMessage.Contains("details")) || (userMessage.Contains("information")))) return "Click on Customers in the top menu, then select Update Customer Details from the dropdown.";
+                if (userMessage.Contains("transfer") && userMessage.Contains("vehicle")) return "Click on Customers in the top menu, then select Transfer Vehicles from the dropdown.";
+                return "Please pick one of our services.";
+            }
             else if (expecting == "help")
             {
                 if (userMessage.Contains("login")) return "If you forgot your password, click 'Forgot Password' on the login page.";
                 if (userMessage.Contains("account")) return "You can update your account in the Profile section.";
                 if (userMessage.Contains("payment")) return "Payments are handled securely under the Billing section.";
                 return "Help topics: 'Login', 'Account', or 'Payment'.";
+            }
+            else if (expecting == "account")
+            {
+                if (userMessage.Contains("create") || userMessage.Contains("add")) return "Click on Account in the top menu, then select Create an Account from the dropdown.";
+                if (userMessage.Contains("archive")) return "Click on Account in the top menu, then select Archive User from the dropdown.";
+                if ((userMessage.Contains("reset")) || (userMessage.Contains("change")) && userMessage.Contains("password")) return "Click on Account in the top menu, then select Reset Password from the dropdown. You can also log out and reset it from the login page by pressing the Reset Password hyperlink at the bottom.";
+                if (userMessage.Contains("logout") || userMessage.Contains("log out") || userMessage.Contains("log off")) return "Click on Account in the top menu, then select Logout from the dropdown.";
+                return "What would you like to see under Account? (Create an Account, Archive User, Reset Password, Logout)";
+            }
+            else if (expecting == "football")
+            {
+                if (userMessage.Contains("best"))
+                {
+                    if (userMessage.Contains("team"))
+                    {
+                        return "Liverpool are the best team.";
+                    }
+                    if (userMessage.Contains("player"))
+                    {
+                        return "Lionel Messi is the GOAT.";
+                    }
+                    state["expecting"] = "best";
+                    return "The best team or player?";
+                }
+                return "What do you want to know about football?";
+            }
+            else if (expecting == "best")
+            {
+                if (userMessage.Contains("team"))
+                {
+                    return "Liverpool are the best team.";
+                }
+                if (userMessage.Contains("player"))
+                {
+                    return "Lionel Messi is the GOAT.";
+                }
+                return "The best team or player?";
             }
         }
 
