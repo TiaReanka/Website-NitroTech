@@ -5,10 +5,9 @@ using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Shapes;
 using PdfSharp.Fonts;
-using System.Windows.Forms;
 using System.IO;
 
-namespace NitroTech.Services
+namespace NitroTechWebsite.Services
 {
     public class InvoiceService
     {

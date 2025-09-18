@@ -5,11 +5,9 @@ using MigraDoc.DocumentObjectModel.Fields;
 using MigraDoc.DocumentObjectModel.Tables;
 using System.IO;
 using MigraDoc.DocumentObjectModel.Shapes;
-using static System.Windows.Forms.DataFormats;
-using System.Windows.Forms;
 using PdfSharp.Fonts;
 
-namespace NitroTech.Services
+namespace NitroTechWebsite.Services
 {
     public class QuotationService
     {
