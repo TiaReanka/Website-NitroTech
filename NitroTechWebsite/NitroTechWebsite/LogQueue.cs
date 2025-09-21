@@ -60,7 +60,7 @@ namespace NitroTechWebsite
         private static readonly object deleteUserLock = new object();
         private static readonly object resetPasswordLock = new object();
 
-        // 🔹 Enqueue methods
+        // Enqueue methods
         public static void EnqueueLogin(LoginLogEntry entry)
         {
             lock (loginLock) { loginQueue.Enqueue(entry); }
@@ -86,7 +86,7 @@ namespace NitroTechWebsite
             lock (resetPasswordLock) { resetPasswordQueue.Enqueue(entry); }
         }
 
-        // 🔹 Flush methods
+        //  Flush methods
         public static List<LoginLogEntry> FlushLoginQueue()
         {
             lock (loginLock)
@@ -137,7 +137,7 @@ namespace NitroTechWebsite
             }
         }
 
-        // 🔹 Count properties
+        //  Count properties
         public static int LoginCount { get { lock (loginLock) return loginQueue.Count; } }
         public static int LogoffCount { get { lock (logoffLock) return logoffQueue.Count; } }
         public static int AddUserCount { get { lock (addUserLock) return addUserQueue.Count; } }

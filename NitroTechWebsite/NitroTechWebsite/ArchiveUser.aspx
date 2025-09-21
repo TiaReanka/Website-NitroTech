@@ -6,86 +6,107 @@
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background: #191919; 
+            background: #191919;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
         }
 
-        .form-container h2,
-        .form-container h3 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: white;
-        }
+            .form-container h2,
+            .form-container h3 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: white;
+            }
 
         .form-group {
             display: flex;
+            flex-direction: column; /* so textbox + button stack nicely */
             align-items: center;
             margin-bottom: 15px;
-            max-width: 600px; 
-            margin-left: auto; 
+            max-width: 600px;
+            margin-left: auto;
             margin-right: auto;
         }
 
-        .form-group label {
-            width: 250px; 
-            font-weight: bold;
-            text-align: right; 
-            margin-right: 75px;
-            color: white;
-        }
+            .form-group label {
+                width: 100%;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 10px;
+                color: white;
+            }
 
-        .form-group input {
-            flex: 1;
+        /* Style for ASP.NET TextBox (renders as input[type=text]) */
+        .form-control {
+            width: 100%;
+            max-width: 400px;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 14px;
         }
 
-        .form-container button {
+        /* ASP.NET Button (renders as input[type=submit]) */
+        .btn {
             display: block;
-            max-width: 600px;
-            margin: 20px auto; 
+            max-width: 200px;
+            margin: 20px auto;
             padding: 12px;
-            background-color: #1a2db9;
-            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
         }
 
-        .form-container button:hover {
-            background-color: purple;
+        /* Custom color for danger button */
+        .btn-danger {
+            background-color: #1a2db9;
+            color: white;
         }
 
+            .btn-danger:hover {
+                background-color: purple;
+            }
+
+        /* For any dropdowns later */
         .form-group select {
-            flex: 1;
+            width: 100%;
+            max-width: 400px;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 14px;
-            width: 100%; 
-            color: black; 
+            color: black;
             background-color: white;
         }
 
-        .form-group select option[value=""] {
-            color: gray;
-        }
+            .form-group select option[value=""] {
+                color: gray;
+            }
     </style>
 
     <div class="form-container">
-        <h2><%: Title %></h2>
-        <h3>Archive User</h3>
-        <form>
-            <div class="form-group">
-                <label for="username">Username of User to Archive:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
+    <h2><%: Title %></h2>
+    <h3>Archive User</h3>
 
-            <button type="submit">Archive</button>
-        </form>
-    </div>
+    <asp:Panel ID="pnlArchiveUser" runat="server" CssClass="form-group">
+        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label><br />
+
+        <asp:TextBox 
+            ID="txtUsername" 
+            runat="server" 
+            CssClass="form-control" 
+            placeholder="Enter username">
+        </asp:TextBox>
+        <br />
+
+        <asp:Button 
+            ID="btnArchive" 
+            runat="server" 
+            Text="Archive User" 
+            CssClass="btn btn-danger"
+            OnClick="btnArchive_Click" />
+    </asp:Panel>
+</div>
 
 </asp:Content>

@@ -55,7 +55,7 @@ public static class LoginUtility
         // 1️⃣ Check if user is logged in
         if (session == null || session["UserId"] == null)
         {
-            page.Response.Redirect("Login.aspx");
+            page.Response.Redirect("Account.aspx");
             return;
         }
 

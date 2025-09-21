@@ -42,21 +42,30 @@
                 background-color: #fff; 
             }
 
-        .form-container button {
-            display: block;
-            max-width: 600px;
-            margin: 20px auto;    
-            padding: 12px;
-            background-color: #1a2db9;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .btn1 a {
+            text-align: center;   /* center the anchor inside */
+            margin: 20px auto;
+            padding: 10px 20px;
+            color: #3c00a0;
             font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: 0.5s;
+            margin-top: 20px;
+            letter-spacing: 4px;
+            line-height: 20px;
+            width: 15%;             /* stretch across the form */
+            display: flex;           /* use flexbox */
+            justify-content: center; /* center child horizontally */
+            margin-top: 20px;  
         }
 
-        .form-container button:hover {
-            background-color: purple;
+        .btn1 a:hover {
+            background-color: #3c00a0;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
         }
 
         .text-align { 
@@ -85,7 +94,9 @@
             <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" />
         </div>
 
-        <button type="submit">Login</button>
+        <div class="btn1">
+            <a href="#" onclick="document.forms[0].submit(); return false;">Login</a>
+        </div>
 
         <div class="text-align">
             <asp:HyperLink ID="lnkForgotPassword"
