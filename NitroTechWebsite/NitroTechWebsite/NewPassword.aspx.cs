@@ -21,7 +21,7 @@ namespace NitroTechWebsite
 
             if (!IsPostBack)
             {
-                bool isLoggedIn = Session["UserId"] != null;
+                isLoggedIn = Session["UserId"] != null;
 
                 if (isLoggedIn)
                 {
@@ -117,6 +117,12 @@ namespace NitroTechWebsite
                         if (HashPassword(oldPass) != dbPassword)
                         {
                             ShowMessage("Old password is incorrect.");
+                            return;
+                        }
+
+                        if (HashPassword(newPass) == dbPassword)
+                        {
+                            ShowMessage("New password cannot be the same as the old password.");
                             return;
                         }
                     }

@@ -243,7 +243,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li id="liCustomerUpdate" runat="server"><a runat="server" href="~/CustomerUpdate">Update Customer</a></li>
-                                <li id="liCustomerManage" runat="server"><a runat="server" href="~/CustomerManage">Customer Management</a></li>
+                                <li id="liTransferVehicle" runat="server"><a runat="server" href="~/CustomerManage">Transfer Vehicle</a></li>
                             </ul>
                         </li>
 
@@ -271,7 +271,9 @@
                                 <li id="liLoginOption" runat="server"><a runat="server" href="~/Account">Login</a></li>
                                 <li id="liAddUser" runat="server"><a runat="server" href="~/AddUser">Create an Account</a></li>
                                 <li id="liArchiveUser" runat="server"><a runat="server" href="~/ArchiveUser">Archive User</a></li>
-                                <li id="liForgotPassword" runat="server"><a runat="server" href="~/NewPassword">Forgot Password</a></li>
+                                <li id="liForgotPassword" runat="server">
+                                    <a id="forgotPasswordLink" runat="server" href="~/NewPassword">Forgot Password</a>
+                                </li>
                                 <li id="liLogout" runat="server">
                                     <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CssClass="nav-link">LogOut</asp:LinkButton>
                                 </li>

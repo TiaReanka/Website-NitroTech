@@ -114,13 +114,13 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCustomerUpdate;
 
         /// <summary>
-        /// liCustomerManage control.
+        /// liTransferVehicle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCustomerManage;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTransferVehicle;
 
         /// <summary>
         /// liPayments control.
@@ -211,6 +211,15 @@ namespace NitroTechWebsite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liForgotPassword;
+
+        /// <summary>
+        /// forgotPasswordLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor forgotPasswordLink;
 
         /// <summary>
         /// liLogout control.

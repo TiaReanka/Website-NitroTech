@@ -3,7 +3,35 @@
   "WorkspaceRootPath": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\activequotation.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\activequotation.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\activequotation.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\activequotation.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\newpassword.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\newpassword.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\archiveuser.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\archiveuser.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\archiveuser.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\archiveuser.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\account.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
@@ -11,23 +39,15 @@
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\account.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\archiveuser.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\archiveuser.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\archiveuser.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\archiveuser.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\chatbotcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\chatbotcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\services\\statementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\services\\statementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\services\\statementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -37,14 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\services\\invoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\services\\invoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\site.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\updatepart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -62,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,71 +106,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ArchiveUser.aspx",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ArchiveUser.aspx",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\ArchiveUser.aspx",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ArchiveUser.aspx",
-              "RelativeToolTip": "NitroTechWebsite\\ArchiveUser.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-21T12:48:44.837Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StatementService.cs",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\StatementService.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\StatementService.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\StatementService.cs",
-              "RelativeToolTip": "NitroTechWebsite\\Services\\StatementService.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEcAAAArAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ActiveQuotation.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ActiveQuotation.aspx.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\ActiveQuotation.aspx.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ActiveQuotation.aspx.cs",
+              "RelativeToolTip": "NitroTechWebsite\\ActiveQuotation.aspx.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-21T09:44:53.887Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "QuotationService.cs",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\QuotationService.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\QuotationService.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\QuotationService.cs",
-              "RelativeToolTip": "NitroTechWebsite\\Services\\QuotationService.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAuwEYAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-21T09:44:51.393Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "InvoiceService.cs",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\InvoiceService.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\InvoiceService.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\InvoiceService.cs",
-              "RelativeToolTip": "NitroTechWebsite\\Services\\InvoiceService.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAuwEUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-21T09:44:44.582Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ChatbotController.cs",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ChatbotController.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\ChatbotController.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ChatbotController.cs",
-              "RelativeToolTip": "NitroTechWebsite\\ChatbotController.cs",
-              "ViewState": "AgIAAPsAAAAAAAAAAAAqwBsBAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-21T09:43:03.085Z",
+              "WhenOpened": "2025-09-21T13:24:52.869Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ActiveQuotation.aspx",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ActiveQuotation.aspx",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\ActiveQuotation.aspx",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ActiveQuotation.aspx",
+              "RelativeToolTip": "NitroTechWebsite\\ActiveQuotation.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-09-21T13:24:51.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NewPassword.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\NewPassword.aspx.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\NewPassword.aspx.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\NewPassword.aspx.cs",
+              "RelativeToolTip": "NitroTechWebsite\\NewPassword.aspx.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T13:15:03.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Account.aspx",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\Account.aspx",
@@ -171,70 +158,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Account.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\Account.aspx.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx.cs",
-              "RelativeToolTip": "NitroTechWebsite\\Account.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T15:40:05.266Z",
+              "DocumentIndex": 4,
+              "Title": "ArchiveUser.aspx",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ArchiveUser.aspx",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\ArchiveUser.aspx",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ArchiveUser.aspx",
+              "RelativeToolTip": "NitroTechWebsite\\ArchiveUser.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-09-21T12:48:44.837Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
+              "Title": "StatementService.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\StatementService.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\StatementService.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\StatementService.cs",
+              "RelativeToolTip": "NitroTechWebsite\\Services\\StatementService.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T09:44:53.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ArchiveUser.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ArchiveUser.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\ArchiveUser.aspx.cs",
               "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ArchiveUser.aspx.cs",
               "RelativeToolTip": "NitroTechWebsite\\ArchiveUser.aspx.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAqwBAAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-21T12:48:48.737Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DatabaseHelper.cs",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\DatabaseHelper.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
-              "RelativeToolTip": "NitroTechWebsite\\DatabaseHelper.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAmwD0AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T18:51:40.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UpdatePart.aspx",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\UpdatePart.aspx",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\UpdatePart.aspx",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\UpdatePart.aspx",
-              "RelativeToolTip": "NitroTechWebsite\\UpdatePart.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-09T09:42:57.394Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "NewPassword.aspx",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\NewPassword.aspx",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\NewPassword.aspx",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\NewPassword.aspx",
-              "RelativeToolTip": "NitroTechWebsite\\NewPassword.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-09T09:41:47.805Z"
+              "Title": "QuotationService.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\QuotationService.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\QuotationService.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\QuotationService.cs",
+              "RelativeToolTip": "NitroTechWebsite\\Services\\QuotationService.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAuwEYAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T09:44:51.393Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
+              "Title": "InvoiceService.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\InvoiceService.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\InvoiceService.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\InvoiceService.cs",
+              "RelativeToolTip": "NitroTechWebsite\\Services\\InvoiceService.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAuwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T09:44:44.582Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Site.Master",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Site.Master",
               "RelativeDocumentMoniker": "NitroTechWebsite\\Site.Master",
@@ -247,15 +233,76 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 5,
               "Title": "Site.Master.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Site.Master.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\Site.Master.cs",
               "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Site.Master.cs",
               "RelativeToolTip": "NitroTechWebsite\\Site.Master.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAowBIAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-24T11:32:27.223Z"
+              "WhenOpened": "2025-08-24T11:32:27.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ChatbotController.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ChatbotController.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\ChatbotController.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\ChatbotController.cs",
+              "RelativeToolTip": "NitroTechWebsite\\ChatbotController.cs",
+              "ViewState": "AgIAAPsAAAAAAAAAAAAqwBsBAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T09:43:03.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Account.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\Account.aspx.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Account.aspx.cs",
+              "RelativeToolTip": "NitroTechWebsite\\Account.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T15:40:05.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DatabaseHelper.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\DatabaseHelper.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
+              "RelativeToolTip": "NitroTechWebsite\\DatabaseHelper.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAmwD0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-31T18:51:40.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UpdatePart.aspx",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\UpdatePart.aspx",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\UpdatePart.aspx",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\UpdatePart.aspx",
+              "RelativeToolTip": "NitroTechWebsite\\UpdatePart.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-09-09T09:42:57.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "NewPassword.aspx",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\NewPassword.aspx",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\NewPassword.aspx",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\NewPassword.aspx",
+              "RelativeToolTip": "NitroTechWebsite\\NewPassword.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-09-09T09:41:47.805Z"
             }
           ]
         }

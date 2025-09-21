@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace NitroTechWebsite
@@ -14,12 +15,21 @@ namespace NitroTechWebsite
             if (!IsPostBack)
             {
                 SetMenuVisibility();
-                ShowProfileIcon(); // show profile icon if logged in
-                                   // In Page_Load
-                
-
+                ShowProfileIcon(); 
             }
-            
+            if (Session["UserId"] != null)
+            {
+                var link = liForgotPassword.FindControl("forgotPasswordLink") as HtmlAnchor;
+                if (link != null)
+                {
+                    link.InnerText = "Reset Password";
+                }
+                else
+                {
+                    link.InnerText = "Forgot Password";
+                }
+            }
+
         }
 
         private void SetMenuVisibility()

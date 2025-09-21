@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Review Active Quotations" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ActiveQuotation.aspx.cs" Inherits="NitroTechWebsite.ReviewQuotations" %> 
+﻿<%@ Page Title="View Active Quotations" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ActiveQuotation.aspx.cs" Inherits="NitroTechWebsite.ReviewQuotations" %> 
  
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server"> 
     <style> 
@@ -87,6 +87,17 @@
         .gridview tr:nth-child(even) { 
             background-color: #f9f9f9; 
         } 
+
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .radio-group label {
+            color: white;
+            font-weight: normal;
+        }
     </style> 
  
     <div class="form-container"> 
@@ -97,10 +108,17 @@
             <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer name..." /> 
         </div> 
  
-        <div class="form-group"> 
-            <label for="txtQuotationNumber">Quotation Number:</label> 
-            <asp:TextBox ID="txtQuotationNumber" runat="server" placeholder="Enter quotation number..." /> 
-        </div> 
+       <div class="radio-group">
+            <label><asp:RadioButton ID="rbCustomerID" runat="server" GroupName="SearchBy" Text="Customer ID" /></label>
+            <label><asp:RadioButton ID="rbCustomerName" runat="server" GroupName="SearchBy" Text="Customer Name" /></label>
+            <label><asp:RadioButton ID="rbQuotationNumber" runat="server" GroupName="SearchBy" Text="Quotation Number" /></label>
+            <label><asp:RadioButton ID="rbVIN" runat="server" GroupName="SearchBy" Text="VIN" /></label>
+        </div>
+
+        <div class="form-group">
+            <label for="txtSearch">Search:</label>
+            <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter search value..." />
+        </div>
  
         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn" OnClick="btnSearch_Click" /> 
  

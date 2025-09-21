@@ -24,13 +24,49 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.TextBox txtCustomerName;
 
         /// <summary>
-        /// txtQuotationNumber control.
+        /// rbCustomerID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuotationNumber;
+        protected global::System.Web.UI.WebControls.RadioButton rbCustomerID;
+
+        /// <summary>
+        /// rbCustomerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbCustomerName;
+
+        /// <summary>
+        /// rbQuotationNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbQuotationNumber;
+
+        /// <summary>
+        /// rbVIN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbVIN;
+
+        /// <summary>
+        /// txtSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
         /// btnSearch control.
