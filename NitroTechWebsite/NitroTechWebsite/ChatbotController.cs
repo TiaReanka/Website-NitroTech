@@ -117,6 +117,16 @@ public class ChatbotController : ApiController
                 state["expecting"] = "best";
                 return "The best team or player?";
             }
+
+            if (userMessage.Contains("worst"))
+            {
+                if (userMessage.Contains("team"))
+                {
+                    return "Manchester United are the worst team.";
+                }
+                state["expecting"] = "worst";
+                return "The worst team?";
+            }
             state["expecting"] = "football";
             return "What do you want to know about football?";
         }
@@ -266,6 +276,15 @@ public class ChatbotController : ApiController
                     return "Lionel Messi is the GOAT.";
                 }
                 return "The best team or player?";
+            }
+            else if (expecting == "worst")
+            {
+                if (userMessage.Contains("team"))
+                {
+                    return "Manchester United are the worst team.";
+                }
+                
+                return "The worst team?";
             }
         }
 
