@@ -82,7 +82,10 @@
         .gridview td { 
             padding: 10px; 
             border-bottom: 1px solid #ddd; 
+            color: black;
         } 
+
+
  
         .gridview tr:nth-child(even) { 
             background-color: #f9f9f9; 
@@ -98,18 +101,21 @@
             color: white;
             font-weight: normal;
         }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px; 
+            margin-top: 20px;
+        }
+
     </style> 
  
     <div class="form-container"> 
         <h2><%: Title %></h2> 
  
-        <div class="form-group"> 
-            <label for="txtCustomerName">Customer Name:</label> 
-            <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer name..." /> 
-        </div> 
- 
        <div class="radio-group">
-            <label><asp:RadioButton ID="rbCustomerID" runat="server" GroupName="SearchBy" Text="Customer ID" /></label>
+            <label><asp:RadioButton ID="rbCustomerID" runat="server" GroupName="SearchBy" Text="Customer ID" Checked="true"/></label>
             <label><asp:RadioButton ID="rbCustomerName" runat="server" GroupName="SearchBy" Text="Customer Name" /></label>
             <label><asp:RadioButton ID="rbQuotationNumber" runat="server" GroupName="SearchBy" Text="Quotation Number" /></label>
             <label><asp:RadioButton ID="rbVIN" runat="server" GroupName="SearchBy" Text="VIN" /></label>
@@ -117,12 +123,16 @@
 
         <div class="form-group">
             <label for="txtSearch">Search:</label>
-            <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter search value..." />
+            <asp:TextBox ID="txtSearch" runat="server" placeholder="Enter search value..." OnTextChanged="txtSearch_TextChanged"/>
         </div>
  
-        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn" OnClick="btnSearch_Click" /> 
+        <div class="button-group">
+            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn" OnClick="btnSearch_Click" />
+            <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn" OnClick="btnClear_Click" />
+        </div>
+
  
-        <asp:GridView ID="gvQuotations" runat="server" AutoGenerateColumns="true" CssClass="gridview"> 
+        <asp:GridView ID="gvQuotations" runat="server" AutoGenerateColumns="true" CssClass="gridview"  OnRowDataBound="gvQuotations_RowDataBound"> 
         </asp:GridView> 
     </div> 
 </asp:Content> 

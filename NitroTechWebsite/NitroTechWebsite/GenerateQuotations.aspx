@@ -3,31 +3,102 @@ AutoEventWireup="true" CodeBehind="GenerateQuotations.aspx.cs"
 Inherits="NitroTechWebsite.Quotations" %>  
   
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">  
-    <style>  
-        .form-container {  
-            max-width: 900px; margin:50px auto; padding:30px;  
-            background:#191919; border-radius:12px; color:white;  
-        }  
-        .tabs { display:flex; margin-bottom:20px; }  
-        .tab-header {  
-            flex:1; text-align:center; padding:10px; cursor:pointer;  
-            background:#1a2db9; border-radius:6px 6px 0 0; margin-right:2px;  
-        }  
-        .tab-header.active { background:purple; }  
-        .tab-panel { display:none; padding:15px; border:1px solid #ccc; border-radius:0 6px 6px 
-6px; background:white; color:black; }  
-        .tab-panel.active { display:block; }  
-        .form-group { margin:15px 0; }  
-        .form-group label { display:block; font-weight:bold; margin-bottom:5px; }  
-        .form-group input, .form-group select, .form-group textarea { width:100%; padding:8px; 
-border-radius:6px; border:1px solid #ccc; font-size:14px; }  
-        .btn-generate { display:block; margin:15px 0; padding:12px 25px; font-size:16px; 
-border-radius:6px; background:#1a2db9; color:white; border:none; cursor:pointer; }  
-        .btn-generate:hover { background:purple; }  
-        .gridview { width:100%; border-collapse:collapse; margin-top:20px; }  
-        .gridview th, .gridview td { padding:8px; border:1px solid #ccc; text-align:left; }  
-        .gridview th { background:#1a2db9; color:white; }  
-        .gridview tr:nth-child(even) { background:#f2f2f2; }  
+    <style>
+        .form-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #191919;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab-header {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            background: #1a2db9;
+            border-radius: 6px 6px 0 0;
+            margin-right: 2px;
+        }
+
+            .tab-header.active {
+                background: purple;
+            }
+
+        .tab-panel {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 0 6px 6px 6px;
+            background: white;
+            color: black;
+        }
+
+            .tab-panel.active {
+                display: block;
+            }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+            .form-group label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .form-group input, .form-group select, .form-group textarea {
+                width: 100%;
+                padding: 8px;
+                border-radius: 6px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+            }
+
+        .btn-generate {
+            display: block;
+            margin: 15px 0;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 6px;
+            background: #1a2db9;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            .btn-generate:hover {
+                background: purple;
+            }
+
+        .gridview {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .gridview th, .gridview td {
+                padding: 8px;
+                border: 1px solid #ccc;
+                text-align: left;
+            }
+
+            .gridview th {
+                background: #1a2db9;
+                color: white;
+            }
+
+            .gridview tr:nth-child(even) {
+                background: #f2f2f2;
+            }  
     </style>  
   
     <div class="form-container">  
