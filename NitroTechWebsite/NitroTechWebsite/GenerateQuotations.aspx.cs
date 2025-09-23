@@ -1,7 +1,9 @@
-﻿using System;
+﻿using NitroTechWebsite.Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -259,6 +261,57 @@ namespace NitroTechWebsite
                 // If no records yet, start at Q1
                 return "Q1-" + txtVIN.Text.Trim();
             }
+        }
+
+        public static bool CheckValidID(string idNumber)
+        {
+            // Ensure input is not null and has at least 6 characters
+            if (string.IsNullOrWhiteSpace(idNumber) || idNumber.Length < 6)
+                return false;
+
+            string yy = idNumber.Substring(0, 2);
+            string mm = idNumber.Substring(2, 2);
+            string dd = idNumber.Substring(4, 2);
+
+            int year, month, day;
+
+            // Try parsing parts to integers
+            if (!int.TryParse(yy, out year) || !int.TryParse(mm, out month) || !int.TryParse(dd, out day))
+                return false;
+
+            // Adjust year to full year (2000s or 1900s)
+            int currentYear = DateTime.Now.Year % 100;
+            int fullYear = (year <= currentYear) ? (2000 + year) : (1900 + year);
+
+            // Try creating a valid date
+            try
+            {
+                DateTime date = new DateTime(fullYear, month, day);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void makeQuotation(string[,] products, string clientName, string clientAddress, string clientEmail, string clientPhone, string vehicleVIN, string vehicleName, string quotationNumber, string labourFee, string total)
+        {
+            var quotationService = new QuotationService();
+            var document = quotationService.GetQuotation(products, clientName, clientAddress, clientEmail, clientPhone, vehicleVIN, vehicleName, quotationNumber, labourFee, total);
+
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition",
+                "attachment;filename=" + quotationNumber + ".pdf");
+
+            using (var ms = new MemoryStream())
+            {
+                document.Save(ms);
+                ms.WriteTo(Response.OutputStream);
+            }
+
+            Response.End();
         }
     }
 }
