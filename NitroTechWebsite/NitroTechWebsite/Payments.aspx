@@ -41,21 +41,58 @@
         }
 
         .form-container button {
-            display: block;
-            max-width: 600px;
-            margin: 20px auto;    
-            padding: 12px;
-            background-color: #1a2db9;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            text-align: center;   /* center the anchor inside */
+            margin: 20px auto;
+            padding: 10px 20px;
+            color: #3c00a0;
             font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: 0.5s;
+            margin-top: 20px;
+            letter-spacing: 4px;
+            line-height: 20px;
+            width: 15%;             /* stretch across the form */
+            display: flex;           /* use flexbox */
+            justify-content: center; /* center child horizontally */
+            margin-top: 20px;
         }
 
-        .form-container button:hover {
-            background-color: purple;
+        .btn1 {
+            display: flex;
+            justify-content: center; /* center horizontally */
+            margin-top: 20px;
         }
+
+            .btn1 input[type=submit] {
+                text-align: center;
+                margin: 20px auto;
+                padding: 10px 30px;
+                min-width: 50px;
+                color: #fff;
+                font-size: 15px;
+                text-decoration: none;
+                text-transform: uppercase;
+                overflow: hidden;
+                transition: 0.5s;
+                letter-spacing: 2px;
+                line-height: 20px;
+                width: auto;
+                display: flex;
+                justify-content: center;
+                background: transparent;
+                border: 2px solid #3c00a0;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .btn1 input[type=submit]:hover {
+                    background-color: #3c00a0;
+                    color: #fff;
+                    border-radius: 5px;
+                    box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+                }
 
         .form-group select {
             flex: 1;
@@ -79,24 +116,22 @@
 
         <div class="form-group">
             <label for="customerID">ID of Customer:</label>
-            <select id="customerID" name="customerID">
-                <option value="">-- Select Customer ID --</option>
-                <option value="CUST001">CUST001</option>
-                <option value="CUST002">CUST002</option>
-                <option value="CUST003">CUST003</option>
-            </select>
+            <asp:DropDownList ID="ddlCustomerID" runat="server"></asp:DropDownList>
         </div>
 
         <div class="form-group">
             <label for="amount">Amount in Rands (R):</label>
-            <input type="text" id="amount" name="amount" />
+            <asp:TextBox ID="txtAmount" runat="server" ForeColor="Black"></asp:TextBox>
         </div>
 
         <div class="form-group">
             <label for="paymentDate">Date of Payment:</label>
-            <input type="date" id="paymentDate" name="paymentDate" />
+            <asp:TextBox ID="txtPaymentDate" runat="server" TextMode="Date" ForeColor="Black"></asp:TextBox>
         </div>
 
-        <button type="submit">Add Payment</button>
+        <div class="btn1">
+            <asp:Button ID="btnAddPayment" runat="server" Text="Add Payment" OnClick="btnAddPayment_Click" />
+        </div>
+        
     </div>
 </asp:Content>
