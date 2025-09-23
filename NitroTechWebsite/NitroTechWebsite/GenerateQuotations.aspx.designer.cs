@@ -168,6 +168,15 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.DropDownList ddlFuel;
 
         /// <summary>
+        /// btnBackToCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBackToCustomer;
+
+        /// <summary>
         /// btnNextToFaults control.
         /// </summary>
         /// <remarks>
@@ -238,6 +247,15 @@ namespace NitroTechWebsite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFaultSummary;
+
+        /// <summary>
+        /// btnBackToVehicle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBackToVehicle;
 
         /// <summary>
         /// btnGenerateQuotation control.
