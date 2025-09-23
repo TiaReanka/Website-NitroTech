@@ -26,29 +26,29 @@ namespace NitroTechWebsite
                 return;
             }
             
-            //Get customer details in a single query
+            //Get customer details
 
             try
             {
                 
                 DataTable dtCustomer = ExecuteDataTable(
-                    "SELECT CustomerName, CustomerAddress, CustomerEmail, CustomerPhone, AmountOwed " +
-                    "FROM tblCustomer WHERE CustomerID=@id",
+                    "SELECT * FROM tblCustomer WHERE customerID=@id",
                     new SqlParameter("@id", customerId));
 
                 if (dtCustomer.Rows.Count == 0)
                 {
-                   
                     Response.Write("<script>alert('Customer does not exist');</script>");
                     return;
                 }
 
+                //Assign variables with details
+
                 DataRow row = dtCustomer.Rows[0];
-                string clientName = row["CustomerName"]?.ToString() ?? "";
-                string clientAddress = row["CustomerAddress"]?.ToString() ?? "";
-                string clientEmail = row["CustomerEmail"]?.ToString() ?? "";
-                string clientPhone = row["CustomerPhone"]?.ToString() ?? "";
-                decimal total = row["AmountOwed"] != DBNull.Value ? Convert.ToDecimal(row["AmountOwed"]) : 0m;
+                string clientName = row["customerName"]?.ToString() ?? "";
+                string clientAddress = row["customerAddress"]?.ToString() ?? "";
+                string clientPhone = row["customerContactNumber"]?.ToString() ?? "";
+                string clientEmail = row["customerEmailAddress"]?.ToString() ?? "";
+                decimal total = row["customerOwe"] != DBNull.Value ? Convert.ToDecimal(row["customerOwe"]) : 0m;
 
                 //Generate statement number
                 string statementNumber = GenerateStatementNumber(customerId, clientName);
@@ -56,14 +56,14 @@ namespace NitroTechWebsite
                 
                 //Get invoices & payments from past month
                 DataTable invoices = ExecuteDataTable(
-                    "SELECT invoiceNumber, invoiceAmountDue, invoiceDate " +
-                    "FROM tblInvoices WHERE CustomerID=@id AND invoiceDate >= DATEADD(MONTH, -1, GETDATE())",
+                    "SELECT invoiceNumber, invoiceDate, quotationNumber, invoiceAmountDue,vehicleVIN " +
+                    "FROM tblInvoice WHERE customerID=@id AND invoiceDate >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
                 
                 DataTable payments = ExecuteDataTable(
-                    "SELECT paymentID, paidAmount, dateOfPayment " +
-                    "FROM tblPayments WHERE CustomerID=@id AND dateOfPayment >= DATEADD(MONTH, -1, GETDATE())",
+                    "SELECT paymentID, paidAmount, dateOfPayment, amountDue " +
+                    "FROM tblPayment WHERE customerID=@id AND dateOfPayment >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
 
@@ -115,7 +115,7 @@ namespace NitroTechWebsite
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('Error creating statement');</script>");
+                Response.Write($"<script>alert('Error creating statement: {ex.Message}');</script>");
             }
         }
 

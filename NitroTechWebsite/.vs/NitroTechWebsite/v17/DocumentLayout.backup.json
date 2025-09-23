@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\gprin\\onedrive\\desktop\\webpage_istn\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\generatequotations.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\generatequotations.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\generatestatement.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\generatestatement.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\gprin\\onedrive\\desktop\\webpage_istn\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\generatestatement.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\generatestatement.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,37 +55,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GenerateQuotations.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateQuotations.aspx.cs",
-              "ToolTip": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx.cs",
-              "RelativeToolTip": "NitroTechWebsite\\GenerateQuotations.aspx.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAuwDsAAABIAAAAAAAAAA==",
+              "Title": "GenerateStatement.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateStatement.aspx.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateStatement.aspx.cs",
+              "ToolTip": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateStatement.aspx.cs*",
+              "RelativeToolTip": "NitroTechWebsite\\GenerateStatement.aspx.cs*",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAYwHgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T18:26:06.47Z",
+              "WhenOpened": "2025-09-23T18:45:10.597Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GenerateStatement.aspx",
-              "DocumentMoniker": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateStatement.aspx",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateStatement.aspx",
-              "ToolTip": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateStatement.aspx",
-              "RelativeToolTip": "NitroTechWebsite\\GenerateStatement.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-23T16:46:04.446Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\DatabaseHelper.cs",
               "ToolTip": "C:\\Users\\gprin\\OneDrive\\Desktop\\WEBPAGE_ISTN\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
               "RelativeToolTip": "NitroTechWebsite\\DatabaseHelper.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAmwCoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-31T18:51:40.149Z"
             }
