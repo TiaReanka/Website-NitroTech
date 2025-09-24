@@ -52,120 +52,52 @@ namespace NitroTechWebsite
                 string clientName = row["customerName"]?.ToString() ?? "";
                 decimal total = row["customerOwe"] != DBNull.Value ? Convert.ToDecimal(row["customerOwe"]) : 0m;
 
-                
-
-
-
                 //Generate statement number
                 string statementNumber = GenerateStatementNumber(customerId, clientName);
 
-                
-                //Get invoices & payments from past month
-                DataTable invoices = ExecuteDataTable(
-                    "SELECT invoiceNumber, invoiceDate, quotationNumber, invoiceAmountDue,vehicleVIN " +
-                    "FROM tblInvoice WHERE customerID=@id AND invoiceDate >= DATEADD(MONTH, -1, GETDATE())",
+
+                //CHATGPT SUGGESTION TO COMBINE TRANSACTIONS
+                ////Combine transactions
+                //var combined = invoices.AsEnumerable()
+                //    .Select(r => new { ID = r["invoiceNumber"].ToString(), Amount = Convert.ToDecimal(r["invoiceAmountDue"]), Date = Convert.ToDateTime(r["invoiceDate"]), Type = "I" })
+                //    .Concat(payments.AsEnumerable()
+                //        .Select(r => new { ID = r["paymentID"].ToString(), Amount = Convert.ToDecimal(r["paidAmount"]), Date = Convert.ToDateTime(r["dateOfPayment"]), Type = "P" }))
+                //    .OrderBy(t => t.Date)
+                //    .ToList();
+
+
+
+                // Calculate total invoices from past month
+                decimal totalInvoices = ExecuteScalar<decimal>(
+                    "SELECT ISNULL(SUM(invoiceAmountDue), 0) " +
+                    "FROM tblInvoice " +
+                    "WHERE customerID=@id AND invoiceDate >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
-                
-                DataTable payments = ExecuteDataTable(
-                    "SELECT paymentID, paidAmount, dateOfPayment, amountDue " +
-                    "FROM tblPayment WHERE customerID=@id AND dateOfPayment >= DATEADD(MONTH, -1, GETDATE())",
+                // Calculate total payments from past month
+                decimal totalPayments = ExecuteScalar<decimal>(
+                    "SELECT ISNULL(SUM(paidAmount), 0) " +
+                    "FROM tblPayment " +
+                    "WHERE customerID=@id AND dateOfPayment >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
-                
-
-                //Combine transactions
-                var combined = invoices.AsEnumerable()
-                    .Select(r => new { ID = r["invoiceNumber"].ToString(), Amount = Convert.ToDecimal(r["invoiceAmountDue"]), Date = Convert.ToDateTime(r["invoiceDate"]), Type = "I" })
-                    .Concat(payments.AsEnumerable()
-                        .Select(r => new { ID = r["paymentID"].ToString(), Amount = Convert.ToDecimal(r["paidAmount"]), Date = Convert.ToDateTime(r["dateOfPayment"]), Type = "P" }))
-                    .OrderBy(t => t.Date)
-                    .ToList();
+                // Calculate statement amount: Previous balance + New invoices - Recent payments
+                decimal statementAmount = total + totalInvoices - totalPayments;
 
 
 
-                //string[,] transactions = new string[combined.Count, 3];
-                //decimal transactionSum = 0;
-
-                //for (int i = 0; i < combined.Count; i++)
-                //{
-                //    var t = combined[i];
-                //    string dtype = t.Type == "P" ? "Payment" : "Invoice - " + t.ID;
-                //    string formattedAmount = t.Amount.ToString("0.00").Replace('.', ',');
-
-                //    transactions[i, 0] = dtype;
-                //    transactions[i, 1] = formattedAmount;
-                //    transactions[i, 2] = t.Date.ToString("yyyy/MM/dd");
-
-                //    transactionSum += (t.Type == "I") ? t.Amount : -t.Amount;
-                //}
-
-                //string initial = (total - transactionSum).ToString("0.00");
-
-
-
-
-                // Insert statement
-
-
-
-
-               //int rows = ExecuteNonQuery(
-               //     "INSERT INTO tblStatement (statementNumber, statementDate, statementAmountDue, customerID) " +
-               //     "VALUES (@num, @date, @amt, @cid)",
-               //     new SqlParameter("@num", statementNumber),
-               //     new SqlParameter("@date", DateTime.Now),
-               //     new SqlParameter("@amt", total),
-               //     new SqlParameter("@cid", customerId));
-                
-
-               //Response.Write($"<script>alert('Rows inserted: {rows}');</script>");
-
-
-                Response.Write($"<script>console.log('Statement Number: {statementNumber}');</script>");
-                Response.Write($"<script>console.log('Customer ID: {customerId}');</script>");
-                Response.Write($"<script>console.log('Total: {total}');</script>");
-
+                //INSERT STATEMENT INTO DATABASE
                 int rows = ExecuteNonQuery(
                     "INSERT INTO tblStatement (statementNumber, statementDate, statementAmountDue, customerID) " +
                     "VALUES (@num, @date, @amt, @cid)",
                     new SqlParameter("@num", statementNumber),
                     new SqlParameter("@date", DateTime.Now),
-                    new SqlParameter("@amt", total),
+                    new SqlParameter("@amt", statementAmount),
                     new SqlParameter("@cid", customerId));
 
-                Response.Write($"<script>alert('Rows inserted: {rows}. Statement: {statementNumber}');</script>");
-
-                try
-                {
-                    DataTable checkInsert = ExecuteDataTable(
-                        "SELECT * FROM tblStatement WHERE statementNumber = @num",
-                        new SqlParameter("@num", statementNumber));
-
-                    Response.Write($"<script>alert('Immediate verification: {checkInsert.Rows.Count} records found');</script>");
-
-                    if (checkInsert.Rows.Count > 0)
-                    {
-                        Response.Write($"<script>alert('Record found! Date: {checkInsert.Rows[0]["statementDate"]}, Amount: {checkInsert.Rows[0]["statementAmountDue"]}');</script>");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Response.Write($"<script>alert('Verification error: {ex.Message}');</script>");
-                }
+                Response.Write($"<script>alert('Statement : {statementNumber} has been generated');</script>");
 
 
-
-                //Generate PDF and stream to browser
-                //var statementService = new StatementService();
-                //var document = statementService.GetStatement(clientName, clientAddress, clientEmail, clientPhone, statementNumber, transactions, initial);
-
-                //Response.Clear();
-                //Response.ContentType = "application/pdf";
-                //Response.AddHeader("Content-Disposition", $"attachment; filename={statementNumber}.pdf");
-                //document.Save(Response.OutputStream);
-                //Response.Flush();
-                //HttpContext.Current.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {
