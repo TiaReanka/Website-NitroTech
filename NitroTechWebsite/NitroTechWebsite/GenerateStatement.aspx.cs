@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace NitroTechWebsite
 {
@@ -13,7 +14,10 @@ namespace NitroTechWebsite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                LoadCustomerIDs();
+            }
         }
 
         protected void btnGenerateStatement_Click(object sender, EventArgs e)
@@ -46,10 +50,11 @@ namespace NitroTechWebsite
 
                 DataRow row = dtCustomer.Rows[0];
                 string clientName = row["customerName"]?.ToString() ?? "";
-                string clientAddress = row["customerAddress"]?.ToString() ?? "";
-                string clientPhone = row["customerContactNumber"]?.ToString() ?? "";
-                string clientEmail = row["customerEmailAddress"]?.ToString() ?? "";
                 decimal total = row["customerOwe"] != DBNull.Value ? Convert.ToDecimal(row["customerOwe"]) : 0m;
+
+                
+
+
 
                 //Generate statement number
                 string statementNumber = GenerateStatementNumber(customerId, clientName);
@@ -67,6 +72,7 @@ namespace NitroTechWebsite
                     "FROM tblPayment WHERE customerID=@id AND dateOfPayment >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
+                
 
                 //Combine transactions
                 var combined = invoices.AsEnumerable()
@@ -78,8 +84,8 @@ namespace NitroTechWebsite
 
 
 
-                string[,] transactions = new string[combined.Count, 3];
-                decimal transactionSum = 0;
+                //string[,] transactions = new string[combined.Count, 3];
+                //decimal transactionSum = 0;
 
                 //for (int i = 0; i < combined.Count; i++)
                 //{
@@ -96,8 +102,31 @@ namespace NitroTechWebsite
 
                 //string initial = (total - transactionSum).ToString("0.00");
 
+
+
+
                 // Insert statement
-               int rows = ExecuteNonQuery(
+
+
+
+
+               //int rows = ExecuteNonQuery(
+               //     "INSERT INTO tblStatement (statementNumber, statementDate, statementAmountDue, customerID) " +
+               //     "VALUES (@num, @date, @amt, @cid)",
+               //     new SqlParameter("@num", statementNumber),
+               //     new SqlParameter("@date", DateTime.Now),
+               //     new SqlParameter("@amt", total),
+               //     new SqlParameter("@cid", customerId));
+                
+
+               //Response.Write($"<script>alert('Rows inserted: {rows}');</script>");
+
+
+                Response.Write($"<script>console.log('Statement Number: {statementNumber}');</script>");
+                Response.Write($"<script>console.log('Customer ID: {customerId}');</script>");
+                Response.Write($"<script>console.log('Total: {total}');</script>");
+
+                int rows = ExecuteNonQuery(
                     "INSERT INTO tblStatement (statementNumber, statementDate, statementAmountDue, customerID) " +
                     "VALUES (@num, @date, @amt, @cid)",
                     new SqlParameter("@num", statementNumber),
@@ -105,12 +134,27 @@ namespace NitroTechWebsite
                     new SqlParameter("@amt", total),
                     new SqlParameter("@cid", customerId));
 
-               Response.Write($"<script>alert('Rows inserted: {rows}');</script>");
+                Response.Write($"<script>alert('Rows inserted: {rows}. Statement: {statementNumber}');</script>");
 
-                using (var conn = DatabaseHelper.OpenConnection())
+                try
                 {
-                    Response.Write($"<script>alert('Connected to DB: {conn.DataSource} / {conn.Database}');</script>");
+                    DataTable checkInsert = ExecuteDataTable(
+                        "SELECT * FROM tblStatement WHERE statementNumber = @num",
+                        new SqlParameter("@num", statementNumber));
+
+                    Response.Write($"<script>alert('Immediate verification: {checkInsert.Rows.Count} records found');</script>");
+
+                    if (checkInsert.Rows.Count > 0)
+                    {
+                        Response.Write($"<script>alert('Record found! Date: {checkInsert.Rows[0]["statementDate"]}, Amount: {checkInsert.Rows[0]["statementAmountDue"]}');</script>");
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Response.Write($"<script>alert('Verification error: {ex.Message}');</script>");
+                }
+
+
 
                 //Generate PDF and stream to browser
                 //var statementService = new StatementService();
@@ -127,6 +171,24 @@ namespace NitroTechWebsite
             {
                 Response.Write($"<script>alert('Error creating statement: {ex.Message}');</script>");
             }
+
+
+
+        }
+
+        private void LoadCustomerIDs()
+        {
+            
+            DataTable dtCustomers = ExecuteDataTable("SELECT customerID FROM tblCustomer");
+
+            // Bind to DropDownList
+            customerID.DataSource = dtCustomers;
+            customerID.DataTextField = "customerID";   // What the user sees
+            customerID.DataValueField = "customerID";  // The value used in code
+            customerID.DataBind();
+
+            
+            customerID.Items.Insert(0, new ListItem("-- Select Customer ID --", ""));
         }
 
         //Helper Methods
@@ -160,10 +222,23 @@ namespace NitroTechWebsite
         private int ExecuteNonQuery(string query, params SqlParameter[] parameters)
         {
             using (var conn = DatabaseHelper.OpenConnection())
-            using (var cmd = new SqlCommand(query, conn))
+            using (var transaction = conn.BeginTransaction())
             {
-                if (parameters != null) cmd.Parameters.AddRange(parameters);
-                return cmd.ExecuteNonQuery(); // return rows inserted/updated
+                try
+                {
+                    using (var cmd = new SqlCommand(query, conn, transaction))
+                    {
+                        if (parameters != null) cmd.Parameters.AddRange(parameters);
+                        int result = cmd.ExecuteNonQuery();
+                        transaction.Commit(); // Explicitly commit
+                        return result;
+                    }
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    throw;
+                }
             }
         }
 
