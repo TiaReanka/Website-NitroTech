@@ -79,7 +79,7 @@
                 <asp:ListItem Value="">-- Select Customer ID --</asp:ListItem> 
                 <asp:ListItem Value="CUST001">CUST001</asp:ListItem> 
                 <asp:ListItem Value="CUST002">CUST002</asp:ListItem> 
-                <asp:ListItem Value="CUST003">CUST003</asp:ListItem> 
+                <asp:ListItem Value="8601260526053">8601260526053</asp:ListItem> 
             </asp:DropDownList> 
         </div> 
  

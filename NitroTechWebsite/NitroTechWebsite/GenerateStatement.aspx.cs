@@ -1,4 +1,5 @@
-﻿using NitroTechWebsite.Services;
+﻿using MigraDoc.DocumentObjectModel.Tables;
+using NitroTechWebsite.Services;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -75,32 +76,41 @@ namespace NitroTechWebsite
                     .OrderBy(t => t.Date)
                     .ToList();
 
+
+
                 string[,] transactions = new string[combined.Count, 3];
                 decimal transactionSum = 0;
 
-                for (int i = 0; i < combined.Count; i++)
-                {
-                    var t = combined[i];
-                    string dtype = t.Type == "P" ? "Payment" : "Invoice - " + t.ID;
-                    string formattedAmount = t.Amount.ToString("0.00").Replace('.', ',');
+                //for (int i = 0; i < combined.Count; i++)
+                //{
+                //    var t = combined[i];
+                //    string dtype = t.Type == "P" ? "Payment" : "Invoice - " + t.ID;
+                //    string formattedAmount = t.Amount.ToString("0.00").Replace('.', ',');
 
-                    transactions[i, 0] = dtype;
-                    transactions[i, 1] = formattedAmount;
-                    transactions[i, 2] = t.Date.ToString("yyyy/MM/dd");
+                //    transactions[i, 0] = dtype;
+                //    transactions[i, 1] = formattedAmount;
+                //    transactions[i, 2] = t.Date.ToString("yyyy/MM/dd");
 
-                    transactionSum += (t.Type == "I") ? t.Amount : -t.Amount;
-                }
+                //    transactionSum += (t.Type == "I") ? t.Amount : -t.Amount;
+                //}
 
-                string initial = (total - transactionSum).ToString("0.00");
+                //string initial = (total - transactionSum).ToString("0.00");
 
                 // Insert statement
-                ExecuteNonQuery(
-                    "INSERT INTO tblStatements (statementNumber, statementDate, statementAmount, customerID) " +
+               int rows = ExecuteNonQuery(
+                    "INSERT INTO tblStatement (statementNumber, statementDate, statementAmountDue, customerID) " +
                     "VALUES (@num, @date, @amt, @cid)",
                     new SqlParameter("@num", statementNumber),
                     new SqlParameter("@date", DateTime.Now),
                     new SqlParameter("@amt", total),
                     new SqlParameter("@cid", customerId));
+
+               Response.Write($"<script>alert('Rows inserted: {rows}');</script>");
+
+                using (var conn = DatabaseHelper.OpenConnection())
+                {
+                    Response.Write($"<script>alert('Connected to DB: {conn.DataSource} / {conn.Database}');</script>");
+                }
 
                 //Generate PDF and stream to browser
                 //var statementService = new StatementService();
@@ -147,20 +157,21 @@ namespace NitroTechWebsite
             }
         }
 
-        private void ExecuteNonQuery(string query, params SqlParameter[] parameters)
+        private int ExecuteNonQuery(string query, params SqlParameter[] parameters)
         {
             using (var conn = DatabaseHelper.OpenConnection())
             using (var cmd = new SqlCommand(query, conn))
             {
                 if (parameters != null) cmd.Parameters.AddRange(parameters);
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery(); // return rows inserted/updated
             }
         }
+
 
         //Generate Statement Number
         private string GenerateStatementNumber(string ID, string name)
         {
-            int count = ExecuteScalar<int>("SELECT COUNT(*) FROM tblStatements");
+            int count = ExecuteScalar<int>("SELECT COUNT(*) FROM tblStatement");
 
             char middleChar = 'X';
             if (!string.IsNullOrEmpty(name))
