@@ -102,7 +102,7 @@
             <asp:HyperLink ID="lnkForgotPassword"
                 runat="server"
                 NavigateUrl="~/NewPassword.aspx"
-                Text="Forgot Password?" />
+                Text="Change Password?" />
         </div>
 
     </div>
