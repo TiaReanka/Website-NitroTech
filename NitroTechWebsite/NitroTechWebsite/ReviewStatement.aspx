@@ -78,7 +78,8 @@
  
         .gridview td { 
             padding: 10px; 
-            border-bottom: 1px solid #ddd; 
+            border-bottom: 1px solid #ddd;
+            color: black;
         } 
  
         .gridview tr:nth-child(even) { 
