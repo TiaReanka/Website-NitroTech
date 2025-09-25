@@ -15,6 +15,7 @@
         .form-container h3 {
             text-align: center;
             margin-bottom: 20px;
+            color: white;
         }
 
         .form-group {
@@ -35,7 +36,8 @@
             color: black;
         }
 
-        .form-container button {
+        .form-container button,
+        .form-container asp:Button {
             display: block;
             max-width: 600px;
             margin: 20px auto;
@@ -48,7 +50,8 @@
             font-size: 16px;
         }
 
-        .form-container button:hover {
+        .form-container button:hover,
+        .form-container asp:Button:hover {
             background-color: purple;
         }
 
@@ -65,16 +68,14 @@
             border-collapse: collapse;
             background: white;
             color: black;
-            border-collapse: collapse;
-            text-align: left;
+            text-align: center;
             font-size: 14px;
-            min-height: 300px; 
+            min-height: 300px;
         }
 
         .grid-container th, .grid-container td {
             border: 1px solid #ccc;
             padding: 8px;
-            text-align: center;
         }
 
         .grid-container th {
@@ -87,13 +88,10 @@
         <h3>Review Parts Report</h3>
 
         <div class="form-group">
-            <select id="partNameInc" name="partName" runat="server">
-                <option value="">-- Select Name of Part --</option>
-                <option value="PART1">Tires</option>
-                <option value="PART2">Screws</option>
-                <option value="PART3">Brake pads</option>
-            </select>
-            <button type="submit">Search</button>
+            <asp:DropDownList ID="cmbSearch" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                
+            </asp:DropDownList>
+            <asp:Button ID="btnFind" runat="server" Text="Search" OnClick="btnFind_Click" Style="margin-left:15px;" />
         </div>
 
         <div class="grid-container">

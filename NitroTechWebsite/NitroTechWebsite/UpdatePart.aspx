@@ -27,8 +27,8 @@
             margin-right: 75px;
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group input {
             flex: 1;
             padding: 8px;
             border: 1px solid #ccc;
@@ -36,28 +36,66 @@
             color: black; 
         }
 
-        .form-container button {
-            display: block;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 12px;
-            background-color: #1a2db9;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+        .btn1 {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .form-container button:hover {
-            background-color: purple;
+        .btn1 input[type=submit],
+        .btn1 button {
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px 30px;
+            min-width: 50px;
+            color: #fff;
+            font-size: 15px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: 0.5s;
+            letter-spacing: 2px;
+            line-height: 20px;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            background: transparent;
+            border: 2px solid #3c00a0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn1 input[type=submit]:hover,
+        .btn1 button:hover {
+            background-color: #3c00a0;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #28a745;
+        }
+
+        .error {
+            color: #dc3545;
         }
     </style>
 
     <div class="form-container">
         <h2 style="text-align:center;"><%: Title %></h2>
         <h3 style="text-align:center;">Update Part</h3>
-        <ul class="nav nav-tabs" role="tablist">
+
+        <!-- hidden field for active tab -->
+        <asp:HiddenField ID="ActiveTab" runat="server" />
+
+        <ul class="nav nav-tabs" id="partTabs" role="tablist">
             <li class="active">
                 <a href="#tab1" role="tab" data-toggle="tab">Increase Levels</a>
             </li>
@@ -67,43 +105,59 @@
         </ul>
 
         <div class="tab-content" style="margin-top:20px;">
+            <!-- Tab 1: Increase -->
             <div class="tab-pane fade in active" id="tab1">
                 <div class="form-group">
-                    <label for="partName">Name of Part:</label>
-                    <select id="partNameInc" name="partName">
-                        <option value="">-- Select Name of Part --</option>
-                        <option value="PART1">Tires</option>
-                        <option value="PART2">Screws</option>
-                        <option value="PART3">Brake pads</option>
-                    </select>
+                    <label for="partNameInc">Name of Part:</label>
+                    <asp:DropDownList ID="partNameInc" runat="server"></asp:DropDownList>
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity">Quantity to Add:</label>
-                    <input type="number" id="quantityInc" name="quantity" />
+                    <label for="quantityInc">Quantity to Add:</label>
+                    <asp:TextBox ID="quantityInc" runat="server" TextMode="Number"></asp:TextBox>
                 </div>
 
-                <button type="submit">Update Part Levels</button>
+                <div class="btn1">
+                    <asp:Button ID="btnIncrease" runat="server" CssClass="btn" Text="Update Part Levels" OnClick="btnIncrease_Click" />
+                </div>
+
+                <asp:Label ID="lblMessageInc" runat="server" CssClass="message"></asp:Label>
             </div>
 
+            <!-- Tab 2: Decrease -->
             <div class="tab-pane fade" id="tab2">
                 <div class="form-group">
-                    <label for="partName">Name of Part:</label>
-                    <select id="partNameDec" name="partName">
-                        <option value="">-- Select Name of Part --</option>
-                        <option value="PART1">Tires</option>
-                        <option value="PART2">Screws</option>
-                        <option value="PART3">Brake pads</option>
-                    </select>
+                    <label for="partNameDec">Name of Part:</label>
+                    <asp:DropDownList ID="partNameDec" runat="server"></asp:DropDownList>
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity">Quantity Used:</label>
-                    <input type="number" id="quantityDec" name="quantity" />
+                    <label for="quantityDec">Quantity Used:</label>
+                    <asp:TextBox ID="quantityDec" runat="server" TextMode="Number"></asp:TextBox>
                 </div>
 
-                <button type="submit">Update Part Levels</button>
+                <div class="btn1">
+                    <asp:Button ID="btnDecrease" runat="server" CssClass="btn" Text="Update Part Levels" OnClick="btnDecrease_Click" />
+                </div>
+
+                <asp:Label ID="lblMessageDec" runat="server" CssClass="message"></asp:Label>
             </div>
         </div>
     </div>
+
+    <script>
+        // Save the selected tab before postback
+        $(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var activeTab = $(e.target).attr("href");
+                $('#<%= ActiveTab.ClientID %>').val(activeTab);
+            });
+
+            // Restore the selected tab after postback
+            var selectedTab = $('#<%= ActiveTab.ClientID %>').val();
+            if (selectedTab) {
+                $('#partTabs a[href="' + selectedTab + '"]').tab('show');
+            }
+        });
+    </script>
 </asp:Content>

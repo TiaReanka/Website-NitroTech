@@ -667,3 +667,4 @@ C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroT
 C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Security.Cryptography.Pkcs.xml
 C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Web.Http.xml
 C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\System.Web.Http.WebHost.xml
+C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\obj\Debug\NitroTechWebsite.csproj.AssemblyReference.cache
