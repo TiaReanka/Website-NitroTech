@@ -259,10 +259,13 @@ Inherits="NitroTechWebsite.Quotations" %>
                 <label>Fuel:</label>
                 <asp:DropDownList ID="ddlFuel" runat="server" ClientIDMode="Static">
                     <asp:ListItem Value="">-- Select Fuel --</asp:ListItem>
-                    <asp:ListItem Value="Petrol">Petrol</asp:ListItem>
+                    <asp:ListItem Value="Gasoline">Gasoline</asp:ListItem>
                     <asp:ListItem Value="Diesel">Diesel</asp:ListItem>
                     <asp:ListItem Value="Hybrid">Hybrid</asp:ListItem>
                     <asp:ListItem Value="Electric">Electric</asp:ListItem>
+                    <asp:ListItem Value="Ethanol">Ethanol</asp:ListItem>
+                    <asp:ListItem Value="Natural Gas">Natural Gas</asp:ListItem>
+
                 </asp:DropDownList>
             </div>
 
