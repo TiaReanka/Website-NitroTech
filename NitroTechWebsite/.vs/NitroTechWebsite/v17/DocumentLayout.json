@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\generatequotations.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\generatequotations.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\generatequotations.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
@@ -11,7 +11,7 @@
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\activequotation.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\calvi\\onedrive\\documents\\github\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\generatequotations.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\generatequotations.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\generatequotations.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -90,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -117,6 +117,19 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GenerateQuotations.aspx",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateQuotations.aspx",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx",
+              "RelativeToolTip": "NitroTechWebsite\\GenerateQuotations.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-09-22T16:40:58.92Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
@@ -130,8 +143,7 @@
               "RelativeToolTip": "NitroTechWebsite\\GenerateQuotations.aspx.cs",
               "ViewState": "AgIAAE0AAAAAAAAAAAAIwFwAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T16:40:39.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-22T16:40:39.431Z"
             },
             {
               "$type": "Document",
@@ -143,8 +155,7 @@
               "RelativeToolTip": "NitroTechWebsite\\ActiveQuotation.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-21T13:24:51.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-21T13:24:51.027Z"
             },
             {
               "$type": "Document",
@@ -157,19 +168,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T16:53:28.112Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GenerateQuotations.aspx",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateQuotations.aspx",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx",
-              "RelativeToolTip": "NitroTechWebsite\\GenerateQuotations.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-22T16:40:58.92Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -299,7 +297,6 @@
               "RelativeDocumentMoniker": "NitroTechWebsite\\Site.Master",
               "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Site.Master",
               "RelativeToolTip": "NitroTechWebsite\\Site.Master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-08-24T17:38:51.564Z",
               "EditorCaption": ""
