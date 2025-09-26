@@ -231,6 +231,15 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.Panel pnlFaults;
 
         /// <summary>
+        /// updParts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updParts;
+
+        /// <summary>
         /// txtFault control.
         /// </summary>
         /// <remarks>
@@ -265,15 +274,6 @@ namespace NitroTechWebsite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddFault;
-
-        /// <summary>
-        /// gvFaults control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFaults;
 
         /// <summary>
         /// txtFaultSummary control.

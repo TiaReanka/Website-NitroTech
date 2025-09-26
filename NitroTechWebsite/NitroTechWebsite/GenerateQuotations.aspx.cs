@@ -5,34 +5,29 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 
 namespace NitroTechWebsite
 {
     public partial class Quotations : Page
     {
 
-        // Cache faults in ViewState during the session
-        private DataTable FaultsTable
+        private List<Fault> Faults
         {
             get
             {
                 if (ViewState["Faults"] == null)
-                {
-                    var dt = new DataTable();
-                    dt.Columns.Add("ProductID", typeof(int));
-                    dt.Columns.Add("PartName", typeof(string));
-                    dt.Columns.Add("FaultDescription", typeof(string));
-                    dt.Columns.Add("Quantity", typeof(int));
-                    ViewState["Faults"] = dt;
-                }
-                return (DataTable)ViewState["Faults"];
+                    ViewState["Faults"] = new List<Fault>();
+                return (List<Fault>)ViewState["Faults"];
             }
+            set => ViewState["Faults"] = value;
         }
+        // Cache faults in ViewState during the session
+
+
 
         private void LoadCustomerVehicles(string searchTerm = "")
         {
@@ -172,21 +167,21 @@ namespace NitroTechWebsite
         private void LoadParts()
         {
             cmbPart.Items.Clear();
-            cmbPart.Items.Add(new ListItem("-- Select Part --", ""));
+            cmbPart.Items.Add(new ListItem("-- Select Part --", "")); // placeholder
 
             using (var conn = DatabaseHelper.OpenConnection())
-            using (var cmd = new SqlCommand(
-                "SELECT partID, partName FROM tblParts", conn))
+            using (var cmd = new SqlCommand("SELECT partID, partName FROM tblParts", conn))
             using (var reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    cmbPart.Items.Add(new ListItem(
-                        reader["partName"].ToString()
-                    ));
+                    ListItem item = new ListItem(reader["partName"].ToString(), reader["partID"].ToString());
+                    cmbPart.Items.Add(item);
                 }
             }
         }
+
+
 
         protected void cmbPart_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -205,170 +200,147 @@ namespace NitroTechWebsite
             else
             {
                 nudQuantity.Enabled = true;
-                nudQuantity.Text = "0"; // reset quantity
+                nudQuantity.Text = "1"; // reset quantity
             }
         }
 
         protected void btnAddFault_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cmbPart.SelectedValue) ||
-                string.IsNullOrWhiteSpace(txtFault.Text)) return;
-
-            if (cmbPart.Text == "Clutch" && txtTransmission.Text == "Automatic")
+            if (string.IsNullOrWhiteSpace(txtFault.Text))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    "alert('Clutches are not used in automatic cars!');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please enter a fault description.');", true);
                 return;
             }
 
-            if (cmbPart.SelectedIndex <= 0 || string.IsNullOrEmpty(txtFault.Text) || !int.TryParse(nudQuantity.Text, out int qty) || qty <= 0)
+            if (cmbPart.SelectedIndex == 0 || string.IsNullOrEmpty(cmbPart.SelectedValue))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    "alert('Please select a part, enter a fault description, and specify a valid quantity.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please select a valid part.');", true);
                 return;
             }
 
-            DataRow row = FaultsTable.NewRow();
-            row["PartName"] = cmbPart.SelectedItem.Text;
-            row["FaultDescription"] = txtFault.Text.Trim();
-            row["Quantity"] = int.TryParse(nudQuantity.Text, out int qty1) ? qty1 : 1;
-            FaultsTable.Rows.Add(row);
+            int productId = int.Parse(cmbPart.SelectedValue);  // <- use SelectedValue
+            int qty = int.TryParse(nudQuantity.Text, out int parsedQty) ? parsedQty : 1;
+            if (qty < 1) qty = 1;
 
-            gvFaults.DataSource = FaultsTable;
-            gvFaults.DataBind();
+            var fault = new Fault
+            {
+                FaultDescription = txtFault.Text.Trim(),
+                ProductID = productId,
+                AmountUsed = qty,
+                TotalAmount = 0
+            };
 
-            txtFaultSummary.Text = string.Join(Environment.NewLine,
-                FaultsTable.AsEnumerable()
-                    .Select(r => $"{r["PartName"]} - {r["FaultDescription"]} (Qty: {r["Quantity"]})"));
+            Faults.Add(fault);
 
-            cmbPart.SelectedIndex = 0;
+            UpdateFaultSummary();
+
             txtFault.Text = "";
+            cmbPart.SelectedIndex = 0;
             nudQuantity.Text = "1";
+            updParts.Update();
         }
+
+
+
+
+
+        private void UpdateFaultSummary()
+        {
+            var sb = new StringBuilder();
+            int count = 1;
+
+            foreach (var fault in Faults)
+            {
+                // Map ProductID to the part name
+                string partName = cmbPart.Items.Cast<ListItem>()
+                                     .FirstOrDefault(i => i.Value == fault.ProductID.ToString())?.Text ?? "Unknown";
+
+                sb.AppendLine($"{count}. Fault: {fault.FaultDescription}");
+                sb.AppendLine($"   Part: {partName}, Quantity: {fault.AmountUsed}");
+                sb.AppendLine();
+
+                count++;
+            }
+
+            // Set the textbox value (this replaces old content with all faults)
+            txtFaultSummary.Text = sb.ToString();
+
+            // Force UpdatePanel to refresh
+            updParts.Update();
+        }
+
+
 
         protected void btnGenerateQuotation_Click(object sender, EventArgs e)
         {
-            if (FaultsTable.Rows.Count == 0)
+            if (Faults.Count == 0)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert",
                     "alert('Cannot generate a quotation with no faults.');", true);
                 return;
             }
 
-            int quotationId;
+            string quotationNumber = GenerateQuotationNumber();
+
             using (var conn = DatabaseHelper.OpenConnection())
             using (var tran = conn.BeginTransaction())
             {
                 try
                 {
-                    // 1️ Insert Customer if not exists
-                    using (var checkCust = new SqlCommand(
-                        "SELECT COUNT(*) FROM tblCustomer WHERE customerID=@CustID", conn, tran))
+                    // Insert quotation (simplified)
+                    var qCmd = new SqlCommand(@"
+                        INSERT INTO tblQuotations 
+                        (quotationNumber, customerID, VIN, quotationDate) 
+                        VALUES (@QNum, @CustID, @VIN, @Date)", conn, tran);
+
+                    qCmd.Parameters.AddWithValue("@QNum", quotationNumber);
+                    qCmd.Parameters.AddWithValue("@CustID", txtCustID.Text);
+                    qCmd.Parameters.AddWithValue("@VIN", txtVIN.Text);
+                    qCmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                    qCmd.ExecuteNonQuery();
+
+                    // Insert faults
+                    foreach (var f in Faults)
                     {
-                        checkCust.Parameters.AddWithValue("@CustID", txtCustID.Text.Trim());
-                        int custExists = (int)checkCust.ExecuteScalar();
-                        if (custExists == 0)
-                        {
-                            using (var insertCust = new SqlCommand(@"
-                        INSERT INTO tblCustomer (customerID, customerName)
-                        VALUES (@CustID, @CustName)", conn, tran))
-                            {
-                                insertCust.Parameters.AddWithValue("@CustID", txtCustID.Text.Trim());
-                                insertCust.Parameters.AddWithValue("@CustName", txtCustName.Text.Trim());
-                                insertCust.ExecuteNonQuery();
-                            }
-                        }
-                    }
+                        var fCmd = new SqlCommand(@"
+                            INSERT INTO tblFaults 
+                            (fault, productID, amountProductUsed, quotationNumber, faultTotal) 
+                            VALUES (@Fault, @Prod, @Qty, @QNum, @Total)", conn, tran);
 
-                    // 2️ Insert Vehicle if not exists
-                    using (var insertVehicle = new SqlCommand(@"
-    INSERT INTO tblVehicle
-    (customerID, VIN, vehicleMake, vehicleModel, vehicleYear, vehicleEngine, vehicleTransmission, vehicleDriveTrain, vehicleFuelType)
-    VALUES (@CustID,@VIN,@Make,@Model,@Year,@Engine,@Trans,@Drive,@Fuel)", conn, tran))
-                    {
-                        insertVehicle.Parameters.AddWithValue("@CustID", txtCustID.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@VIN", txtVIN.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@Make", txtMake.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@Model", txtModel.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@Year", txtYear.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@Engine", txtEngine.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@Trans", txtTransmission.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@Drive", txtDrivetrain.Text.Trim());
-                        insertVehicle.Parameters.AddWithValue("@Fuel", ddlFuel.SelectedValue);
-                        insertVehicle.ExecuteNonQuery();
-                    }
-
-                    // 3️ Insert Quotation
-                    string quotationNumber = GenerateQuotationNumber();
-
-                    var insertQuotation = new SqlCommand(@"
-        INSERT INTO tblQuotation
-        (customerID, quotationDate, quotationStatus, quotationTotal, quotationNumber)
-        OUTPUT INSERTED.quotationID
-        VALUES (@CustID, @Date, @Status, 0, @QNum)", conn, tran);
-
-                    insertQuotation.Parameters.AddWithValue("@CustID", txtCustID.Text.Trim());
-                    insertQuotation.Parameters.AddWithValue("@Date", DateTime.Now);
-                    insertQuotation.Parameters.AddWithValue("@Status", 0); // 0 = Created
-                    insertQuotation.Parameters.AddWithValue("@QNum", quotationNumber);
-
-                    quotationId = (int)insertQuotation.ExecuteScalar();
-
-                    // 4️ Insert Faults and compute total
-                    decimal totalAmount = 0;
-                    foreach (DataRow r in FaultsTable.Rows)
-                    {
-                        using (var insertFault = new SqlCommand(@"
-                    INSERT INTO tblFaults
-                    (quotationID, productID, faultDescription, quantity)
-                    VALUES (@QID,@Prod,@Desc,@Qty)", conn, tran))
-                        {
-                            insertFault.Parameters.AddWithValue("@QID", quotationId);
-                            insertFault.Parameters.AddWithValue("@Prod", r["ProductID"]);
-                            insertFault.Parameters.AddWithValue("@Desc", r["FaultDescription"]);
-                            insertFault.Parameters.AddWithValue("@Qty", r["Quantity"]);
-                            insertFault.ExecuteNonQuery();
-                        }
-
-                        // Fetch product price
-                        using (var priceCmd = new SqlCommand(
-                            "SELECT productPrice FROM tblProduct WHERE productID=@Prod", conn, tran))
-                        {
-                            priceCmd.Parameters.AddWithValue("@Prod", r["ProductID"]);
-                            decimal price = (decimal)priceCmd.ExecuteScalar();
-                            totalAmount += price * Convert.ToInt32(r["Quantity"]);
-                        }
-                    }
-
-                    // 5️⃣ Update Quotation Total
-                    using (var updateTotal = new SqlCommand(
-                        "UPDATE tblQuotation SET quotationTotal=@Total WHERE quotationID=@QID", conn, tran))
-                    {
-                        updateTotal.Parameters.AddWithValue("@Total", totalAmount);
-                        updateTotal.Parameters.AddWithValue("@QID", quotationId);
-                        updateTotal.ExecuteNonQuery();
+                        fCmd.Parameters.AddWithValue("@Fault", f.FaultDescription);
+                        fCmd.Parameters.AddWithValue("@Prod", f.ProductID);
+                        fCmd.Parameters.AddWithValue("@Qty", f.AmountUsed);
+                        fCmd.Parameters.AddWithValue("@QNum", quotationNumber);
+                        fCmd.Parameters.AddWithValue("@Total", f.TotalAmount);
+                        fCmd.ExecuteNonQuery();
                     }
 
                     tran.Commit();
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        "alert('Quotation generated successfully!');", true);
+
+                    GenerateQuotation(quotationNumber);
+                    Faults.Clear();
+                    UpdateFaultSummary();              
+
+                    txtFaultSummary.Text = "";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        "alert('Quotation generated successfully!');", true);
                 }
                 catch
                 {
                     tran.Rollback();
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        "alert('Error generating quotation.');", true);
-                    return;
+                    throw;
                 }
             }
-
-            // Clear UI
-            FaultsTable.Clear();
-            gvFaults.DataSource = null;
-            gvFaults.DataBind();
-            txtFaultSummary.Text = "";
-
-            ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                "alert('Quotation generated successfully!');", true);
+            
         }
+
+
+
+
+
 
         public static bool IsValidVin(string vin)
         {
@@ -463,5 +435,67 @@ namespace NitroTechWebsite
 
             Response.End();
         }
+
+        private void GenerateQuotation(string quotationNumber)
+        {
+            try
+            {
+                // Fetch faults for the quotation
+                var faults = new DataTable();
+                using (var conn = DatabaseHelper.OpenConnection())
+                using (var cmd = new SqlCommand("SELECT f.faultDescription, f.quantity, p.partID, p.partName, p.productPrice, f.quantity * p.productPrice AS faultTotal FROM tblFaults f INNER JOIN tblParts p ON f.productID = p.partID WHERE f.quotationID = (SELECT quotationID FROM tblQuotation WHERE quotationNumber=@QNum)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@QNum", quotationNumber);
+                    using (var adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(faults);
+                    }
+                }
+
+                int rowCount = faults.Rows.Count;
+                string[,] products = new string[rowCount, 6];
+                decimal totalProductCost = 0;
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    var row = faults.Rows[i];
+                    int itemNo = i + 1;
+                    string faultDesc = row["faultDescription"].ToString();
+                    string partName = row["partName"].ToString();
+                    string amountUsed = row["quantity"].ToString();
+                    string productBaseCost = "R" + Convert.ToDecimal(row["productPrice"]).ToString("0.00");
+                    string totalAmount = "R" + Convert.ToDecimal(row["faultTotal"]).ToString("0.00");
+
+                    totalProductCost += Convert.ToDecimal(row["faultTotal"]);
+
+                    products[i, 0] = itemNo.ToString();
+                    products[i, 1] = faultDesc;
+                    products[i, 2] = partName;
+                    products[i, 3] = amountUsed;
+                    products[i, 4] = productBaseCost;
+                    products[i, 5] = totalAmount;
+                }
+
+                decimal labourFee = totalProductCost * 0.2m; // 20% labour
+                string clientName = txtCustName.Text;
+                string clientAddress = txtCustAddress.Text;
+                string clientEmail = txtCustEmail.Text;
+                string clientPhone = txtCustPhone.Text;
+                string vehicleVIN = txtVIN.Text;
+                string vehicleName = $"{txtMake.Text} {txtModel.Text} ({txtYear.Text})";
+
+                string labourFeeStr = labourFee.ToString("0.00");
+                string totalStr = totalProductCost.ToString("0.00");
+
+                // Generate PDF and send to browser
+                makeQuotation(products, clientName, clientAddress, clientEmail, clientPhone, vehicleVIN, vehicleName, quotationNumber, labourFeeStr, totalStr);
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"alert('Error generating quotation PDF: {ex.Message}');", true);
+            }
+        }
+
     }
 }
