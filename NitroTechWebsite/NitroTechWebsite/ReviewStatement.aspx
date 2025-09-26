@@ -78,7 +78,8 @@
  
         .gridview td { 
             padding: 10px; 
-            border-bottom: 1px solid #ddd; 
+            border-bottom: 1px solid #ddd;
+            color: black;
         } 
  
         .gridview tr:nth-child(even) { 
@@ -91,7 +92,7 @@
  
         <div class="form-group"> 
             <label for="txtCustomerName">Customer Name:</label> 
-            <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer name..." /> 
+            <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer ID..." /> 
         </div> 
  
         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn" 

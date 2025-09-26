@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 
 namespace NitroTechWebsite
 {
@@ -16,29 +17,51 @@ namespace NitroTechWebsite
         {
             if (!IsPostBack)
             {
-                BindDummyGrid();
+                gvStatements.DataSource = null;
+                gvStatements.DataBind();
             }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindDummyGrid();
+            BindGrid();
         }
 
-        private void BindDummyGrid()
+
+        private void BindGrid()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("StatementID");
-            dt.Columns.Add("CustomerName");
-            dt.Columns.Add("Date");
-            dt.Columns.Add("Amount");
+            string customerID = txtCustomerName.Text.Trim(); // User must enter ID
 
-            dt.Rows.Add("STMT001", "Alice", "2025-08-01", "R 1500.00");
-            dt.Rows.Add("STMT002", "Bob", "2025-08-10", "R 2500.00");
-            dt.Rows.Add("STMT003", "Charlie", "2025-08-15", "R 1800.00");
+            if (string.IsNullOrWhiteSpace(customerID))
+            {
+                gvStatements.DataSource = null;
+                gvStatements.DataBind();
+                return;
+            }
 
-            gvStatements.DataSource = dt;
-            gvStatements.DataBind();
+            using (SqlConnection sqlConnection = DatabaseHelper.OpenConnection())
+            {
+            
+
+                string sql = @"
+                    SELECT s.statementNumber, c.customerName, s.statementDate, s.statementAmountDue
+                    FROM tblStatement s
+                    INNER JOIN tblCustomer c ON s.customerID = c.customerID
+                    WHERE s.customerID = @CustomerID";
+
+                using (SqlCommand cmd = new SqlCommand(sql, sqlConnection))
+                {
+                    cmd.Parameters.AddWithValue("@CustomerID", customerID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        gvStatements.DataSource = dt;
+                        gvStatements.DataBind();
+                    }
+                }
+            }
         }
     }
 }
