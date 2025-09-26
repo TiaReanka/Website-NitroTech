@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Add Job" Language="C#" MasterPageFile="~/Site.Master" 
-AutoEventWireup="true" CodeBehind="AddJob.aspx.cs" Inherits="NitroTechWebsite.AddJob" 
-%> 
- 
+    AutoEventWireup="true" CodeBehind="ReviewQuotation.aspx.cs" Inherits="NitroTechWebsite.AddJob" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server"> 
     <style> 
         .form-container { 
@@ -65,11 +64,20 @@ AutoEventWireup="true" CodeBehind="AddJob.aspx.cs" Inherits="NitroTechWebsite.Ad
         .btn:hover { 
             background-color: purple; 
         } 
+
+        .grid-label { 
+            display: block; 
+            width: 90%; 
+            margin: 20px auto 10px auto; /* aligns with grid width */
+            text-align: left; 
+            font-weight: bold; 
+            font-size: 16px; 
+            color: white; 
+        } 
  
-        
         .gridview { 
             width: 90%; 
-            margin: 30px auto; 
+            margin: 10px auto 30px auto; 
             border-collapse: collapse; 
             background: white; 
             border-radius: 8px; 
@@ -86,6 +94,7 @@ AutoEventWireup="true" CodeBehind="AddJob.aspx.cs" Inherits="NitroTechWebsite.Ad
         .gridview td { 
             padding: 10px; 
             border-bottom: 1px solid #ddd; 
+            color: black;
         } 
  
         .gridview tr:nth-child(even) { 
@@ -98,16 +107,18 @@ AutoEventWireup="true" CodeBehind="AddJob.aspx.cs" Inherits="NitroTechWebsite.Ad
  
         <div class="form-group"> 
             <label for="ddlQuotations">Select Quotation:</label> 
-            <asp:DropDownList ID="ddlQuotations" runat="server" 
-CssClass="quotation-dropdown"> 
+            <asp:DropDownList ID="ddlQuotations" runat="server" CssClass="quotation-dropdown"> 
             </asp:DropDownList> 
         </div> 
  
         <asp:Button ID="btnAddJob" runat="server" Text="Add Job" CssClass="btn" 
-OnClick="btnAddJob_Click" /> 
+            OnClick="btnAddJob_Click" /> 
+
+        <!-- Label for jobs added -->
+        <asp:Label ID="lblJobsAdded" runat="server" Text="Jobs added:" CssClass="grid-label"></asp:Label>
  
         <asp:GridView ID="gvJobs" runat="server" AutoGenerateColumns="true" 
-CssClass="gridview"> 
+            CssClass="gridview" OnRowDataBound="gvJobs_RowDataBound"> 
         </asp:GridView> 
     </div> 
-</asp:Content> 
+</asp:Content>

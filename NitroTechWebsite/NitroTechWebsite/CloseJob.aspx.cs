@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,49 +12,109 @@ namespace NitroTechWebsite
         {
             if (!IsPostBack)
             {
-                LoadQuotations();
-                LoadDummyJobs();
+                LoadQuotations();    // show dropdown with active jobs
+                LoadClosedJobsGrid(); // grid shows active jobs
             }
         }
 
+        // Populate dropdown with quotations that are active (status = 1)
         private void LoadQuotations()
         {
             ddlQuotations.Items.Clear();
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Select a quotation...", "")); 
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Quotation #1001", "1001"));
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Quotation #1002", "1002"));
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Quotation #1003", "1003"));
+            ddlQuotations.Items.Add(new ListItem("Select a quotation...", ""));
+
+            string query = @"SELECT quotationNumber 
+                             FROM tblQuotation 
+                             WHERE quotationStatus = 1";  // active jobs
+
+            using (var conn = DatabaseHelper.OpenConnection())
+            using (var cmd = new SqlCommand(query, conn))
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string quotationNumber = reader["quotationNumber"].ToString();
+                    ddlQuotations.Items.Add(new ListItem("Quotation #" + quotationNumber, quotationNumber));
+                }
+            }
         }
 
-        private void LoadDummyJobs()
+        // Grid shows all active jobs (status = 1) on page load
+        private void LoadClosedJobsGrid()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("JobID");
-            dt.Columns.Add("QuotationID");
-            dt.Columns.Add("JobStatus");
+            string query = @"SELECT 
+                        q.quotationNumber AS [QuotationNumber], 
+                        q.customerID AS [CustomerID], 
+                        q.quotationDate AS [QuotationDate], 
+                        q.quotationTotal AS [QuotationTotal], 
+                        q.vehicleVIN AS [VehicleVIN]
+                     FROM tblQuotation q
+                     WHERE q.quotationStatus = 2"; // closed jobs only
 
-            dt.Rows.Add("J001", "1001", "In Progress");
-            dt.Rows.Add("J002", "1002", "Pending");
-            dt.Rows.Add("J003", "1003", "Ready to Close");
+            DataTable dt = new DataTable();
+            using (var conn = DatabaseHelper.OpenConnection())
+            using (var cmd = new SqlCommand(query, conn))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                da.Fill(dt);
+            }
 
             gvJobs.DataSource = dt;
             gvJobs.DataBind();
         }
 
+
+        // Close job button click
         protected void btnCloseJob_Click(object sender, EventArgs e)
         {
             string selectedQuotation = ddlQuotations.SelectedValue;
 
             if (!string.IsNullOrEmpty(selectedQuotation))
             {
-                // Placeholder: Close job logic 
-                LoadDummyJobs();
-                Response.Write($"<script>alert('Job closed for Quotation { selectedQuotation}');</script>"); 
+                string updateQuery = @"UPDATE tblQuotation 
+                               SET quotationStatus = 2 
+                               WHERE quotationNumber = @quotationNumber";
+
+                using (var conn = DatabaseHelper.OpenConnection())
+                using (var cmd = new SqlCommand(updateQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@quotationNumber", selectedQuotation);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Refresh dropdown (still active jobs) 
+                LoadQuotations();
+                // Refresh grid to show closed jobs
+                LoadClosedJobsGrid();
+
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                    "alertMessage",
+                    $"alert('Quotation {selectedQuotation} successfully closed!');",
+                    true);
             }
             else
             {
-                Response.Write("<script>alert('Please select a quotation first.');</script>");
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                    "alertMessage",
+                    "alert('Please select a quotation first.');",
+                    true);
             }
         }
+
+
+        // Optional: nice headers
+        protected void gvJobs_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[0].Text = "Quotation Number";
+                e.Row.Cells[1].Text = "Customer ID";
+                e.Row.Cells[2].Text = "Quotation Date";
+                e.Row.Cells[3].Text = "Total Amount";
+                e.Row.Cells[4].Text = "Vehicle VIN";
+            }
+        }
+
+
     }
 }

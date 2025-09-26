@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,33 +12,55 @@ namespace NitroTechWebsite
         {
             if (!IsPostBack)
             {
-                LoadQuotations();
-                LoadDummyJobs();
+                LoadQuotations();   // only pending ones (status=0)
+                LoadJobs();         // always show jobs with status=1
             }
         }
 
         private void LoadQuotations()
         {
             ddlQuotations.Items.Clear();
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Select a quotation...", "")); 
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Quotation #1001","1001"));
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Quotation #1002","1002"));
-            ddlQuotations.Items.Add(new System.Web.UI.WebControls.ListItem("Quotation #1003","1003"));
+            ddlQuotations.Items.Add(new ListItem("Select a quotation...", ""));
+
+            string query = @"SELECT quotationNumber 
+                             FROM tblQuotation 
+                             WHERE quotationStatus = 0";
+
+            using (var conn = DatabaseHelper.OpenConnection())
+            using (var cmd = new SqlCommand(query, conn))
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string quotationNumber = reader["quotationNumber"].ToString();
+                    ddlQuotations.Items.Add(new ListItem("Quotation #" + quotationNumber, quotationNumber));
+                }
+            }
         }
 
-        private void LoadDummyJobs()
+        private void LoadJobs()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("JobID");
-            dt.Columns.Add("QuotationID");
-            dt.Columns.Add("JobStatus");
+            string query = @"SELECT 
+                                q.quotationNumber AS [QuotationNumber], 
+                                q.customerID AS [CustomerID], 
+                                q.quotationDate AS [QuotationDate], 
+                                q.quotationTotal AS [QuotationTotal], 
+                                q.vehicleVIN AS [VehicleVIN]
+                             FROM tblQuotation q
+                             WHERE q.quotationStatus = 1";
 
-            dt.Rows.Add("J001", "1001", "In Progress");
-            dt.Rows.Add("J002", "1002", "Pending");
-            dt.Rows.Add("J003", "1003", "Completed");
+            using (var conn = DatabaseHelper.OpenConnection())
+            using (var cmd = new SqlCommand(query, conn))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
-            gvJobs.DataSource = dt;
-            gvJobs.DataBind();
+                gvJobs.DataSource = dt;
+                gvJobs.DataBind();
+
+                
+            }
         }
 
         protected void btnAddJob_Click(object sender, EventArgs e)
@@ -49,13 +69,44 @@ namespace NitroTechWebsite
 
             if (!string.IsNullOrEmpty(selectedQuotation))
             {
-                // TODO: Add to database instead of dummy reload 
-                LoadDummyJobs();
-                Response.Write($"<script>alert('Job added for Quotation { selectedQuotation}');</script>"); 
+                string updateQuery = @"UPDATE tblQuotation 
+                                       SET quotationStatus = 1 
+                                       WHERE quotationNumber = @quotationNumber";
+
+                using (var conn = DatabaseHelper.OpenConnection())
+                using (var cmd = new SqlCommand(updateQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@quotationNumber", selectedQuotation);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Refresh both lists
+                LoadQuotations();   // refresh pending list
+                LoadJobs();         // refresh jobs list
+
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                    "alertMessage",
+                    $"alert('Quotation {selectedQuotation} successfully added as a job!');",
+                    true);
             }
             else
             {
-                Response.Write("<script>alert('Please select a quotation first.');</script>");
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                    "alertMessage",
+                    "alert('Please select a quotation first.');",
+                    true);
+            }
+        }
+
+        protected void gvJobs_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[0].Text = "Quotation Number";
+                e.Row.Cells[1].Text = "Customer ID";
+                e.Row.Cells[2].Text = "Quotation Date";
+                e.Row.Cells[3].Text = "Total Amount";
+                e.Row.Cells[4].Text = "Vehicle VIN";
             }
         }
     }

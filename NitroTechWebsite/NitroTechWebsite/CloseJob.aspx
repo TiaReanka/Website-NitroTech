@@ -66,9 +66,19 @@ Inherits="NitroTechWebsite.CloseJob" %>
             background-color: purple; 
         } 
  
+        .grid-label { 
+            display: block; 
+            width: 90%; 
+            margin: 20px auto 10px auto; /* aligns with grid width */
+            text-align: left; 
+            font-weight: bold; 
+            font-size: 16px; 
+            color: white; 
+        } 
+ 
         .gridview { 
             width: 90%; 
-            margin: 30px auto; 
+            margin: 10px auto 30px auto; 
             border-collapse: collapse; 
             background: white; 
             border-radius: 8px; 
@@ -84,7 +94,8 @@ Inherits="NitroTechWebsite.CloseJob" %>
  
         .gridview td { 
             padding: 10px; 
-            border-bottom: 1px solid #ddd; 
+            border-bottom: 1px solid #ddd;
+            color: black;
         } 
  
         .gridview tr:nth-child(even) { 
@@ -98,15 +109,18 @@ Inherits="NitroTechWebsite.CloseJob" %>
         <div class="form-group"> 
             <label for="ddlQuotations">Select Quotation:</label> 
             <asp:DropDownList ID="ddlQuotations" runat="server" 
-CssClass="quotation-dropdown"> 
+                CssClass="quotation-dropdown"> 
             </asp:DropDownList> 
         </div> 
  
         <asp:Button ID="btnCloseJob" runat="server" Text="Close Job" CssClass="btn" 
-OnClick="btnCloseJob_Click" /> 
- 
+            OnClick="btnCloseJob_Click" /> 
+
+        <!-- Label for jobs closed -->
+        <asp:Label ID="lblJobsClosed" runat="server" Text="Jobs closed:" CssClass="grid-label"></asp:Label>
+
         <asp:GridView ID="gvJobs" runat="server" AutoGenerateColumns="true" 
-CssClass="gridview"> 
+            CssClass="gridview" OnRowDataBound="gvJobs_RowDataBound"> 
         </asp:GridView> 
     </div> 
 </asp:Content>
