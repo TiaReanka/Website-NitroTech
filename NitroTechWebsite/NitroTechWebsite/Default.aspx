@@ -108,20 +108,14 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
 
         <!-- Banner image -->
         <div style="display: flex; justify-content: center; margin-bottom: 30px;" class="fade-on-scroll">
-            <img src='<%= ResolveUrl("~/Images/banner.jpg") %>' alt="Banner" style="max-width: 70%; height: auto;" />
+            <img src='<%= ResolveUrl("~/Images/bannerNew.jpg") %>' alt="Banner" style="max-width: 70%; height: auto;" />
         </div>
 
         <!-- Bottom paragraph -->
         <div style="display: flex; justify-content: center; align-items: flex-start; padding-top: 20px; text-align: center;">
             <div style="max-width: 80%;" class="fade-on-scroll">
                 <p style="font-size: 20px; color: white; margin-top: 20px;">
-                   At JAE Auto, we're building the future of vehicle care, one expertly serviced car at a time.
-                   Our process is a testament to our dedication: we take the time to meticulously diagnose every
-                   fault, ensuring a precise and lasting repair. We're not just fixing cars; we're restoring confidence
-                   and performance. Our commitment to excellence extends to every part of our business, which
-                   is why we're moving forward with a new, highly-efficient system. This upgrade allows us to serve
-                   with unmatched speed and accuracy. We're proud of the work we do and excited to welcome you into the JAE
-                   Auto family.
+                   Driven by Workmanship, Powered by Performance, Perfected in Efficiency.
                 </p>
             </div>
         </div>
