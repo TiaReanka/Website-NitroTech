@@ -126,11 +126,24 @@
               "Title": "GenerateQuotations.aspx.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\GenerateQuotations.aspx.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx.cs",
-              "RelativeToolTip": "NitroTechWebsite\\GenerateQuotations.aspx.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAowJoAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\GenerateQuotations.aspx.cs*",
+              "RelativeToolTip": "NitroTechWebsite\\GenerateQuotations.aspx.cs*",
+              "ViewState": "AgIAAFgBAAAAAAAAAAAAAF0BAAB/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T16:40:39.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Fault.cs",
+              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\Fault.cs",
+              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\Fault.cs",
+              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\Fault.cs",
+              "RelativeToolTip": "NitroTechWebsite\\Services\\Fault.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T16:53:28.112Z",
               "EditorCaption": ""
             },
             {
@@ -161,29 +174,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Fault.cs",
-              "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\Fault.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\Services\\Fault.cs",
-              "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\Services\\Fault.cs",
-              "RelativeToolTip": "NitroTechWebsite\\Services\\Fault.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T16:53:28.112Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\DatabaseHelper.cs",
               "ToolTip": "C:\\Users\\calvi\\OneDrive\\Documents\\GitHub\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\DatabaseHelper.cs",
               "RelativeToolTip": "NitroTechWebsite\\DatabaseHelper.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAuwB0AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAqwFQAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-31T18:51:40.149Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-31T18:51:40.149Z"
             },
             {
               "$type": "Document",
@@ -207,8 +206,7 @@
               "RelativeToolTip": "NitroTechWebsite\\ChatbotController.cs",
               "ViewState": "AgIAADgBAAAAAAAAAAAowBgAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-21T09:43:03.085Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-21T09:43:03.085Z"
             },
             {
               "$type": "Document",

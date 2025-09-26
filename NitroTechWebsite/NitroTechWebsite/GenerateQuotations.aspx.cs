@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,7 +15,7 @@ namespace NitroTechWebsite
 {
     public partial class Quotations : Page
     {
-
+        
         private List<Fault> Faults
         {
             get
@@ -222,12 +223,22 @@ namespace NitroTechWebsite
             int qty = int.TryParse(nudQuantity.Text, out int parsedQty) ? parsedQty : 1;
             if (qty < 1) qty = 1;
 
+            decimal unitPrice = 0;
+            using (var conn = DatabaseHelper.OpenConnection())
+            using (var cmd = new SqlCommand("SELECT partUnitPrice FROM tblParts WHERE partID=@PartID", conn))
+            {
+                cmd.Parameters.AddWithValue("@PartID", productId);
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                    unitPrice = Convert.ToDecimal(result);
+            }
+
             var fault = new Fault
             {
                 FaultDescription = txtFault.Text.Trim(),
                 ProductID = productId,
                 AmountUsed = qty,
-                TotalAmount = 0
+                TotalAmount = unitPrice * qty
             };
 
             Faults.Add(fault);
@@ -287,25 +298,71 @@ namespace NitroTechWebsite
             {
                 try
                 {
-                    // Insert quotation (simplified)
+                    // --- Insert Customer only if txtCustID is empty or enabled ---
+                    if (txtCustID.Enabled)
+                    {
+                        var customerCmd = new SqlCommand(@"
+                    INSERT INTO tblCustomer (customerID, customerName, customerAddress, customerContactNumber, customerEmailAddress, customerOwe)
+                    VALUES (@CustID, @Name, @Address, @Phone, @Email, 0)", conn, tran);
+
+                        customerCmd.Parameters.AddWithValue("@CustID", txtCustID.Text);
+                        customerCmd.Parameters.AddWithValue("@Name", txtCustName.Text);
+                        customerCmd.Parameters.AddWithValue("@Address", txtCustAddress.Text);
+                        customerCmd.Parameters.AddWithValue("@Phone", txtCustPhone.Text);
+                        customerCmd.Parameters.AddWithValue("@Email", txtCustEmail.Text);
+                        customerCmd.ExecuteNonQuery();
+                    }
+
+                    // --- Insert Vehicle only if txtVIN is empty or enabled ---
+                    if (txtVIN.Enabled)
+                    {
+                        var vehicleCmd = new SqlCommand(@"
+                    INSERT INTO tblVehicle (VIN, vehicleMake, vehicleModel, vehicleTrim, vehicleYear, vehicleEngine, vehicleTransmission, vehicleDriveTrain, vehicleFuelType, customerID)
+                    VALUES (@VIN, @Make, @Model, @Trim, @Year, @Engine, @Transmission, @DriveTrain, @Fuel, @CustID)", conn, tran);
+
+                        vehicleCmd.Parameters.AddWithValue("@VIN", txtVIN.Text);
+                        vehicleCmd.Parameters.AddWithValue("@Make", txtMake.Text);
+                        vehicleCmd.Parameters.AddWithValue("@Model", txtModel.Text);
+                        vehicleCmd.Parameters.AddWithValue("@Trim", "Premium");
+                        vehicleCmd.Parameters.AddWithValue("@Year", txtYear.Text);
+                        vehicleCmd.Parameters.AddWithValue("@Engine", txtEngine.Text);
+                        vehicleCmd.Parameters.AddWithValue("@Transmission", txtTransmission.Text);
+                        vehicleCmd.Parameters.AddWithValue("@DriveTrain", txtDrivetrain.Text);
+                        vehicleCmd.Parameters.AddWithValue("@Fuel", ddlFuel.SelectedValue);
+                        vehicleCmd.Parameters.AddWithValue("@CustID", txtCustID.Text);
+                        vehicleCmd.ExecuteNonQuery();
+                    }
+                    decimal totalFaults = 0;
+                    foreach (var f in Faults)
+                    {
+                        // Suppose f.TotalAmount is already set to product price * quantity
+                        totalFaults += f.TotalAmount;
+                    }
+
+                    // Add 20% labour fee
+                    decimal totalWithLabour = totalFaults * 1.2m;
+
+                    // Add 15% tax
+                    decimal finalTotal = totalWithLabour * 1.15m;
+
+                    // --- Insert quotation ---
                     var qCmd = new SqlCommand(@"
-                        INSERT INTO tblQuotations 
-                        (quotationNumber, customerID, VIN, quotationDate) 
-                        VALUES (@QNum, @CustID, @VIN, @Date)", conn, tran);
+                INSERT INTO tblQuotation (quotationNumber, quotationStatus, customerID,  quotationTotal, quotationDate, vehicleVIN)
+                VALUES (@QNum, 0, @CustID, @FT, @Date, @VIN)", conn, tran);
 
                     qCmd.Parameters.AddWithValue("@QNum", quotationNumber);
                     qCmd.Parameters.AddWithValue("@CustID", txtCustID.Text);
-                    qCmd.Parameters.AddWithValue("@VIN", txtVIN.Text);
+                    qCmd.Parameters.AddWithValue("@FT", finalTotal);
                     qCmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                    qCmd.Parameters.AddWithValue("@VIN", txtVIN.Text);
                     qCmd.ExecuteNonQuery();
 
-                    // Insert faults
+                    // --- Insert faults ---
                     foreach (var f in Faults)
                     {
                         var fCmd = new SqlCommand(@"
-                            INSERT INTO tblFaults 
-                            (fault, productID, amountProductUsed, quotationNumber, faultTotal) 
-                            VALUES (@Fault, @Prod, @Qty, @QNum, @Total)", conn, tran);
+                    INSERT INTO tblFaults (fault, productID, amountProductUsed, quotationNumber, faultTotal)
+                    VALUES (@Fault, @Prod, @Qty, @QNum, @Total)", conn, tran);
 
                         fCmd.Parameters.AddWithValue("@Fault", f.FaultDescription);
                         fCmd.Parameters.AddWithValue("@Prod", f.ProductID);
@@ -316,27 +373,24 @@ namespace NitroTechWebsite
                     }
 
                     tran.Commit();
+
                     ClientScript.RegisterStartupScript(this.GetType(), "alert",
                         "alert('Quotation generated successfully!');", true);
 
                     GenerateQuotation(quotationNumber);
+
                     Faults.Clear();
-                    UpdateFaultSummary();              
-
+                    UpdateFaultSummary();
                     txtFaultSummary.Text = "";
-
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        "alert('Quotation generated successfully!');", true);
                 }
-                catch
+                catch (Exception ex)
                 {
                     tran.Rollback();
-                    throw;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        $"alert('Error generating quotation: {ex.Message}');", true);
                 }
             }
-            
         }
-
 
 
 
@@ -433,7 +487,8 @@ namespace NitroTechWebsite
                 ms.WriteTo(Response.OutputStream);
             }
 
-            Response.End();
+            Response.Flush();
+            HttpContext.Current.ApplicationInstance.CompleteRequest(); // safer than Response.End()
         }
 
         private void GenerateQuotation(string quotationNumber)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NitroTechWebsite.Services
 {
+    [Serializable]
     public class Fault
     {
         public string FaultDescription { get; set; }
