@@ -10,7 +10,7 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
         Your browser does not support the audio element.
     </audio>
 
-    <style>
+   <style>
         body, form {
             margin: 0;
             padding: 0;
@@ -30,28 +30,28 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
         }
 
         .fade-box {
-            border: 2px solid white;
-            background-color: rgba(255,255,255,0.1);
-            box-shadow: 4px 4px 15px rgba(0,0,0,0.3),
-                        inset -2px -2px 5px rgba(255,255,255,0.2),
-                        inset 2px 2px 5px rgba(0,0,0,0.2);
-
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-            animation-delay: 0.3s;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-
-            /* Top header spacing */
-            margin: 66px auto 30px auto;
-            padding: 15px 30px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
+    border: 2px solid white;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.3),
+                inset -2px -2px 5px rgba(255,255,255,0.2),
+                inset 2px 2px 5px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    /* Top header spacing */
+    margin: 66px auto 30px auto;
+    padding: 15px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;  /* This is the key change */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    color: white;
+}
         .fade-box h1 {
             margin: 0;
             font-size: 50px;
@@ -73,13 +73,34 @@ AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._
             opacity: 1;
             transform: translateY(0);
         }
+
+        .tagline {
+            font-size: 20px;       /* small tagline */
+            margin: 0;       /* space under the H1 */
+            font-weight: normal;   /* not bold */
+            color: white;           /* optional softer color */
+        }
+
+        .tagline-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
     </style>
 
+  
+
     <!-- Top rectangle header -->
-    <div class="fade-box" id="clickableBox">
-        <h1>Welcome To NitroTech</h1>
+   <div class="fade-box" id="clickableBox">
+    <h1>Welcome To The JAE Online System</h1>
+    <div class="tagline-row">
+        <p class="tagline">Powered by NitroTech</p>
         <img src='<%= ResolveUrl("~/Images/Made with insMind-Logo.png") %>' alt="Logo" />
-    </div>
+    </div>
+</div>
 
     <div class="content-wrapper">
         <!-- Horizontal white line separator -->
