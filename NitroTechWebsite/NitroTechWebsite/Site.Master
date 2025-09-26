@@ -217,7 +217,7 @@
                             <ul class="dropdown-menu">
                                 <li id="liGenerateQuotation" runat="server"><a runat="server" href="~/GenerateQuotations">Generate Quotation</a></li>
                                 <li id="liActiveQuotation" runat="server"><a runat="server" href="~/ActiveQuotation">Active Quotation</a></li>
-                                <li id="liReviewQuotation" runat="server"><a runat="server" href="~/ReviewQuotation">Review Quotation</a></li>
+                                <li id="liReviewQuotation" runat="server"><a runat="server" href="~/ReviewQuotation">Add Job</a></li>
                                 <li id="liCloseJob" runat="server"><a runat="server" href="~/CloseJob">Close Job</a></li>
                             </ul>
                         </li>
@@ -283,7 +283,7 @@
                         <!--About-->
                         <li id="liAbout" runat="server"><a runat="server" href="~/About">About</a></li>
                         <!--Contact-->
-                        <li id="liContact" runat="server"><a runat="server" href="~/Contact">Contact</a></li>
+                        <li id="liContact" runat="server"><a runat="server" href="~/Contact">Feedback</a></li>
                     </ul>
 
                     <!-- Profile Icon on the Right -->
