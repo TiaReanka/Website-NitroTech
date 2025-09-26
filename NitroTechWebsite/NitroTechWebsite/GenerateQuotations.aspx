@@ -177,6 +177,50 @@ Inherits="NitroTechWebsite.Quotations" %>
                 <label>Quotation Date:</label><asp:TextBox
                     ID="txtQuotationDate" runat="server" ReadOnly="true" ClientIDMode="Static" />
             </div>
+
+            <div class="form-group">
+                <label>Search by Name:</label>
+                <asp:TextBox ID="txtSearchCustomer" runat="server" AutoPostBack="true"
+                    OnTextChanged="txtSearchCustomer_TextChanged" CssClass="form-control" />
+            </div>
+
+            <div style="max-height: 300px; overflow-y: auto; overflow-x: auto;">
+                <asp:GridView ID="gvCustomerVehicles" runat="server"
+                    AutoGenerateColumns="False"
+                    CssClass="table table-striped table-bordered"
+                    DataKeyNames="customerID,customerName,customerEmailAddress,customerContactNumber,customerAddress,
+                  VIN,vehicleMake,vehicleModel,vehicleYear,vehicleEngine,
+                  vehicleTransmission,vehicleDriveTrain,vehicleFuelType"
+                    OnSelectedIndexChanged="gvCustomerVehicles_SelectedIndexChanged">
+
+                    <Columns>
+                        <asp:CommandField ShowSelectButton="True" SelectText="Select" />
+                        <asp:BoundField DataField="customerID" HeaderText="Customer ID" />
+                        <asp:BoundField DataField="customerName" HeaderText="Customer Name" />
+                        <asp:BoundField DataField="customerEmailAddress" HeaderText="Email" />
+                        <asp:BoundField DataField="customerContactNumber" HeaderText="Phone" />
+                        <asp:BoundField DataField="customerAddress" HeaderText="Address" />
+
+                        <asp:BoundField DataField="VIN" HeaderText="VIN" />
+                        <asp:BoundField DataField="vehicleMake" HeaderText="Make" />
+                        <asp:BoundField DataField="vehicleModel" HeaderText="Model" />
+                        <asp:BoundField DataField="vehicleYear" HeaderText="Year" />
+                        <asp:BoundField DataField="vehicleEngine" HeaderText="Engine" />
+                        <asp:BoundField DataField="vehicleTransmission" HeaderText="Transmission" />
+                        <asp:BoundField DataField="vehicleDriveTrain" HeaderText="Drivetrain" />
+                        <asp:BoundField DataField="vehicleFuelType" HeaderText="Fuel Type" />
+
+                       
+                        
+                    </Columns>
+                </asp:GridView>
+
+</div>
+
+            <asp:Button ID="btnResetAll" runat="server" Text="Reset All"
+                CssClass="btn-generate" OnClick="btnResetAll_Click" />
+
+
             <asp:Button ID="btnNextToVehicle" runat="server" Text="Next" CssClass="btn-generate"
                 OnClientClick="showTab('pnlVehicle', document.querySelectorAll('.tab-header')[1]); return false;" />
         </asp:Panel>
@@ -218,8 +262,13 @@ Inherits="NitroTechWebsite.Quotations" %>
                     <asp:ListItem Value="Petrol">Petrol</asp:ListItem>
                     <asp:ListItem Value="Diesel">Diesel</asp:ListItem>
                     <asp:ListItem Value="Hybrid">Hybrid</asp:ListItem>
+                    <asp:ListItem Value="Electric">Electric</asp:ListItem>
                 </asp:DropDownList>
             </div>
+
+            <asp:Button ID="btnResetVehicle" runat="server" Text="Reset Vehicle"
+                CssClass="btn-generate" OnClick="btnResetVehicle_Click" />
+
             <div class="button-row">
                 <asp:Button ID="btnBackToCustomer" runat="server" Text="Back" CssClass="btn-generate"
                     OnClientClick="showTab('pnlCustomer', document.querySelectorAll('.tab-header')[0]); return false;" />
@@ -240,8 +289,8 @@ Inherits="NitroTechWebsite.Quotations" %>
                     </div>
                     <div class="form-group">
                         <label>Select Part:</label>
-                        <asp:DropDownList ID="cmbPart" runat="server" ClientIDMode="Static">
-                            <asp:ListItem>-- Select Part --</asp:ListItem>
+                        <asp:DropDownList ID="cmbPart" runat="server" AutoPostBack="true"
+                            OnSelectedIndexChanged="cmbPart_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
                     <div class="form-group">
@@ -271,6 +320,26 @@ Inherits="NitroTechWebsite.Quotations" %>
                     CssClass="btn-generate" OnClick="btnGenerateQuotation_Click" />
             </div>
         </asp:Panel>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var searchBox = document.getElementById("<%= txtSearchCustomer.ClientID %>");
+                var grid = document.getElementById("<%= gvCustomerVehicles.ClientID %>");
+
+                searchBox.addEventListener("keyup", function () {
+                    var filter = searchBox.value.toLowerCase();
+                    var rows = grid.getElementsByTagName("tr");
+
+                    for (var i = 1; i < rows.length; i++) {
+                        var nameCell = rows[i].cells[2]; // customerName column
+                        if (nameCell) {
+                            var txtValue = nameCell.textContent || nameCell.innerText;
+                            rows[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                        }
+                    }
+                });
+            });
+        </script>
     </div>
 
 

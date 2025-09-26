@@ -78,6 +78,33 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.TextBox txtQuotationDate;
 
         /// <summary>
+        /// txtSearchCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchCustomer;
+
+        /// <summary>
+        /// gvCustomerVehicles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCustomerVehicles;
+
+        /// <summary>
+        /// btnResetAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResetAll;
+
+        /// <summary>
         /// btnNextToVehicle control.
         /// </summary>
         /// <remarks>
@@ -166,6 +193,15 @@ namespace NitroTechWebsite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFuel;
+
+        /// <summary>
+        /// btnResetVehicle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResetVehicle;
 
         /// <summary>
         /// btnBackToCustomer control.

@@ -34,13 +34,139 @@ namespace NitroTechWebsite
             }
         }
 
+        private void LoadCustomerVehicles(string searchTerm = "")
+        {
+            using (var conn = DatabaseHelper.OpenConnection())
+            using (var cmd = new SqlCommand(@"
+        SELECT c.customerID, c.customerName, c.customerEmailAddress, c.customerContactNumber, c.customerAddress,
+               v.VIN, v.vehicleMake, v.vehicleModel, v.vehicleYear, v.vehicleEngine, v.vehicleTransmission, v.vehicleDriveTrain, v.vehicleFuelType
+        FROM tblCustomer c
+        INNER JOIN tblVehicle v ON c.customerID = v.customerID
+        WHERE (@Search = '' OR c.customerName LIKE '%' + @Search + '%')", conn))
+            {
+                cmd.Parameters.AddWithValue("@Search", searchTerm);
+                using (var adapter = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    gvCustomerVehicles.DataSource = dt;
+                    gvCustomerVehicles.DataBind();
+                }
+            }
+        }
+
+        protected void txtSearchCustomer_TextChanged(object sender, EventArgs e)
+        {
+            LoadCustomerVehicles(txtSearchCustomer.Text.Trim());
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 txtQuotationDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 LoadParts();
+                LoadCustomerVehicles();
             }
+        }
+
+        protected void gvCustomerVehicles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (gvCustomerVehicles.SelectedRow == null) return;
+
+            var keys = gvCustomerVehicles.DataKeys[gvCustomerVehicles.SelectedIndex];
+
+            txtCustID.Text = keys["customerID"].ToString();
+            txtCustName.Text = keys["customerName"].ToString();
+            txtCustEmail.Text = keys["customerEmailAddress"].ToString();
+            txtCustPhone.Text = keys["customerContactNumber"].ToString();
+            txtCustAddress.Text = keys["customerAddress"].ToString();
+
+            txtVIN.Text = keys["VIN"].ToString();
+            txtMake.Text = keys["vehicleMake"].ToString();
+            txtModel.Text = keys["vehicleModel"].ToString();
+            txtYear.Text = keys["vehicleYear"].ToString();
+            txtEngine.Text = keys["vehicleEngine"].ToString();
+            txtTransmission.Text = keys["vehicleTransmission"].ToString();
+            txtDrivetrain.Text = keys["vehicleDriveTrain"].ToString();
+            string fuel = keys["vehicleFuelType"]?.ToString().Trim();
+            if (!string.IsNullOrEmpty(fuel) && ddlFuel.Items.FindByValue(fuel) != null)
+            {
+                ddlFuel.SelectedValue = fuel;
+            }
+            else
+            {
+                ddlFuel.SelectedIndex = 0; // default
+            }
+
+            ToggleInputs(false);
+
+        }
+
+        protected void btnResetAll_Click(object sender, EventArgs e)
+        {
+            // Clear customer
+            txtCustID.Text = "";
+            txtCustName.Text = "";
+            txtCustEmail.Text = "";
+            txtCustPhone.Text = "";
+            txtCustAddress.Text = "";
+
+            // Clear vehicle
+            txtVIN.Text = "";
+            txtMake.Text = "";
+            txtModel.Text = "";
+            txtYear.Text = "";
+            txtEngine.Text = "";
+            txtTransmission.Text = "";
+            txtDrivetrain.Text = "";
+            ddlFuel.SelectedIndex = 0;
+
+            // Re-enable inputs
+            ToggleInputs(true);
+        }
+
+        protected void btnResetVehicle_Click(object sender, EventArgs e)
+        {
+            txtVIN.Text = "";
+            txtMake.Text = "";
+            txtModel.Text = "";
+            txtYear.Text = "";
+            txtEngine.Text = "";
+            txtTransmission.Text = "";
+            txtDrivetrain.Text = "";
+            ddlFuel.SelectedIndex = 0;
+
+            ToggleVehicleInputs(true);
+
+            pnlCustomer.Visible = false;
+            pnlVehicle.Visible = true;
+        }
+
+        private void ToggleInputs(bool enabled)
+        {
+            // Customer
+            txtCustID.Enabled = enabled;
+            txtCustName.Enabled = enabled;
+            txtCustEmail.Enabled = enabled;
+            txtCustPhone.Enabled = enabled;
+            txtCustAddress.Enabled = enabled;
+
+            // Vehicle
+            ToggleVehicleInputs(enabled);
+        }
+
+        private void ToggleVehicleInputs(bool enabled)
+        {
+            txtVIN.Enabled = enabled;
+            txtMake.Enabled = enabled;
+            txtModel.Enabled = enabled;
+            txtYear.Enabled = enabled;
+            txtEngine.Enabled = enabled;
+            txtTransmission.Enabled = enabled;
+            txtDrivetrain.Enabled = enabled;
+            ddlFuel.Enabled = enabled;
         }
 
         private void LoadParts()
@@ -50,16 +176,36 @@ namespace NitroTechWebsite
 
             using (var conn = DatabaseHelper.OpenConnection())
             using (var cmd = new SqlCommand(
-                "SELECT productID, productName FROM tblProduct WHERE productActiveStatus=1", conn))
+                "SELECT partID, partName FROM tblParts", conn))
             using (var reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     cmbPart.Items.Add(new ListItem(
-                        reader["productName"].ToString(),
-                        reader["productID"].ToString()
+                        reader["partName"].ToString()
                     ));
                 }
+            }
+        }
+
+        protected void cmbPart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedPart = cmbPart.Text;
+
+            if (selectedPart == "Strip and Clean" ||
+                selectedPart == "Booster" ||
+                selectedPart == "Tighten" ||
+                selectedPart == "Clutch" ||
+                selectedPart == "Wiper Fluid" ||
+                selectedPart == "Re-Alignment")
+            {
+                nudQuantity.Text = "1";
+                nudQuantity.Enabled = false;
+            }
+            else
+            {
+                nudQuantity.Enabled = true;
+                nudQuantity.Text = "0"; // reset quantity
             }
         }
 
@@ -68,11 +214,24 @@ namespace NitroTechWebsite
             if (string.IsNullOrWhiteSpace(cmbPart.SelectedValue) ||
                 string.IsNullOrWhiteSpace(txtFault.Text)) return;
 
+            if (cmbPart.Text == "Clutch" && txtTransmission.Text == "Automatic")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('Clutches are not used in automatic cars!');", true);
+                return;
+            }
+
+            if (cmbPart.SelectedIndex <= 0 || string.IsNullOrEmpty(txtFault.Text) || !int.TryParse(nudQuantity.Text, out int qty) || qty <= 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('Please select a part, enter a fault description, and specify a valid quantity.');", true);
+                return;
+            }
+
             DataRow row = FaultsTable.NewRow();
-            row["ProductID"] = int.Parse(cmbPart.SelectedValue);
             row["PartName"] = cmbPart.SelectedItem.Text;
             row["FaultDescription"] = txtFault.Text.Trim();
-            row["Quantity"] = int.TryParse(nudQuantity.Text, out int qty) ? qty : 1;
+            row["Quantity"] = int.TryParse(nudQuantity.Text, out int qty1) ? qty1 : 1;
             FaultsTable.Rows.Add(row);
 
             gvFaults.DataSource = FaultsTable;
@@ -122,30 +281,21 @@ namespace NitroTechWebsite
                     }
 
                     // 2️ Insert Vehicle if not exists
-                    using (var checkVehicle = new SqlCommand(
-                        "SELECT COUNT(*) FROM tblCustomerVehicle WHERE VIN=@VIN", conn, tran))
+                    using (var insertVehicle = new SqlCommand(@"
+    INSERT INTO tblVehicle
+    (customerID, VIN, vehicleMake, vehicleModel, vehicleYear, vehicleEngine, vehicleTransmission, vehicleDriveTrain, vehicleFuelType)
+    VALUES (@CustID,@VIN,@Make,@Model,@Year,@Engine,@Trans,@Drive,@Fuel)", conn, tran))
                     {
-                        checkVehicle.Parameters.AddWithValue("@VIN", txtVIN.Text.Trim());
-                        int vehicleExists = (int)checkVehicle.ExecuteScalar();
-                        if (vehicleExists == 0)
-                        {
-                            using (var insertVehicle = new SqlCommand(@"
-                        INSERT INTO tblCustomerVehicle
-                        (customerID, VIN, Make, Model, Year, Engine, Transmission, Drivetrain, FuelType)
-                        VALUES (@CustID,@VIN,@Make,@Model,@Year,@Engine,@Trans,@Drive,@Fuel)", conn, tran))
-                            {
-                                insertVehicle.Parameters.AddWithValue("@CustID", txtCustID.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@VIN", txtVIN.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@Make", txtMake.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@Model", txtModel.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@Year", txtYear.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@Engine", txtEngine.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@Trans", txtTransmission.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@Drive", txtDrivetrain.Text.Trim());
-                                insertVehicle.Parameters.AddWithValue("@Fuel", ddlFuel.SelectedValue);
-                                insertVehicle.ExecuteNonQuery();
-                            }
-                        }
+                        insertVehicle.Parameters.AddWithValue("@CustID", txtCustID.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@VIN", txtVIN.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@Make", txtMake.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@Model", txtModel.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@Year", txtYear.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@Engine", txtEngine.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@Trans", txtTransmission.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@Drive", txtDrivetrain.Text.Trim());
+                        insertVehicle.Parameters.AddWithValue("@Fuel", ddlFuel.SelectedValue);
+                        insertVehicle.ExecuteNonQuery();
                     }
 
                     // 3️ Insert Quotation
