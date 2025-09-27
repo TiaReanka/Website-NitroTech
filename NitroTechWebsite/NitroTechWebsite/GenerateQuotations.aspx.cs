@@ -64,6 +64,7 @@ namespace NitroTechWebsite
                 LoadParts();
                 LoadCustomerVehicles();
             }
+           
         }
 
         protected void gvCustomerVehicles_SelectedIndexChanged(object sender, EventArgs e)
@@ -374,14 +375,12 @@ namespace NitroTechWebsite
 
                     tran.Commit();
 
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        "alert('Quotation generated successfully!');", true);
-
                     GenerateQuotation(quotationNumber);
+                    // After saving to DB and generating PDF
+                    ClientScript.RegisterStartupScript(this.GetType(), "resetAfterDownload",
+                        "setTimeout(function(){ window.location.href = window.location.href; }, 2000);", true);
 
-                    Faults.Clear();
-                    UpdateFaultSummary();
-                    txtFaultSummary.Text = "";
+
                 }
                 catch (Exception ex)
                 {
@@ -439,6 +438,41 @@ namespace NitroTechWebsite
             }
         }
 
+        private void ResetForm()
+        {
+            // Clear faults
+            Faults.Clear();
+            txtFaultSummary.Text = "";
+
+            // Clear customer
+            txtCustID.Text = "";
+            txtCustName.Text = "";
+            txtCustEmail.Text = "";
+            txtCustPhone.Text = "";
+            txtCustAddress.Text = "";
+
+            // Clear vehicle
+            txtVIN.Text = "";
+            txtMake.Text = "";
+            txtModel.Text = "";
+            txtYear.Text = "";
+            txtEngine.Text = "";
+            txtTransmission.Text = "";
+            txtDrivetrain.Text = "";
+            ddlFuel.SelectedIndex = 0;
+
+            // Reset inputs to editable
+            ToggleInputs(true);
+
+            // Clear parts selection
+            cmbPart.SelectedIndex = 0;
+            nudQuantity.Text = "1";
+
+            // Force update panel refresh
+            updParts.Update();
+        }
+
+
         public static bool CheckValidID(string idNumber)
         {
             // Ensure input is not null and has at least 6 characters
@@ -487,8 +521,11 @@ namespace NitroTechWebsite
                 ms.WriteTo(Response.OutputStream);
             }
 
-            Response.Flush();
-            HttpContext.Current.ApplicationInstance.CompleteRequest(); // safer than Response.End()
+            Response.Flush();                    
+            Response.SuppressContent = true;        
+            HttpContext.Current.ApplicationInstance.CompleteRequest(); 
+
+
         }
 
         private void GenerateQuotation(string quotationNumber)
@@ -498,7 +535,12 @@ namespace NitroTechWebsite
                 // Fetch faults for the quotation
                 var faults = new DataTable();
                 using (var conn = DatabaseHelper.OpenConnection())
-                using (var cmd = new SqlCommand("SELECT f.faultDescription, f.quantity, p.partID, p.partName, p.productPrice, f.quantity * p.productPrice AS faultTotal FROM tblFaults f INNER JOIN tblParts p ON f.productID = p.partID WHERE f.quotationID = (SELECT quotationID FROM tblQuotation WHERE quotationNumber=@QNum)", conn))
+                using (var cmd = new SqlCommand(
+                    "SELECT f.fault, f.amountProductUsed, p.partID, p.partName, p.partUnitPrice, f.faultTotal " +
+                    "FROM tblFaults f " +
+                    "INNER JOIN tblParts p ON f.productID = p.partID " +
+                    "INNER JOIN tblQuotation q ON f.quotationNumber = q.quotationNumber " +
+                    "WHERE q.quotationNumber = @QNum", conn))
                 {
                     cmd.Parameters.AddWithValue("@QNum", quotationNumber);
                     using (var adapter = new SqlDataAdapter(cmd))
@@ -515,10 +557,10 @@ namespace NitroTechWebsite
                 {
                     var row = faults.Rows[i];
                     int itemNo = i + 1;
-                    string faultDesc = row["faultDescription"].ToString();
+                    string faultDesc = row["fault"].ToString();
                     string partName = row["partName"].ToString();
-                    string amountUsed = row["quantity"].ToString();
-                    string productBaseCost = "R" + Convert.ToDecimal(row["productPrice"]).ToString("0.00");
+                    string amountUsed = row["amountProductUsed"].ToString();
+                    string productBaseCost = "R" + Convert.ToDecimal(row["partUnitPrice"]).ToString("0.00");
                     string totalAmount = "R" + Convert.ToDecimal(row["faultTotal"]).ToString("0.00");
 
                     totalProductCost += Convert.ToDecimal(row["faultTotal"]);
