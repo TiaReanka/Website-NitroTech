@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 using System.Web.SessionState;
@@ -105,5 +106,53 @@ public static class LoginUtility
         }
 
         // If logged in and role (if required) matches, user continues to page
+    }
+}
+
+
+public static class TransactionHelper
+{
+    public static DataTable GetInvoicesLastMonth(string customerId)
+    {
+        const string sql = @"
+            SELECT invoiceNumber, invoiceDate, customerID,
+                   quotationNumber, invoiceAmountDue, vehicleVIN
+            FROM tblInvoice
+            WHERE customerID = @CustomerID
+              AND invoiceDate >= DATEADD(MONTH,-1,GETDATE());";
+
+        using (var conn = DatabaseHelper.OpenConnection())
+        using (var cmd = new SqlCommand(sql, conn))
+        {
+            cmd.Parameters.AddWithValue("@CustomerID", customerId);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+    }
+
+    public static DataTable GetPaymentsLastMonth(string customerId)
+    {
+        const string sql = @"
+            SELECT paymentID, paidAmount, dateOfPayment,
+                   customerID, amountDue
+            FROM tblPayment
+            WHERE customerID = @CustomerID
+              AND dateOfPayment >= DATEADD(MONTH,-1,GETDATE());";
+
+        using (var conn = DatabaseHelper.OpenConnection())
+        using (var cmd = new SqlCommand(sql, conn))
+        {
+            cmd.Parameters.AddWithValue("@CustomerID", customerId);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

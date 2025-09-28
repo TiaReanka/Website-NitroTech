@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Util;
 
 namespace NitroTechWebsite
 {
@@ -55,18 +56,6 @@ namespace NitroTechWebsite
                 //Generate statement number
                 string statementNumber = GenerateStatementNumber(customerId, clientName);
 
-
-                //CHATGPT SUGGESTION TO COMBINE TRANSACTIONS
-                ////Combine transactions
-                //var combined = invoices.AsEnumerable()
-                //    .Select(r => new { ID = r["invoiceNumber"].ToString(), Amount = Convert.ToDecimal(r["invoiceAmountDue"]), Date = Convert.ToDateTime(r["invoiceDate"]), Type = "I" })
-                //    .Concat(payments.AsEnumerable()
-                //        .Select(r => new { ID = r["paymentID"].ToString(), Amount = Convert.ToDecimal(r["paidAmount"]), Date = Convert.ToDateTime(r["dateOfPayment"]), Type = "P" }))
-                //    .OrderBy(t => t.Date)
-                //    .ToList();
-
-
-
                 // Calculate total invoices from past month
                 decimal totalInvoices = ExecuteScalar<decimal>(
                     "SELECT ISNULL(SUM(invoiceAmountDue), 0) " +
@@ -95,7 +84,10 @@ namespace NitroTechWebsite
                     new SqlParameter("@amt", statementAmount),
                     new SqlParameter("@cid", customerId));
 
-                Response.Write($"<script>alert('Statement : {statementNumber} has been generated');</script>");
+
+                // After ExecuteNonQuery insert
+                Response.Redirect($"DownloadStatement.aspx?snum={statementNumber}&cid={customerId}",false);
+                ResetPage();
 
 
             }
@@ -192,6 +184,13 @@ namespace NitroTechWebsite
             string midID = ID.Length >= 12 ? ID.Substring(7, 5) : (ID.Length > 7 ? ID.Substring(7).PadRight(5, '0') : "00000");
 
             return $"S{count + 1} - {middleChar}{lastChar}{firstFourID}{midID}";
+        }
+
+        private void ResetPage()
+        {
+            // Reset dropdown to default
+            customerID.SelectedIndex = 0;
+      
         }
     }
 }
