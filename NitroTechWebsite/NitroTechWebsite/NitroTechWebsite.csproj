@@ -260,6 +260,7 @@
     <Content Include="CustomerManage.aspx" />
     <Content Include="CustomerUpdate.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="DownloadInvoice.aspx" />
     <Content Include="DownloadQuotation.aspx" />
     <Content Include="DownloadStatement.aspx" />
     <Content Include="favicon.ico" />
@@ -395,6 +396,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadInvoice.aspx.cs">
+      <DependentUpon>DownloadInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadInvoice.aspx.designer.cs">
+      <DependentUpon>DownloadInvoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="DownloadQuotation.aspx.cs">
       <DependentUpon>DownloadQuotation.aspx</DependentUpon>

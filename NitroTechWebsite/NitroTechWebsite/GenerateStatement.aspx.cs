@@ -86,7 +86,9 @@ namespace NitroTechWebsite
 
 
                 // After ExecuteNonQuery insert
-                Response.Redirect($"DownloadStatement.aspx?snum={statementNumber}&cid={customerId}",false);
+                string script = $"window.open('DownloadStatement.aspx?snum={statementNumber}&cid={customerId}', '_blank');";
+                ClientScript.RegisterStartupScript(this.GetType(), "openStatementPDF", script, true);
+
                 ResetPage();
 
 

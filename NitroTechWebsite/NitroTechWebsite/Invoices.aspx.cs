@@ -152,15 +152,19 @@ namespace NitroTechWebsite
                     // ✅ Commit transaction
                     transaction.Commit();
 
+
+                    string script = $"window.open('DownloadInvoice.aspx?qnum={qNum}&inum={invoiceNumber}', '_blank');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "openInvoicePDF", script, true);
+
+                    LoadQuotations();
+                    btnGenerateInvoice.Enabled = false;
                     // ✅ Show popup
                     ScriptManager.RegisterStartupScript(this, this.GetType(),
                         "success",
                         $"alert('✔ Invoice {invoiceNumber} successfully generated for quotation {qNum}. Customer balance updated.');",
                         true);
-
                     // Refresh dropdown and disable Generate button until new confirm
-                    LoadQuotations();
-                    btnGenerateInvoice.Enabled = false;
+                    
                 }
                 catch (Exception ex)
                 {
