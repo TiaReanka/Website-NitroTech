@@ -18,6 +18,29 @@ public static class DatabaseHelper
         conn.Open();
         return conn;
     }
+
+    public static object ExecuteScalar(string query, SqlParameter[] parameters = null)
+    {
+        using (var conn = OpenConnection())
+        using (var cmd = new SqlCommand(query, conn))
+        {
+            if (parameters != null)
+                cmd.Parameters.AddRange(parameters);
+
+            return cmd.ExecuteScalar();
+        }
+    }
+
+    public static object ExecuteScalar(string query, SqlConnection conn, SqlTransaction tran, SqlParameter[] parameters = null)
+    {
+        using (var cmd = new SqlCommand(query, conn, tran))
+        {
+            if (parameters != null)
+                cmd.Parameters.AddRange(parameters);
+
+            return cmd.ExecuteScalar();
+        }
+    }
 }
 
 public static class LoginUtility
