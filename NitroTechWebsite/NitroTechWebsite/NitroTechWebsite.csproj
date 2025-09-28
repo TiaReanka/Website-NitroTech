@@ -260,6 +260,7 @@
     <Content Include="CustomerManage.aspx" />
     <Content Include="CustomerUpdate.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="DownloadQuotation.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -393,6 +394,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadQuotation.aspx.cs">
+      <DependentUpon>DownloadQuotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadQuotation.aspx.designer.cs">
+      <DependentUpon>DownloadQuotation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

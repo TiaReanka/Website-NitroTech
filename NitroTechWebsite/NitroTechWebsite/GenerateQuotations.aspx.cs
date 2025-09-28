@@ -363,7 +363,7 @@ namespace NitroTechWebsite
                     {
                         var fCmd = new SqlCommand(@"
                     INSERT INTO tblFaults (fault, productID, amountProductUsed, quotationNumber, faultTotal)
-                    VALUES (@Fault, @Prod, @Qty, @QNum, @Total)", conn, tran);
+                    VALUES (@Fault, @Prod, @Qty, @QNum, @Total)", conn, tran);//perhaps
 
                         fCmd.Parameters.AddWithValue("@Fault", f.FaultDescription);
                         fCmd.Parameters.AddWithValue("@Prod", f.ProductID);
@@ -375,11 +375,12 @@ namespace NitroTechWebsite
 
                     tran.Commit();
 
-                    GenerateQuotation(quotationNumber);
-                    // After saving to DB and generating PDF
-                    ClientScript.RegisterStartupScript(this.GetType(), "resetAfterDownload",
-                        "setTimeout(function(){ window.location.href = window.location.href; }, 2000);", true);
+                    // Open PDF generator in new tab
+                    string script = $"window.open('DownloadQuotation.aspx?qnum={quotationNumber}', '_blank');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "openPDF", script, true);
 
+                    // Reset the form immediately
+                    ResetForm();
 
                 }
                 catch (Exception ex)
@@ -574,12 +575,47 @@ namespace NitroTechWebsite
                 }
 
                 decimal labourFee = totalProductCost * 0.2m; // 20% labour
-                string clientName = txtCustName.Text;
-                string clientAddress = txtCustAddress.Text;
-                string clientEmail = txtCustEmail.Text;
-                string clientPhone = txtCustPhone.Text;
-                string vehicleVIN = txtVIN.Text;
-                string vehicleName = $"{txtMake.Text} {txtModel.Text} ({txtYear.Text})";
+
+                string clientName = "";
+                string clientAddress = "";
+                string clientEmail = "";
+                string clientPhone = "";
+                string vehicleVIN = "";
+                string vehicleName = "";
+
+                using (var conn = DatabaseHelper.OpenConnection())
+                using (var cmd = new SqlCommand(@"
+    SELECT 
+        c.customerName,
+        c.customerAddress,
+        c.customerEmailAddress,
+        c.customerContactNumber,
+        v.VIN,
+        v.vehicleMake,
+        v.vehicleModel,
+        v.vehicleYear
+    FROM tblQuotation q
+    INNER JOIN tblCustomer c ON q.customerID = c.customerID
+    INNER JOIN tblVehicle v ON q.vehicleVIN = v.VIN
+    WHERE q.quotationNumber = @QNum", conn))
+                {
+                    cmd.Parameters.AddWithValue("@QNum", quotationNumber);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            clientName = reader["customerName"].ToString();
+                            clientAddress = reader["customerAddress"].ToString();
+                            clientEmail = reader["customerEmailAddress"].ToString();
+                            clientPhone = reader["customerContactNumber"].ToString();
+
+                            vehicleVIN = reader["VIN"].ToString();
+                            vehicleName = $"{reader["vehicleMake"]} {reader["vehicleModel"]} ({reader["vehicleYear"]})";
+                        }
+                    }
+                }
+
 
                 string labourFeeStr = labourFee.ToString("0.00");
                 string totalStr = totalProductCost.ToString("0.00");
