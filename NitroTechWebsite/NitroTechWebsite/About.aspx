@@ -1,49 +1,60 @@
-﻿<%@ Page Title="About NitroTech" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="NitroTechWebsite.About" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="YourNamespace.About" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <style>
-        body{
-            margin: 0;
-            background: linear-gradient(to right, purple, #1a2db9);
-            color: white;
-        }
-        .about-section {
-            background: linear-gradient(to right, purple, #1a2db9);
-            padding: 20px;
-            border-radius: 10px;
-            color: white; /* for better text visibility on dark background */
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - JAE Automotive Industries</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
 
-        h2 {
-            color: #f0f0f0;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-            padding-bottom: 10px;
-        }
+        <header>
+            <h1>About Us – JAE Automotive Industries</h1>
+        </header>
 
-        h3 {
-            color: #e0e0e0;
-        }
-    </style>
+        <section id="company-overview">
+            <h2>Company Overview</h2>
+            <asp:Literal ID="litCompanyOverview" runat="server" 
+                Text="JAE Automotive Industries was established to provide professional automotive engineering and technical solutions within the motor industry. Our operations focus on servicing, repair, and precision engineering for a wide range of vehicles. We are a registered and compliant business entity under South African business regulations and operate with a commitment to industry best practices."></asp:Literal>
+        </section>
 
-    <div class="about-section">
-        <h2><%: Title %></h2>
-        <h3>NitroTech is made for the automotive industry.</h3>
-        <p>
-           In 2025, NitroTech was established as a software service for the automobile sector.  It offers a complete solution for overseeing important dealership functions.  The platform is intended to assist automakers in increasing overall productivity and streamlining their operations.
-        </p>
-        <p>
- Important attributes and offerings:<br />
-            <ul>
-                <li>NitroTech's software gives dealerships a unified platform to manage their business by combining several crucial operations into a single system.  Among its primary services are:</li><br />
+        <section id="mission-vision">
+            <h2>Mission & Vision</h2>
+            <p><strong>Mission:</strong> <asp:Literal ID="litMission" runat="server" Text="To deliver reliable automotive engineering solutions through advanced systems, skilled expertise, and a strong culture of accountability."></asp:Literal></p>
+            <p><strong>Vision:</strong> <asp:Literal ID="litVision" runat="server" Text="To be recognized as a trusted automotive engineering partner, known for innovation, technical excellence, and sustainable business practices."></asp:Literal></p>
+            <p><strong>Core Values:</strong> <asp:Literal ID="litCoreValues" runat="server" Text="Quality, Integrity, Safety, Innovation, and Collaboration."></asp:Literal></p>
+        </section>
 
-                <li>Vehicle Tracking: Automakers can use the program to keep tabs on vehicles as they arrive at their showroom.  They can constantly keep an eye on stock levels thanks to this real-time visibility into the car inventory.</li><br />
 
-                <li>Payment Monitoring: NitroTech has tools for monitoring payments.  This aids dealerships in handling billing, invoices, and financial transactions—all of which are essential for preserving a positive cash flow.</li><br />
+        <section id="operations-partnerships">
+            <h2>Operations & Partnerships</h2>
+            <asp:Literal ID="litOperations" runat="server" Text="We work in collaboration with trusted suppliers, system providers, and industry partners to maintain efficiency and uphold service standards. Our infrastructure includes advanced automotive diagnostic systems, inventory management, and secure document handling to ensure transparency and reliability in all projects."></asp:Literal>
+        </section>
 
-                <li>Management of Inventory: A major feature is its ability to manage inventory. This goes beyond just tracking vehicles; it also helps dealerships control and monitor their stock of parts and other products. This functionality helps minimize waste and ensures that businesses have the right items available when needed.</li>
-        
-            </ul>
- </p>
-    </div>
-</asp:Content>
+        <section id="achievements-milestones">
+            <h2>Achievements & Milestones</h2>
+            <asp:BulletedList ID="blAchievements" runat="server" DisplayMode="Text">
+                <asp:ListItem>Successfully implemented structured automotive service and repair processes.</asp:ListItem>
+                <asp:ListItem>Established partnerships with key suppliers and stakeholders in the automotive industry.</asp:ListItem>
+            </asp:BulletedList>
+        </section>
+
+        <section id="corporate-responsibility">
+            <h2>Corporate Responsibility</h2>
+            <asp:BulletedList ID="blCSR" runat="server" DisplayMode="Text">
+                <asp:ListItem>Promoting environmentally conscious workshop practices.</asp:ListItem>
+                <asp:ListItem>Supporting skills development and training within the automotive sector.</asp:ListItem>
+                <asp:ListItem>Engaging with the community through initiatives and partnerships.</asp:ListItem>
+            </asp:BulletedList>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 JAE Automotive Industries. All rights reserved.</p>
+        </footer>
+    </form>
+</body>
+</html>
 
