@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Customer Management" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CustomerManage.aspx.cs" Inherits="NitroTechWebsite.CustomerManage" %>
+﻿<%@ Page Title="Vehicle Transfer" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CustomerManage.aspx.cs" Inherits="NitroTechWebsite.CustomerManage" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
@@ -34,14 +34,16 @@
             color: white;
         }
 
-        .form-group input {
+        .form-group input[type="text"], .form-group textarea, .form-group select {
             flex: 1;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            color: black;          
+           background-color: white;
         }
 
-        .form-container button {
+        .form-container button, .form-container input[type=submit] {
             display: block;
             max-width: 600px;
             margin: 20px auto;
@@ -54,22 +56,40 @@
             font-size: 16px;
         }
 
-        .form-container button:hover {
+        .form-container button:hover, .form-container input[type=submit]:hover {
             background-color: purple;
         }
     </style>
 
     <div class="form-container">
         <h2><%: Title %></h2>
-        <h3>Remove Customer</h3>
+        <h3>Transfer Vehicle</h3>
 
         <div class="form-group">
-            <label for="customerName">Customer Name:</label>
-            <input type="text" id="customerName" name="customerName" />
+            <label for="ddlVIN">Select Vehicle VIN:</label>
+            <asp:DropDownList ID="ddlVIN" runat="server" AutoPostBack="true" 
+                OnSelectedIndexChanged="ddlVIN_SelectedIndexChanged" />
         </div>
 
-        <button type="submit">Remove Customer From System</button>
+        <div class="form-group">
+            <label for="ddlCustomer">Select New Customer:</label>
+            <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" 
+                OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" Enabled="false" />
+        </div>
+
+        <h3>Old Customer Info</h3>
+        <div class="form-group"><label>Customer Name:</label><asp:TextBox ID="txtOldName" runat="server" ReadOnly="true" /></div>
+        <div class="form-group"><label>Contact Number:</label><asp:TextBox ID="txtOldContact" runat="server" ReadOnly="true" /></div>
+        <div class="form-group"><label>Email Address:</label><asp:TextBox ID="txtOldEmail" runat="server" ReadOnly="true" /></div>
+        <div class="form-group"><label>Address:</label><asp:TextBox ID="txtOldAddress" runat="server" ReadOnly="true" /></div>
+
+        <h3>New Customer Info</h3>
+        <div class="form-group"><label>Customer Name:</label><asp:TextBox ID="txtNewName" runat="server" ReadOnly="true" /></div>
+        <div class="form-group"><label>Contact Number:</label><asp:TextBox ID="txtNewContact" runat="server" ReadOnly="true" /></div>
+        <div class="form-group"><label>Email Address:</label><asp:TextBox ID="txtNewEmail" runat="server" ReadOnly="true" /></div>
+        <div class="form-group"><label>Address:</label><asp:TextBox ID="txtNewAddress" runat="server" ReadOnly="true" /></div>
+
+        <asp:Button ID="btnTransfer" runat="server" Text="Transfer Vehicle" 
+            OnClick="btnTransfer_Click" Enabled="false" />
     </div>
-
-
 </asp:Content>

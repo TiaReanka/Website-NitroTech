@@ -1,16 +1,39 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="YourNamespace.About" %>
+﻿<%@ Page Title="About JAE Automotive Industries" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="NitroTechWebsite.About" %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head runat="server">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us - JAE Automotive Industries</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to right, purple, #1a2db9);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .about-section {
+            background: linear-gradient(to right, purple, #1a2db9);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        h1, h2 {
+            color: #f0f0f0;
+        }
+        h2 {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+        h3 {
+            color: #e0e0e0;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #ddd;
+        }
+    </style>
 
+    <div class="about-section">
         <header>
             <h1>About Us – JAE Automotive Industries</h1>
         </header>
@@ -23,15 +46,18 @@
 
         <section id="mission-vision">
             <h2>Mission & Vision</h2>
-            <p><strong>Mission:</strong> <asp:Literal ID="litMission" runat="server" Text="To deliver reliable automotive engineering solutions through advanced systems, skilled expertise, and a strong culture of accountability."></asp:Literal></p>
-            <p><strong>Vision:</strong> <asp:Literal ID="litVision" runat="server" Text="To be recognized as a trusted automotive engineering partner, known for innovation, technical excellence, and sustainable business practices."></asp:Literal></p>
-            <p><strong>Core Values:</strong> <asp:Literal ID="litCoreValues" runat="server" Text="Quality, Integrity, Safety, Innovation, and Collaboration."></asp:Literal></p>
+            <p><strong>Mission:</strong> <asp:Literal ID="litMission" runat="server" 
+                Text="To deliver reliable automotive engineering solutions through advanced systems, skilled expertise, and a strong culture of accountability."></asp:Literal></p>
+            <p><strong>Vision:</strong> <asp:Literal ID="litVision" runat="server" 
+                Text="To be recognized as a trusted automotive engineering partner, known for innovation, technical excellence, and sustainable business practices."></asp:Literal></p>
+            <p><strong>Core Values:</strong> <asp:Literal ID="litCoreValues" runat="server" 
+                Text="Quality, Integrity, Safety, Innovation, and Collaboration."></asp:Literal></p>
         </section>
-
 
         <section id="operations-partnerships">
             <h2>Operations & Partnerships</h2>
-            <asp:Literal ID="litOperations" runat="server" Text="We work in collaboration with trusted suppliers, system providers, and industry partners to maintain efficiency and uphold service standards. Our infrastructure includes advanced automotive diagnostic systems, inventory management, and secure document handling to ensure transparency and reliability in all projects."></asp:Literal>
+            <asp:Literal ID="litOperations" runat="server" 
+                Text="We work in collaboration with trusted suppliers, system providers, and industry partners to maintain efficiency and uphold service standards. Our infrastructure includes advanced automotive diagnostic systems, inventory management, and secure document handling to ensure transparency and reliability in all projects."></asp:Literal>
         </section>
 
         <section id="achievements-milestones">
@@ -54,7 +80,5 @@
         <footer>
             <p>&copy; 2025 JAE Automotive Industries. All rights reserved.</p>
         </footer>
-    </form>
-</body>
-</html>
-
+    </div>
+</asp:Content>
