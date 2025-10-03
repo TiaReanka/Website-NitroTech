@@ -50,7 +50,7 @@
             background-color: white;
         }
 
-        .form-container button {
+        .form-container button, .form-container .asp-btn {
             display: block;
             max-width: 600px;
             margin: 20px auto;
@@ -63,7 +63,7 @@
             font-size: 16px;
         }
 
-        .form-container button:hover {
+        .form-container button:hover, .form-container .asp-btn:hover {
             background-color: purple;
         }
 
@@ -107,63 +107,51 @@
             width: 400px; 
         }
 
-            .search-group label {
-                width: 180px; 
-                font-weight: bold;
-                color: white;
-                text-align: right; 
-                margin-right: 20px; 
-            }
-
-            .search-group input {
-                flex: 1; 
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 14px;
-                color: black;
-                background-color: white;
-            }
-
-        .search-container button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #1a2db9;
+        .search-group label {
+            width: 180px; 
+            font-weight: bold;
             color: white;
-            cursor: pointer;
+            text-align: right; 
+            margin-right: 20px; 
         }
 
-            .search-container button:hover {
-                background-color: purple;
-            }
+        .search-group input {
+            flex: 1; 
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            color: black;
+            background-color: white;
+        }
     </style>
 
     <div class="form-container">
         <h2><%: Title %></h2>
         <h3>Customer</h3>
 
+        <!-- 🔎 Search Section -->
         <div class="search-container">
             <div class="search-group">
                 <label for="txtSearchCustomer">Search by Customer ID:</label>
-                <input type="text" id="txtSearchCustomer" />
+                <asp:TextBox ID="txtSearchCustomer" runat="server" />
             </div>
             <div class="search-group">
                 <label for="txtSearchVIN">Search by VIN:</label>
-                <input type="text" id="txtSearchVIN" />
+                <asp:TextBox ID="txtSearchVIN" runat="server" />
             </div>
-            <button type="submit">Search</button>
+            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="asp-btn" OnClick="btnSearch_Click" />
         </div>
 
+        <!-- 📊 Results Grid -->
         <div class="grid-container">
             <asp:GridView ID="gvResults" runat="server" AutoGenerateColumns="False" CssClass="table">
                 <Columns>
                     <asp:BoundField DataField="customerID" HeaderText="Customer ID" />
                     <asp:BoundField DataField="customerName" HeaderText="Customer Name" />
-                    <asp:BoundField DataField="customerAddr" HeaderText="Address" />
-                    <asp:BoundField DataField="customerContact" HeaderText="Phone" />
-                    <asp:BoundField DataField="customerEmail" HeaderText="Email" />
+                    <asp:BoundField DataField="customerAddress" HeaderText="Address" />
+                    <asp:BoundField DataField="customerContactNumber" HeaderText="Phone" />
+                    <asp:BoundField DataField="customerEmailAddress" HeaderText="Email" />
                     <asp:BoundField DataField="VIN" HeaderText="VIN" />
                     <asp:BoundField DataField="vehicleMake" HeaderText="Make" />
                     <asp:BoundField DataField="vehicleModel" HeaderText="Model" />
@@ -173,88 +161,90 @@
             </asp:GridView>
         </div>
 
+        <!-- 👤 Customer Information -->
         <div class="section-title">Customer Information</div>
         <div class="form-row">
             <div class="form-group">
                 <label for="custID">Customer ID:</label>
-                <input type="text" id="custID" />
+                <asp:TextBox ID="custID" runat="server" />
             </div>
             <div class="form-group">
                 <label for="custName">Customer Name:</label>
-                <input type="text" id="custName" />
+                <asp:TextBox ID="custName" runat="server" />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="custPhone">Phone Number:</label>
-                <input type="text" id="custPhone" />
+                <asp:TextBox ID="custPhone" runat="server" />
             </div>
             <div class="form-group">
                 <label for="custEmail">Email:</label>
-                <input type="email" id="custEmail" />
+                <asp:TextBox ID="custEmail" runat="server" TextMode="Email" />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="custAddress">Address:</label>
-                <input type="text" id="custAddress" />
+                <asp:TextBox ID="custAddress" runat="server" />
             </div>
         </div>
 
+        <!-- 🚗 Vehicle Information -->
         <div class="section-title">Vehicle Information</div>
         <div class="form-row">
             <div class="form-group">
                 <label for="vin">VIN:</label>
-                <input type="text" id="vin" />
+                <asp:TextBox ID="vin" runat="server" />
             </div>
             <div class="form-group">
                 <label for="make">Make:</label>
-                <input type="text" id="make" />
+                <asp:TextBox ID="make" runat="server" />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="model">Model:</label>
-                <input type="text" id="model" />
+                <asp:TextBox ID="model" runat="server" />
             </div>
             <div class="form-group">
                 <label for="year">Year:</label>
-                <input type="text" id="year" />
+                <asp:TextBox ID="year" runat="server" />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="trim">Trim:</label>
-                <input type="text" id="trim" />
+                <asp:TextBox ID="trim" runat="server" />
             </div>
             <div class="form-group">
                 <label for="engine">Engine:</label>
-                <input type="text" id="engine" />
+                <asp:TextBox ID="engine" runat="server" />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="transmission">Transmission:</label>
-                <input type="text" id="transmission" />
+                <asp:TextBox ID="transmission" runat="server" />
             </div>
             <div class="form-group">
                 <label for="drivetrain">Drivetrain:</label>
-                <input type="text" id="drivetrain" />
+                <asp:TextBox ID="drivetrain" runat="server" />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="fuelType">Fuel Type:</label>
-                <select id="fuelType">
-                    <option value="">Select a Fuel Type</option>
-                    <option value="Petrol">Petrol</option>
-                    <option value="Diesel">Diesel</option>
-                    <option value="Hybrid">Hybrid</option>
-                    <option value="Electric">Electric</option>
-                </select>
+                <asp:DropDownList ID="fuelType" runat="server">
+                    <asp:ListItem Text="Select a Fuel Type" Value="" />
+                    <asp:ListItem Text="Petrol" Value="Petrol" />
+                    <asp:ListItem Text="Diesel" Value="Diesel" />
+                    <asp:ListItem Text="Hybrid" Value="Hybrid" />
+                    <asp:ListItem Text="Electric" Value="Electric" />
+                </asp:DropDownList>
             </div>
         </div>
 
-        <button type="submit">Save Customer & Vehicle</button>
+        <asp:Button ID="btnSave" runat="server" Text="Save Customer & Vehicle" CssClass="asp-btn" OnClick="btnSave_Click" />
     </div>
 </asp:Content>
