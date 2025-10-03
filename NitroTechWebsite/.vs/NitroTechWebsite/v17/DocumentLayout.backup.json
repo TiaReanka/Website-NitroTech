@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\adduser.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\adduser.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\adduser.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\adduser.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\student\\source\\repos\\istn3si_website\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\customerupdate.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\customerupdate.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|c:\\users\\student\\source\\repos\\istn3si_website\\istn3si-project\\nitrotechwebsite\\nitrotechwebsite\\customerupdate.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\customerupdate.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\customerupdate.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\nitrotechwebsite\\customerupdate.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{A1F708B1-2C16-4A22-B556-E31C04BC3FAE}|NitroTechWebsite\\NitroTechWebsite.csproj|solutionrelative:nitrotechwebsite\\customerupdate.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,20 +30,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "CustomerUpdate.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\CustomerUpdate.aspx.cs",
               "RelativeDocumentMoniker": "NitroTechWebsite\\CustomerUpdate.aspx.cs",
               "ToolTip": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\CustomerUpdate.aspx.cs",
               "RelativeToolTip": "NitroTechWebsite\\CustomerUpdate.aspx.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAgwH4AAACtAAAAAAAAAA==",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAIwK8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T21:30:34.858Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CustomerUpdate.aspx",
               "DocumentMoniker": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\CustomerUpdate.aspx",
               "RelativeDocumentMoniker": "NitroTechWebsite\\CustomerUpdate.aspx",
@@ -60,32 +52,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-10-02T21:30:33.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddUser.aspx",
-              "DocumentMoniker": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\AddUser.aspx",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\AddUser.aspx",
-              "ToolTip": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\AddUser.aspx",
-              "RelativeToolTip": "NitroTechWebsite\\AddUser.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-24T21:33:01.237Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddUser.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\AddUser.aspx.cs",
-              "RelativeDocumentMoniker": "NitroTechWebsite\\AddUser.aspx.cs",
-              "ToolTip": "C:\\Users\\Student\\source\\repos\\ISTN3SI_Website\\ISTN3SI-Project\\NitroTechWebsite\\NitroTechWebsite\\AddUser.aspx.cs",
-              "RelativeToolTip": "NitroTechWebsite\\AddUser.aspx.cs",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAwwLkAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-24T21:45:14.758Z",
               "EditorCaption": ""
             }
           ]

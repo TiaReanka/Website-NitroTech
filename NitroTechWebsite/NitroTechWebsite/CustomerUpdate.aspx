@@ -130,7 +130,7 @@
         <h2><%: Title %></h2>
         <h3>Customer</h3>
 
-        <!-- 🔎 Search Section -->
+        <!--Search Section -->
         <div class="search-container">
             <div class="search-group">
                 <label for="txtSearchCustomer">Search by Customer ID:</label>
@@ -143,7 +143,7 @@
             <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="asp-btn" OnClick="btnSearch_Click" />
         </div>
 
-        <!-- 📊 Results Grid -->
+        <!--Results Grid -->
         <div class="grid-container">
             <asp:GridView ID="gvResults" runat="server" AutoGenerateColumns="False" CssClass="table">
                 <Columns>
@@ -161,7 +161,7 @@
             </asp:GridView>
         </div>
 
-        <!-- 👤 Customer Information -->
+        <!--Customer Information -->
         <div class="section-title">Customer Information</div>
         <div class="form-row">
             <div class="form-group">
@@ -190,7 +190,7 @@
             </div>
         </div>
 
-        <!-- 🚗 Vehicle Information -->
+        <!--Vehicle Information -->
         <div class="section-title">Vehicle Information</div>
         <div class="form-row">
             <div class="form-group">
