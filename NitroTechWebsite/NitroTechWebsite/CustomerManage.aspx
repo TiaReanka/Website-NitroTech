@@ -74,7 +74,7 @@
         <div class="form-group">
             <label for="ddlCustomer">Select New Customer:</label>
             <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" 
-                OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" Enabled="false" />
+                OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" Enabled="true" />
         </div>
 
         <h3>Old Customer Info</h3>
@@ -90,7 +90,7 @@
         <div class="form-group"><label>Address:</label><asp:TextBox ID="txtNewAddress" runat="server" ReadOnly="true" /></div>
 
         <asp:Button ID="btnTransfer" runat="server" Text="Transfer Vehicle" 
-            OnClick="btnTransfer_Click" Enabled="false" />
+            OnClick="btnTransfer_Click" Enabled="true" />
 
         <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Text="" />
 
