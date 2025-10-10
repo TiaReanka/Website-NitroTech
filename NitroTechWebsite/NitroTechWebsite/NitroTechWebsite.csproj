@@ -377,7 +377,6 @@
     <Compile Include="CourierFontResolver.cs" />
     <Compile Include="CustomerManage.aspx.cs">
       <DependentUpon>CustomerManage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CustomerManage.aspx.designer.cs">
       <DependentUpon>CustomerManage.aspx</DependentUpon>

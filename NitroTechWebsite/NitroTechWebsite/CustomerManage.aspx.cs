@@ -1,145 +1,117 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace NitroTechWebsite
+public class VehicleTransferService
 {
-    public partial class CustomerManage : System.Web.UI.Page
+    //Execute a scalar query
+    private object ExecuteScalar(string query, SqlConnection conn, SqlTransaction tran = null, params SqlParameter[] parameters)
     {
-        protected void Page_Load(object sender, EventArgs e)
+        using (var cmd = new SqlCommand(query, conn, tran))
         {
-            if (!IsPostBack)
-            {
-                LoadVINs();
-                LoadCustomers();
-            }
-        }
-
-        private void LoadVINs()
-        {
-            using (var conn = DatabaseHelper.OpenConnection())
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT VIN FROM tblVehicle", conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                ddlVIN.DataSource = dt;
-                ddlVIN.DataTextField = "VIN";
-                ddlVIN.DataBind();
-                ddlVIN.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select VIN--", ""));
-            }
-        }
-
-        private void LoadCustomers()
-        {
-            using (var conn = DatabaseHelper.OpenConnection())
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT customerID, customerName FROM tblCustomer", conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                ddlCustomer.DataSource = dt;
-                ddlCustomer.DataTextField = "customerName";
-                ddlCustomer.DataValueField = "customerID";
-                ddlCustomer.DataBind();
-                ddlCustomer.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select Customer--", ""));
-            }
-        }
-
-        protected void ddlVIN_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ddlVIN.SelectedValue))
-                return;
-
-            using (var conn = DatabaseHelper.OpenConnection())
-            {
-                SqlCommand cmd = new SqlCommand(@"
-                    SELECT c.customerName, c.customerContactNumber, c.customerEmailAddress, c.customerAddress
-                    FROM tblVehicle v
-                    INNER JOIN tblCustomer c ON v.customerID = c.customerID
-                    WHERE v.VIN = @VIN", conn);
-
-                cmd.Parameters.AddWithValue("@VIN", ddlVIN.SelectedValue);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        txtOldName.Text = reader["customerName"].ToString();
-                        txtOldContact.Text = reader["customerContactNumber"].ToString();
-                        txtOldEmail.Text = reader["customerEmailAddress"].ToString();
-                        txtOldAddress.Text = reader["customerAddress"].ToString();
-
-                        ddlCustomer.Enabled = true;
-                    }
-                }
-            }
-        }
-
-        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ddlCustomer.SelectedValue))
-                return;
-
-            using (var conn = DatabaseHelper.OpenConnection())
-            {
-                SqlCommand cmd = new SqlCommand(@"
-                    SELECT customerName, customerContactNumber, customerEmailAddress, customerAddress 
-                    FROM tblCustomer
-                    WHERE customerID = @customerID", conn);
-
-                cmd.Parameters.AddWithValue("@customerID", ddlCustomer.SelectedValue);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        txtNewName.Text = reader["customerName"].ToString();
-                        txtNewContact.Text = reader["customerContactNumber"].ToString();
-                        txtNewEmail.Text = reader["customerEmailAddress"].ToString();
-                        txtNewAddress.Text = reader["customerAddress"].ToString();
-
-                        btnTransfer.Enabled = true;
-                    }
-                }
-            }
-        }
-
-        protected void btnTransfer_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ddlVIN.SelectedValue) || string.IsNullOrEmpty(ddlCustomer.SelectedValue))
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please select both VIN and Customer.');", true);
-                return;
-            }
-
-            using (var conn = DatabaseHelper.OpenConnection())
-            {
-                SqlCommand cmd = new SqlCommand(@"
-                    UPDATE tblVehicle 
-                    SET customerID = @newCustomerID 
-                    WHERE VIN = @VIN", conn);
-
-                cmd.Parameters.AddWithValue("@newCustomerID", ddlCustomer.SelectedValue);
-                cmd.Parameters.AddWithValue("@VIN", ddlVIN.SelectedValue);
-                cmd.ExecuteNonQuery();
-            }
-
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Vehicle transferred successfully.');", true);
-
-            // Reset form
-            ddlVIN.SelectedIndex = 0;
-            ddlCustomer.SelectedIndex = 0;
-            ddlCustomer.Enabled = false;
-            btnTransfer.Enabled = false;
-
-            txtOldName.Text = txtOldContact.Text = txtOldEmail.Text = txtOldAddress.Text = "";
-            txtNewName.Text = txtNewContact.Text = txtNewEmail.Text = txtNewAddress.Text = "";
+            if (parameters != null && parameters.Length > 0)
+                cmd.Parameters.AddRange(parameters);
+            return cmd.ExecuteScalar();
         }
     }
+
+    //Execute a non-query (INSERT, UPDATE, DELETE)
+    private int ExecuteNonQuery(string query, SqlConnection conn, SqlTransaction tran = null, params SqlParameter[] parameters)
+    {
+        using (var cmd = new SqlCommand(query, conn, tran))
+        {
+            if (parameters != null && parameters.Length > 0)
+                cmd.Parameters.AddRange(parameters);
+            return cmd.ExecuteNonQuery();
+        }
+    }
+
+    //Get a DataTable from a query
+    private DataTable GetDataTable(string query, params SqlParameter[] parameters)
+    {
+        using (var conn = DatabaseHelper.OpenConnection())
+        using (var cmd = new SqlCommand(query, conn))
+        {
+            if (parameters != null && parameters.Length > 0)
+                cmd.Parameters.AddRange(parameters);
+
+            using (var adapter = new SqlDataAdapter(cmd))
+            {
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+            }
+        }
+    }
+
+    //Transfer a vehicle safely
+    public TransferResult TransferVehicle(string vin, string oldCustomerId, string newCustomerId)
+    {
+        using (var connection = DatabaseHelper.OpenConnection())
+        using (var transaction = connection.BeginTransaction())
+        {
+            try
+            {
+                // Verify vehicle ownership
+                var currentCustomerId = ExecuteScalar(
+                    "SELECT customerID FROM vehicle WHERE VIN = @VIN",
+                    connection, transaction,
+                    new SqlParameter("@VIN", vin)
+                )?.ToString();
+
+                if (currentCustomerId == null)
+                    return new TransferResult { Success = false, Message = "Vehicle not found" };
+
+                if (currentCustomerId != oldCustomerId)
+                    return new TransferResult { Success = false, Message = "Vehicle does not belong to this customer" };
+
+                //Verify new customer exists
+                var customerExists = Convert.ToInt32(ExecuteScalar(
+                    "SELECT COUNT(*) FROM customer WHERE customerID = @CustomerID",
+                    connection, transaction,
+                    new SqlParameter("@CustomerID", newCustomerId)
+                )) > 0;
+
+                if (!customerExists)
+                    return new TransferResult { Success = false, Message = "New customer not found" };
+
+                //  Update ownership
+                ExecuteNonQuery(
+                    "UPDATE vehicle SET customerID = @NewCustomerID WHERE VIN = @VIN",
+                    connection, transaction,
+                    new SqlParameter("@NewCustomerID", newCustomerId),
+                    new SqlParameter("@VIN", vin)
+                );
+
+                transaction.Commit();
+                return new TransferResult { Success = true, Message = "Vehicle transferred successfully" };
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return new TransferResult { Success = false, Message = $"Transfer failed: {ex.Message}" };
+            }
+        }
+    }
+
+    //Get all vehicles for a customer
+    public DataTable GetVehiclesByCustomer(string customerId)
+    {
+        return GetDataTable(
+            "SELECT VIN, vehicleMake, vehicleModel, vehicleYear FROM vehicle WHERE customerID = @CustomerID",
+            new SqlParameter("@CustomerID", customerId)
+        );
+    }
+
+    // Get all customers
+    public DataTable GetAllCustomers()
+    {
+        return GetDataTable("SELECT customerID, customerName FROM customer ORDER BY customerName");
+    }
+}
+
+public class TransferResult
+{
+    public bool Success { get; set; }
+    public string Message { get; set; }
 }

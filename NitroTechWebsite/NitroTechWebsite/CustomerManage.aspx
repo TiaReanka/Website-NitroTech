@@ -34,14 +34,14 @@
             color: white;
         }
 
-        .form-group input[type="text"], .form-group textarea, .form-group select {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            color: black;          
-           background-color: white;
-        }
+            .form-group input[type="text"], .form-group textarea, .form-group select {
+                flex: 1;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                color: black;
+                background-color: white;
+            }
 
         .form-container button, .form-container input[type=submit] {
             display: block;
@@ -91,5 +91,11 @@
 
         <asp:Button ID="btnTransfer" runat="server" Text="Transfer Vehicle" 
             OnClick="btnTransfer_Click" Enabled="false" />
+
+        <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Text="" />
+
+        
+
+
     </div>
 </asp:Content>
