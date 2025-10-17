@@ -196,7 +196,7 @@
 
         <!-- Popular Manufacturer -->
         <div class="dashboard-card">
-            <img class="icon" runat="server" src="~/Images/car-rental.png" alt="Popular Manufacturer" />
+            <img class="icon" runat="server" src="~/Images/car-repair.png" alt="Popular Manufacturer" />
             <div class="card-content">
                 <span class="title">Popular Manufacturer</span>
                 <asp:Label ID="lblPopularManufacturer" runat="server" Text="-" CssClass="number"></asp:Label>
