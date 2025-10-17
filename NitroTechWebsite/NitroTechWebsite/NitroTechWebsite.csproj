@@ -281,6 +281,7 @@
     <Content Include="NewPassword.aspx" />
     <Content Include="Payments.aspx" />
     <Content Include="GenerateQuotations.aspx" />
+    <Content Include="PowerBI.aspx" />
     <Content Include="ReviewPart.aspx" />
     <Content Include="ReviewQuotation.aspx" />
     <Content Include="ReviewStatement.aspx" />
@@ -456,6 +457,13 @@
     </Compile>
     <Compile Include="Payments.aspx.designer.cs">
       <DependentUpon>Payments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PowerBI.aspx.cs">
+      <DependentUpon>PowerBI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PowerBI.aspx.designer.cs">
+      <DependentUpon>PowerBI.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GenerateQuotations.aspx.cs">
