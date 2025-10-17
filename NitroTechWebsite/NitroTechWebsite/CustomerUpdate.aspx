@@ -1,4 +1,5 @@
-﻿<%@ Page Title="Update Customers" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CustomerUpdate.aspx.cs" Inherits="NitroTechWebsite.Customers" %>
+﻿<%@ Page Title="Update Customers" Language="C#" MasterPageFile="~/Site.Master" 
+    AutoEventWireup="true" CodeBehind="CustomerUpdate.aspx.cs" Inherits="NitroTechWebsite.Customers" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
@@ -12,8 +13,7 @@
             color: white;
         }
 
-        .form-container h2,
-        .form-container h3 {
+        .form-container h2, .form-container h3 {
             text-align: center;
             margin-bottom: 20px;
             color: white;
@@ -39,8 +39,7 @@
             margin-right: 10px;
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group input, .form-group select {
             flex: 1;
             padding: 8px;
             border: 1px solid #ccc;
@@ -50,12 +49,12 @@
             background-color: white;
         }
 
-        .form-container button {
+        .form-container button, .form-container input[type="submit"], .form-container input[type="button"], .form-container .aspNetButton {
             display: block;
             max-width: 600px;
             margin: 20px auto;
             padding: 12px;
-            background-color: #1a2db9;
+            background-color: purple;
             color: white;
             border: none;
             border-radius: 5px;
@@ -63,26 +62,9 @@
             font-size: 16px;
         }
 
-        .form-container button:hover {
-            background-color: purple;
-        }
-
-        .grid-container {
-            margin-top: 20px;
-            overflow-x: auto;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-            color: black;
-        }
-
-        .table th, .table td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
+        .form-container button:hover, .form-container input[type="submit"]:hover, 
+        .form-container input[type="button"]:hover, .form-container .aspNetButton:hover {
+            background-color: #1a2db9;
         }
 
         .section-title {
@@ -96,7 +78,7 @@
         .search-container {
             display: flex;
             flex-direction: column;
-            align-items: center; 
+            align-items: center;
             margin-bottom: 20px;
         }
 
@@ -104,40 +86,26 @@
             display: flex;
             align-items: center;
             margin: 10px 0;
-            width: 400px; 
+            width: 400px;
         }
 
-            .search-group label {
-                width: 180px; 
-                font-weight: bold;
-                color: white;
-                text-align: right; 
-                margin-right: 20px; 
-            }
-
-            .search-group input {
-                flex: 1; 
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 14px;
-                color: black;
-                background-color: white;
-            }
-
-        .search-container button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #1a2db9;
+        .search-group label {
+            width: 180px;
+            font-weight: bold;
             color: white;
-            cursor: pointer;
+            text-align: right;
+            margin-right: 20px;
         }
 
-            .search-container button:hover {
-                background-color: purple;
-            }
+        .search-group input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            color: black;
+            background-color: white;
+        }
     </style>
 
     <div class="form-container">
@@ -147,57 +115,40 @@
         <div class="search-container">
             <div class="search-group">
                 <label for="txtSearchCustomer">Search by Customer ID:</label>
-                <input type="text" id="txtSearchCustomer" />
+                <asp:TextBox ID="txtSearchCustomer" runat="server" CssClass="textBox" />
             </div>
             <div class="search-group">
                 <label for="txtSearchVIN">Search by VIN:</label>
-                <input type="text" id="txtSearchVIN" />
+                <asp:TextBox ID="txtSearchVIN" runat="server" CssClass="textBox" />
             </div>
-            <button type="submit">Search</button>
-        </div>
-
-        <div class="grid-container">
-            <asp:GridView ID="gvResults" runat="server" AutoGenerateColumns="False" CssClass="table">
-                <Columns>
-                    <asp:BoundField DataField="customerID" HeaderText="Customer ID" />
-                    <asp:BoundField DataField="customerName" HeaderText="Customer Name" />
-                    <asp:BoundField DataField="customerAddr" HeaderText="Address" />
-                    <asp:BoundField DataField="customerContact" HeaderText="Phone" />
-                    <asp:BoundField DataField="customerEmail" HeaderText="Email" />
-                    <asp:BoundField DataField="VIN" HeaderText="VIN" />
-                    <asp:BoundField DataField="vehicleMake" HeaderText="Make" />
-                    <asp:BoundField DataField="vehicleModel" HeaderText="Model" />
-                    <asp:BoundField DataField="vehicleTrim" HeaderText="Trim" />
-                    <asp:BoundField DataField="vehicleYear" HeaderText="Year" />
-                </Columns>
-            </asp:GridView>
+            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="aspNetButton"/>
         </div>
 
         <div class="section-title">Customer Information</div>
         <div class="form-row">
             <div class="form-group">
                 <label for="custID">Customer ID:</label>
-                <input type="text" id="custID" />
+                <asp:TextBox ID="custID" runat="server" ReadOnly="true" CssClass="textBox"/>
             </div>
             <div class="form-group">
                 <label for="custName">Customer Name:</label>
-                <input type="text" id="custName" />
+                <asp:TextBox ID="custName" runat="server" CssClass="textBox"/>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="custPhone">Phone Number:</label>
-                <input type="text" id="custPhone" />
+                <asp:TextBox ID="custPhone" runat="server" CssClass="textBox"/>
             </div>
             <div class="form-group">
                 <label for="custEmail">Email:</label>
-                <input type="email" id="custEmail" />
+                <asp:TextBox ID="custEmail" runat="server" CssClass="textBox"/>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="custAddress">Address:</label>
-                <input type="text" id="custAddress" />
+                <asp:TextBox ID="custAddress" runat="server" CssClass="textBox"/>
             </div>
         </div>
 
@@ -205,56 +156,56 @@
         <div class="form-row">
             <div class="form-group">
                 <label for="vin">VIN:</label>
-                <input type="text" id="vin" />
+                <asp:TextBox ID="vin" runat="server" ReadOnly="true" CssClass="textBox"/>
             </div>
             <div class="form-group">
                 <label for="make">Make:</label>
-                <input type="text" id="make" />
+                <asp:TextBox ID="make" runat="server" CssClass="textBox"/>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="model">Model:</label>
-                <input type="text" id="model" />
+                <asp:TextBox ID="model" runat="server" CssClass="textBox"/>
             </div>
             <div class="form-group">
                 <label for="year">Year:</label>
-                <input type="text" id="year" />
+                <asp:TextBox ID="year" runat="server" CssClass="textBox"/>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="trim">Trim:</label>
-                <input type="text" id="trim" />
+                <asp:TextBox ID="trim" runat="server" CssClass="textBox"/>
             </div>
             <div class="form-group">
                 <label for="engine">Engine:</label>
-                <input type="text" id="engine" />
+                <asp:TextBox ID="engine" runat="server" CssClass="textBox"/>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="transmission">Transmission:</label>
-                <input type="text" id="transmission" />
+                <asp:TextBox ID="transmission" runat="server" CssClass="textBox"/>
             </div>
             <div class="form-group">
                 <label for="drivetrain">Drivetrain:</label>
-                <input type="text" id="drivetrain" />
+                <asp:TextBox ID="drivetrain" runat="server" CssClass="textBox"/>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
                 <label for="fuelType">Fuel Type:</label>
-                <select id="fuelType">
-                    <option value="">Select a Fuel Type</option>
-                    <option value="Petrol">Petrol</option>
-                    <option value="Diesel">Diesel</option>
-                    <option value="Hybrid">Hybrid</option>
-                    <option value="Electric">Electric</option>
-                </select>
+                <asp:DropDownList ID="fuelType" runat="server" CssClass="textBox">
+                    <asp:ListItem Text="Select a Fuel Type" Value="" />
+                    <asp:ListItem Text="Gasoline" Value="Gasoline" />
+                    <asp:ListItem Text="Petrol" Value="Petrol" />
+                    <asp:ListItem Text="Diesel" Value="Diesel" />
+                    <asp:ListItem Text="Hybrid" Value="Hybrid" />
+                </asp:DropDownList>
             </div>
         </div>
 
-        <button type="submit">Save Customer & Vehicle</button>
+        <asp:Button ID="btnSave" runat="server" Text="Save Customer & Vehicle" OnClick="btnSave_Click" CssClass="aspNetButton"/>
     </div>
 </asp:Content>
