@@ -31,12 +31,7 @@ public class ChatbotController : ApiController
     {
         userMessage = userMessage.Trim().ToLower();
 
-        if (userMessage.Contains("who is the goddess"))
-        {
-            return "We worship the ground Justine walks on.";
-        }
-
-        if (userMessage.Contains("navigate") || userMessage.Contains("find") || userMessage.Contains("locate") || userMessage.Contains("go to"))
+        if (userMessage.Contains("navigate") || userMessage.Contains("find") || userMessage.Contains("locate") || userMessage.Contains("go to") || userMessage.Contains("navigation"))
         {
             if (userMessage.Contains("home")) return "Click on NitroTech to take you to the Home Page";
             if (userMessage.Contains("profile")) return "Click on the Profile Icon on the top right to view your username and role within the system.";
@@ -340,7 +335,7 @@ public class ChatbotController : ApiController
         }
 
         // Custom phrases
-        if (userMessage.Contains("hello")) return "Wk stekkie. What you chuning?";
+        if (userMessage.Contains("hello")) return "Hello, I am Plumeria, your virtual assistant. How may I be of service today?";
 
         // Default fallback
         return "I can help with: Navigate, Contact, or Help.";

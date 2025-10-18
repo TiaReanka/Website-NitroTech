@@ -50,6 +50,7 @@ namespace NitroTechWebsite
             liParts.Visible = false;
             liAddUser.Visible = false;
             liArchiveUser.Visible = false;
+            liPowerBI.Visible = false;
 
             // Role-specific access
             switch (role.ToLower())
@@ -63,6 +64,7 @@ namespace NitroTechWebsite
                     liParts.Visible = true;
                     liAddUser.Visible = true;
                     liArchiveUser.Visible = true;
+                    liPowerBI.Visible = true;
                     break;
                 case "manager":
                     liInvoices.Visible = true;
@@ -71,6 +73,7 @@ namespace NitroTechWebsite
                     liCustomers.Visible = true;
                     liPayments.Visible = true;
                     liParts.Visible = true;
+                    liPowerBI.Visible = true;
                     break;
                 case "admin":
                     liInvoices.Visible = true;
