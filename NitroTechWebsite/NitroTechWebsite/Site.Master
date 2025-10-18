@@ -279,6 +279,8 @@
                                 </li>
                             </ul>
                         </li>
+                        <!--POWER BI-->
+                        <li id="liPowerBI" runat="server"><a runat="server" href="~/PowerBI.aspx">Power BI</a></li>
 
                         <!--About-->
                         <li id="liAbout" runat="server"><a runat="server" href="~/About">About</a></li>
