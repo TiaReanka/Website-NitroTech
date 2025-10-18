@@ -511,6 +511,7 @@
     <Compile Include="GenerateStatement.aspx.designer.cs">
       <DependentUpon>GenerateStatement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TransferVehicle.cs" />
     <Compile Include="UpdatePart.aspx.cs">
       <DependentUpon>UpdatePart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

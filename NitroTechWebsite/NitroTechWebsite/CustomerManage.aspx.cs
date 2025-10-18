@@ -1,145 +1,120 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using NitroTechWebsite;
 
 namespace NitroTechWebsite
 {
     public partial class CustomerManage : System.Web.UI.Page
     {
+        public VehicleTransfer vehicleService = new VehicleTransfer();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadVINs();
-                LoadCustomers();
+                LoadVehicles(); // Load all vehicles into ddlVIN
+                LoadNewCustomers(); // Load all customers into ddlCustomer
             }
         }
 
-        private void LoadVINs()
+        private void LoadVehicles()
         {
-            using (var conn = DatabaseHelper.OpenConnection())
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT VIN FROM tblVehicle", conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                ddlVIN.DataSource = dt;
-                ddlVIN.DataTextField = "VIN";
-                ddlVIN.DataBind();
-                ddlVIN.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select VIN--", ""));
-            }
+            // Assuming you want to list all VINs
+            DataTable dtVehicles = vehicleService.GetDataTable("SELECT VIN, vehicleMake, vehicleModel, vehicleYear FROM tblVehicle");
+            ddlVIN.DataSource = dtVehicles;
+            ddlVIN.DataTextField = "VIN"; // or you can combine Make+Model+Year
+            ddlVIN.DataValueField = "VIN";
+            ddlVIN.DataBind();
+            ddlVIN.Items.Insert(0, "--Select Vehicle--");
         }
 
-        private void LoadCustomers()
+        private void LoadNewCustomers()
         {
-            using (var conn = DatabaseHelper.OpenConnection())
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT customerID, customerName FROM tblCustomer", conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                ddlCustomer.DataSource = dt;
-                ddlCustomer.DataTextField = "customerName";
-                ddlCustomer.DataValueField = "customerID";
-                ddlCustomer.DataBind();
-                ddlCustomer.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select Customer--", ""));
-            }
+            DataTable dtCustomers = vehicleService.GetAllCustomers();
+            ddlCustomer.DataSource = dtCustomers;
+            ddlCustomer.DataTextField = "customerName";
+            ddlCustomer.DataValueField = "customerID";
+            ddlCustomer.DataBind();
+            ddlCustomer.Items.Insert(0, "--Select Customer--");
         }
 
         protected void ddlVIN_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ddlVIN.SelectedValue))
-                return;
-
-            using (var conn = DatabaseHelper.OpenConnection())
+            if (ddlVIN.SelectedIndex > 0)
             {
-                SqlCommand cmd = new SqlCommand(@"
-                    SELECT c.customerName, c.customerContactNumber, c.customerEmailAddress, c.customerAddress
-                    FROM tblVehicle v
-                    INNER JOIN tblCustomer c ON v.customerID = c.customerID
-                    WHERE v.VIN = @VIN", conn);
+                // Load old customer info for selected vehicle
+                string vin = ddlVIN.SelectedValue;
+                DataTable dt = vehicleService.GetDataTable(
+                    "SELECT c.customerName, c.customerContactNumber, c.customerEmailAddress, c.customerAddress FROM tblVehicle v INNER JOIN tblCustomer c ON v.customerID = c.customerID WHERE v.VIN = @VIN",
+                    new System.Data.SqlClient.SqlParameter("@VIN", vin)
+                );
 
-                cmd.Parameters.AddWithValue("@VIN", ddlVIN.SelectedValue);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                if (dt.Rows.Count > 0)
                 {
-                    if (reader.Read())
-                    {
-                        txtOldName.Text = reader["customerName"].ToString();
-                        txtOldContact.Text = reader["customerContactNumber"].ToString();
-                        txtOldEmail.Text = reader["customerEmailAddress"].ToString();
-                        txtOldAddress.Text = reader["customerAddress"].ToString();
-
-                        ddlCustomer.Enabled = true;
-                    }
+                    var row = dt.Rows[0];
+                    txtOldName.Text = row["customerName"].ToString();
+                    txtOldContact.Text = row["customerContactNumber"].ToString();
+                    txtOldEmail.Text = row["customerEmailAddress"].ToString();
+                    txtOldAddress.Text = row["customerAddress"].ToString();
+                    btnTransfer.Enabled = true;
                 }
             }
         }
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ddlCustomer.SelectedValue))
-                return;
-
-            using (var conn = DatabaseHelper.OpenConnection())
+            if (ddlCustomer.SelectedIndex > 0)
             {
-                SqlCommand cmd = new SqlCommand(@"
-                    SELECT customerName, customerContactNumber, customerEmailAddress, customerAddress 
-                    FROM tblCustomer
-                    WHERE customerID = @customerID", conn);
+                string newCustomerId = ddlCustomer.SelectedValue;
+                DataTable dt = vehicleService.GetDataTable(
+                    "SELECT customerName, customerContactNumber, customerEmailAddress, customerAddress FROM tblCustomer WHERE customerID = @CustomerID",
+                    new System.Data.SqlClient.SqlParameter("@CustomerID", newCustomerId)
+                );
 
-                cmd.Parameters.AddWithValue("@customerID", ddlCustomer.SelectedValue);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                if (dt.Rows.Count > 0)
                 {
-                    if (reader.Read())
-                    {
-                        txtNewName.Text = reader["customerName"].ToString();
-                        txtNewContact.Text = reader["customerContactNumber"].ToString();
-                        txtNewEmail.Text = reader["customerEmailAddress"].ToString();
-                        txtNewAddress.Text = reader["customerAddress"].ToString();
-
-                        btnTransfer.Enabled = true;
-                    }
+                    var row = dt.Rows[0];
+                    txtNewName.Text = row["customerName"].ToString();
+                    txtNewContact.Text = row["customerContactNumber"].ToString();
+                    txtNewEmail.Text = row["customerEmailAddress"].ToString();
+                    txtNewAddress.Text = row["customerAddress"].ToString();
                 }
             }
         }
 
         protected void btnTransfer_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ddlVIN.SelectedValue) || string.IsNullOrEmpty(ddlCustomer.SelectedValue))
+            if (ddlVIN.SelectedIndex <= 0 || ddlCustomer.SelectedIndex <= 0)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Please select both VIN and Customer.');", true);
+                lblMessage.Text = "Please select a vehicle and a new customer.";
                 return;
             }
 
-            using (var conn = DatabaseHelper.OpenConnection())
+            string vin = ddlVIN.SelectedValue;
+            string oldCustomerId = ""; // Get from database
+            DataTable dtOldCustomer = vehicleService.GetDataTable(
+                "SELECT customerID FROM tblVehicle WHERE VIN = @VIN",
+                new System.Data.SqlClient.SqlParameter("@VIN", vin)
+            );
+
+            if (dtOldCustomer.Rows.Count > 0)
+                oldCustomerId = dtOldCustomer.Rows[0]["customerID"].ToString();
+
+            string newCustomerId = ddlCustomer.SelectedValue;
+
+            var result = vehicleService.TransferVehicle(vin, oldCustomerId, newCustomerId);
+            lblMessage.Text = result.Message;
+
+            if (result.Success)
             {
-                SqlCommand cmd = new SqlCommand(@"
-                    UPDATE tblVehicle 
-                    SET customerID = @newCustomerID 
-                    WHERE VIN = @VIN", conn);
-
-                cmd.Parameters.AddWithValue("@newCustomerID", ddlCustomer.SelectedValue);
-                cmd.Parameters.AddWithValue("@VIN", ddlVIN.SelectedValue);
-                cmd.ExecuteNonQuery();
+                // Reset form
+                ddlVIN.SelectedIndex = 0;
+                ddlCustomer.SelectedIndex = 0;
+                txtOldName.Text = txtOldContact.Text = txtOldEmail.Text = txtOldAddress.Text = "";
+                txtNewName.Text = txtNewContact.Text = txtNewEmail.Text = txtNewAddress.Text = "";
+                btnTransfer.Enabled = false;
             }
-
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Vehicle transferred successfully.');", true);
-
-            // Reset form
-            ddlVIN.SelectedIndex = 0;
-            ddlCustomer.SelectedIndex = 0;
-            ddlCustomer.Enabled = false;
-            btnTransfer.Enabled = false;
-
-            txtOldName.Text = txtOldContact.Text = txtOldEmail.Text = txtOldAddress.Text = "";
-            txtNewName.Text = txtNewContact.Text = txtNewEmail.Text = txtNewAddress.Text = "";
         }
     }
 }
