@@ -275,7 +275,7 @@
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                    label: 'Payments',
+                    label: 'Quotations',
                     data: [5, 10, 7, 12, 9, 8, 11, 14, 6, 13, 10, 15], // populate from server if needed
                     borderColor: 'rgba(255,99,132,0.8)',
                     backgroundColor: 'rgba(255,99,132,0.2)',
@@ -295,7 +295,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'No. of Payments per Month',
+                        text: 'No. of Quotations per Month',
                         color: 'white',
                         font: { size: 18, weight: 'bold' }
                     }
@@ -305,7 +305,7 @@
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'No of Payments',
+                            text: 'No of Quotations',
                             color: 'white'
                         },
                         ticks: {
