@@ -71,13 +71,14 @@
             display: flex;
             align-items: center;
             transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Added shadow */
         }
 
         .dashboard-card:hover {
             transform: translateY(-5px);
             background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6); /* Darker shadow on hover */
         }
-
         /* Icon on left */
         .dashboard-card img.icon {
             width: 40px;
@@ -236,11 +237,12 @@
                 datasets: [{
                     label: 'Total Invoices (R10k)',
                     data: [12, 19, 8, 15, 22, 10, 14, 16, 9, 20, 18, 11],
-                    backgroundColor: 'rgba(54,162,235,0.6)',
+                    backgroundColor: 'rgba(54,162,235, 0.6)',
                     barPercentage: 0.5,
                     categoryPercentage: 0.6
                 }]
             },
+
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
