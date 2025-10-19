@@ -66,6 +66,41 @@
     .btn:hover { 
         background-color: purple; 
     } 
+
+        .btn1 {
+display: flex;
+justify-content: center; /* center horizontally */
+margin-top: 20px;
+    }
+
+.btn1 input[type=submit] {
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 30px;
+    min-width: 50px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    letter-spacing: 2px;
+    line-height: 20px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid #3c00a0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .btn1 input[type=submit]:hover {
+        background-color: #3c00a0;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+    }
 </style> 
  
  
@@ -82,8 +117,11 @@
                 <asp:ListItem Value="8601260526053">8601260526053</asp:ListItem> 
             </asp:DropDownList> 
         </div> 
- 
-        <asp:Button ID="btnGenerateStatement" runat="server" Text="Generate Statement" 
-CssClass="btn" OnClick="btnGenerateStatement_Click" /> 
+        
+
+        <div class="btn1">
+            <asp:Button ID="Button1" runat="server" Text="Generate Statement" CssClass="btn" OnClick="btnGenerateStatement_Click" /> 
+        </div>
+
     </div> 
 </asp:Content> 

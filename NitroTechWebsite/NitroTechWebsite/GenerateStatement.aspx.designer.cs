@@ -24,12 +24,12 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.DropDownList customerID;
 
         /// <summary>
-        /// btnGenerateStatement control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGenerateStatement;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

@@ -85,6 +85,41 @@
         .gridview tr:nth-child(even) { 
             background-color: #f9f9f9; 
         } 
+
+         .btn1 {
+     display: flex;
+     justify-content: center; /* center horizontally */
+     margin-top: 20px;
+         }
+
+     .btn1 input[type=submit] {
+         text-align: center;
+         margin: 20px auto;
+         padding: 10px 30px;
+         min-width: 50px;
+         color: #fff;
+         font-size: 15px;
+         text-decoration: none;
+         text-transform: uppercase;
+         overflow: hidden;
+         transition: 0.5s;
+         letter-spacing: 2px;
+         line-height: 20px;
+         width: auto;
+         display: flex;
+         justify-content: center;
+         background: transparent;
+         border: 2px solid #3c00a0;
+         border-radius: 5px;
+         cursor: pointer;
+     }
+
+         .btn1 input[type=submit]:hover {
+             background-color: #3c00a0;
+             color: #fff;
+             border-radius: 5px;
+             box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+         }
     </style> 
  
     <div class="form-container"> 
@@ -94,9 +129,13 @@
             <label for="txtCustomerName">Customer Name:</label> 
             <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer ID..." /> 
         </div> 
- 
-        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn" 
-OnClick="btnSearch_Click" /> 
+    
+        <div class="btn1">
+            <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn" OnClick="btnSearch_Click" /> 
+        </div>
+
+        
+
  
         <asp:GridView ID="gvStatements" runat="server" AutoGenerateColumns="true" 
 CssClass="gridview"> 
