@@ -210,10 +210,8 @@
 
 
 <!-- Graph Section -->
-    <div class="graph-container">
-        <div class="graph-box">
-        <iframe title="NitroTechV2" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNmQ3M2JmYTAtYmZkYS00MWRjLThmMGEtOGFlNzE3N2Y5MzllIiwidCI6IjIyNjgyN2Q2LWE5ZDAtNDcwZC04YzE1LWIxNDZiMDE5MmQ1MSIsImMiOjh9&pageName=Dashboard" frameborder="0" allowFullScreen="true"></iframe>
-    </div>
-    </div>
+    <iframe title="NitroTechV3" width="600" height="373.5"
+src="https://app.powerbi.com/view?r=eyJrIjoiYjRjYjU2NjYtMDUwZS00ZmQ3LWIxMzQtMzUxYzExMDQ1ZDU1IiwidCI6IjIyNjgyN2Q2LWE5ZDAtNDcwZC04YzE1LWIxNDZiMDE5MmQ1MSIsImMiOjh9&pageName=e973eb489fdf8cf01fc3"
+frameborder="0" allowFullScreen="true"></iframe>
 
 </asp:Content>
