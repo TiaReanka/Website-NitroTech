@@ -71,14 +71,13 @@
             display: flex;
             align-items: center;
             transition: transform 0.2s ease, background-color 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Added shadow */
         }
 
         .dashboard-card:hover {
             transform: translateY(-5px);
             background-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6); /* Darker shadow on hover */
         }
+
         /* Icon on left */
         .dashboard-card img.icon {
             width: 40px;
@@ -209,196 +208,10 @@
 
     </div>
 
-   <!-- Graph Section: 3 Boxes -->
+
 <!-- Graph Section -->
-    <div class="graph-container">
-        <div class="graph-box">
-            <canvas id="graph1Canvas" style="width:100%; height:100%;"></canvas>
-        </div>
-        <div class="graph-box">
-            <canvas id="graph2Canvas" style="width:100%; height:100%;"></canvas>
-        </div>
-        <div class="graph-box">
-            <canvas id="graph3Canvas" style="width:100%; height:100%;"></canvas>
-        </div>
-    </div>
-
-    <!-- Chart.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-
-        // Graph 1
-
-
-        new Chart(document.getElementById('graph1Canvas').getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Total Invoices (R10k)',
-                    data: [12, 19, 8, 15, 22, 10, 14, 16, 9, 20, 18, 11],
-                    backgroundColor: 'rgba(54,162,235, 0.6)',
-                    barPercentage: 0.5,
-                    categoryPercentage: 0.6
-                }]
-            },
-
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Total Invoices per Month',
-                        color: 'white',
-                        font: { size: 18, weight: 'bold' }
-                    },
-                    legend: {
-                        labels: { color: 'white' }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Invoices (R10k)', color: 'white' },
-                        ticks: { color: 'white' }
-                    },
-                    x: {
-                        title: { display: true, text: 'Months', color: 'white' },
-                        ticks: { color: 'white', autoSkip: false, maxRotation: 45, minRotation: 45, font: { size: 10 } }
-                    }
-                }
-            }
-        });
-
-        // Graph 2 (line chart)
-        new Chart(document.getElementById('graph2Canvas').getContext('2d'), {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Quotations',
-                    data: [5, 10, 7, 12, 9, 8, 11, 14, 6, 13, 10, 15], // populate from server if needed
-                    borderColor: 'rgba(255,99,132,0.8)',
-                    backgroundColor: 'rgba(255,99,132,0.2)',
-                    fill: true,
-                    tension: 0.3, // makes the line smooth
-                    pointRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'white'
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'No. of Quotations per Month',
-                        color: 'white',
-                        font: { size: 18, weight: 'bold' }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'No of Quotations',
-                            color: 'white'
-                        },
-                        ticks: {
-                            color: 'white'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Months',
-                            color: 'white'
-                        },
-                        ticks: {
-                            color: 'white',
-                            autoSkip: false,
-                            maxRotation: 45,
-                            minRotation: 45
-                        }
-                    }
-                }
-            }
-        });
-
-        // Graph 3: Mixed Chart (Bar + Line) with all months shown
-        new Chart(document.getElementById('graph3Canvas').getContext('2d'), {
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // All months
-                datasets: [
-                    {
-                        type: 'bar',
-                        label: 'Completed Jobs',
-                        data: [30, 25, 40, 20, 35, 28, 30, 32, 25, 27, 29, 31],
-                        backgroundColor: 'lawngreen',
-                        barPercentage: 0.5, // Reduce bar width
-                        categoryPercentage: 0.5
-                    },
-
-                    {
-                        type: 'bar',
-                        label: 'Pending Jobs',
-                        data: [10, 15, 5, 12, 8, 10, 9, 11, 14, 10, 12, 8],
-                        barPercentage: 0.5,
-                        backgroundColor: '#FFD700',
-                        categoryPercentage: 0.5
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'white'
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Jobs Status per Month',
-                        color: 'white',
-                        font: { size: 16, weight: 'bold' }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Jobs',
-                            color: 'white'
-                        },
-                        ticks: {
-                            color: 'white'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Months',
-                            color: 'white'
-                        },
-                        ticks: {
-                            color: 'white',
-                            autoSkip: false,
-                            maxRotation: 45,
-                            minRotation: 45
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+    <iframe title="NitroTechV3" width="600" height="373.5"
+src="https://app.powerbi.com/view?r=eyJrIjoiYjRjYjU2NjYtMDUwZS00ZmQ3LWIxMzQtMzUxYzExMDQ1ZDU1IiwidCI6IjIyNjgyN2Q2LWE5ZDAtNDcwZC04YzE1LWIxNDZiMDE5MmQ1MSIsImMiOjh9&pageName=e973eb489fdf8cf01fc3"
+frameborder="0" allowFullScreen="true"></iframe>
 
 </asp:Content>
