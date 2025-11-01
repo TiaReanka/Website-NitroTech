@@ -65,7 +65,7 @@ namespace NitroTechWebsite
                 }
                 else
                 {
-                    ShowMessage("User not found.");
+                    ShowMessage("⚠ User not found.");
                 }
             }
         }
@@ -81,13 +81,13 @@ namespace NitroTechWebsite
             if (string.IsNullOrEmpty(uName) || string.IsNullOrEmpty(newPass) ||
                 string.IsNullOrEmpty(confirmPass))
             {
-                ShowMessage("Please fill in all fields.");
+                ShowMessage("⚠ Please fill in all fields.");
                 return;
             }
 
             if (newPass != confirmPass)
             {
-                ShowMessage("Passwords do not match.");
+                ShowMessage("⚠ Passwords do not match.");
                 return;
             }
 
@@ -99,13 +99,13 @@ namespace NitroTechWebsite
                 {
                     if (!reader.Read())
                     {
-                        ShowMessage("User not found.");
+                        ShowMessage("⚠ User not found.");
                         return;
                     }
 
                     if (!(bool)reader["userActiveStatus"])
                     {
-                        ShowMessage("Account is inactive.");
+                        ShowMessage("⚠ Account is inactive.");
                         return;
                     }
 
@@ -116,13 +116,13 @@ namespace NitroTechWebsite
                     {
                         if (HashPassword(oldPass) != dbPassword)
                         {
-                            ShowMessage("Old password is incorrect.");
+                            ShowMessage("⚠ Old password is incorrect.");
                             return;
                         }
 
                         if (HashPassword(newPass) == dbPassword)
                         {
-                            ShowMessage("New password cannot be the same as the old password.");
+                            ShowMessage("⚠ New password cannot be the same as the old password.");
                             return;
                         }
                     }
@@ -130,7 +130,7 @@ namespace NitroTechWebsite
                     {
                         if (!string.Equals(inputAnswer, dbAnswer, StringComparison.OrdinalIgnoreCase))
                         {
-                            ShowMessage("Security answer incorrect.");
+                            ShowMessage("⚠ Security answer incorrect.");
                             return;
                         }
                     }
@@ -140,7 +140,7 @@ namespace NitroTechWebsite
             // Validate new password
             if (!IsValidPassword(newPass))
             {
-                ShowMessage("Password must be at least 8 characters, include uppercase, digit, and special character.");
+                ShowMessage("⚠ Password must be at least 8 characters, include uppercase, digit, and special character.");
                 return;
             }
 

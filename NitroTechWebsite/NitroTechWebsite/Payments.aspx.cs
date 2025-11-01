@@ -29,7 +29,7 @@ namespace NitroTechWebsite
             }
             catch (Exception ex)
             {
-                Alert("Failed to load customers: " + ex.Message);
+                Alert("⚠ Failed to load customers: " + ex.Message);
             }
         }
 
@@ -37,19 +37,19 @@ namespace NitroTechWebsite
         {
             if (string.IsNullOrWhiteSpace(ddlCustomerID.SelectedValue))
             {
-                Alert("Please select a customer.");
+                Alert("⚠ Please select a customer.");
                 return;
             }
 
             if (!decimal.TryParse(txtAmount.Text, out decimal amount))
             {
-                Alert("Please enter a valid amount.");
+                Alert("⚠ Please enter a valid amount.");
                 return;
             }
 
             if (!DateTime.TryParse(txtPaymentDate.Text, out DateTime paymentDate))
             {
-                Alert("Please enter a valid date.");
+                Alert("⚠ Please enter a valid date.");
                 return;
             }
 
@@ -80,7 +80,7 @@ namespace NitroTechWebsite
         {
             var cs = ConfigurationManager.ConnectionStrings["WstGrp4"]?.ConnectionString;
             if (string.IsNullOrWhiteSpace(cs))
-                throw new InvalidOperationException("Missing connection string in Web.config.");
+                throw new InvalidOperationException("❌ Missing connection string in Web.config.");
             return cs;
         }
 
@@ -113,12 +113,12 @@ namespace NitroTechWebsite
                             cmd.Parameters.AddWithValue("@custId", customerID);
                             object scalar = cmd.ExecuteScalar();
                             if (scalar == null || scalar == DBNull.Value)
-                                throw new InvalidOperationException("Customer not found or does not owe any money.");
+                                throw new InvalidOperationException("⚠ Customer not found or does not owe any money.");
                             currentOwe = Convert.ToDecimal(scalar);
                         }
 
                         if (amount > currentOwe)
-                            throw new InvalidOperationException($"Amount exceeds the owed amount of: R{currentOwe}");
+                            throw new InvalidOperationException($"⚠ Amount exceeds the owed amount of: R{currentOwe}");
 
                         // calculate remaining owe AFTER the payment
                         decimal remaining = currentOwe - amount;

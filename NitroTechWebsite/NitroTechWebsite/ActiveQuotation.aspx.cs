@@ -141,9 +141,5 @@ namespace NitroTechWebsite
         }
     }
 
-    //TODO: Limit search results to n number of records - Calvin
-    //TODO: Add paging to gridview - Calvin
-    //TODO: Add sorting to gridview - Calvin
-
-    //TODO: CrystalReports - TIa
+    
 }

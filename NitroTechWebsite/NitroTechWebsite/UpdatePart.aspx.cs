@@ -20,7 +20,7 @@ namespace NitroTechWebsite
         {
             var cs = ConfigurationManager.ConnectionStrings["WstGrp4"]?.ConnectionString;
             if (string.IsNullOrWhiteSpace(cs))
-                throw new InvalidOperationException("Missing connection string in Web.config.");
+                throw new InvalidOperationException("❌ Missing connection string in Web.config.");
             return cs;
         }
 
@@ -63,14 +63,14 @@ namespace NitroTechWebsite
         {
             if (string.IsNullOrEmpty(partNameInc.SelectedValue))
             {
-                lblMessageInc.Text = "Please select a part.";
+                lblMessageInc.Text = "⚠ Please select a part.";
                 lblMessageInc.CssClass = "message error";
                 return;
             }
 
             if (!int.TryParse(quantityInc.Text, out int qty) || qty <= 0)
             {
-                lblMessageInc.Text = "Please enter a valid amount.";
+                lblMessageInc.Text = "⚠ Please enter a valid amount.";
                 lblMessageInc.CssClass = "message error";
                 return;
             }
@@ -103,14 +103,14 @@ namespace NitroTechWebsite
         {
             if (string.IsNullOrEmpty(partNameDec.SelectedValue))
             {
-                lblMessageDec.Text = "Please select a part.";
+                lblMessageDec.Text = "⚠ Please select a part.";
                 lblMessageDec.CssClass = "message error";
                 return;
             }
 
             if (!int.TryParse(quantityDec.Text, out int qty) || qty <= 0)
             {
-                lblMessageDec.Text = "Please enter a valid amount.";
+                lblMessageDec.Text = "⚠ Please enter a valid amount.";
                 lblMessageDec.CssClass = "message error";
                 return;
             }

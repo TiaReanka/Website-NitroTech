@@ -15,7 +15,7 @@ namespace NitroTechWebsite
             string invoiceNumber = Request.QueryString["inum"];
             if (string.IsNullOrEmpty(quotationNumber))
             {
-                Response.Write("Invalid quotation number.");
+                Response.Write("⚠ Invalid quotation number.");
                 return;
             }
 
@@ -142,7 +142,7 @@ namespace NitroTechWebsite
             catch (Exception ex)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    $"alert('Error generating quotation PDF: {ex.Message}');", true);
+                    $"alert('❌ Error generating quotation PDF: {ex.Message}');", true);
             }
         }
     }

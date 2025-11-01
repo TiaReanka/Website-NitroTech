@@ -210,13 +210,13 @@ namespace NitroTechWebsite
         {
             if (string.IsNullOrWhiteSpace(txtFault.Text))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please enter a fault description.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Please enter a fault description.');", true);
                 return;
             }
 
             if (cmbPart.SelectedIndex == 0 || string.IsNullOrEmpty(cmbPart.SelectedValue))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please select a valid part.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Please select a valid part.');", true);
                 return;
             }
 
@@ -288,7 +288,7 @@ namespace NitroTechWebsite
             if (Faults.Count == 0)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    "alert('Cannot generate a quotation with no faults.');", true);
+                    "alert('⚠ Cannot generate a quotation with no faults.');", true);
                 return;
             }
 
@@ -387,7 +387,7 @@ namespace NitroTechWebsite
                 {
                     tran.Rollback();
                     ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                        $"alert('Error generating quotation: {ex.Message}');", true);
+                        $"alert('❌ Error generating quotation: {ex.Message}');", true);
                 }
             }
         }
@@ -626,7 +626,7 @@ namespace NitroTechWebsite
             catch (Exception ex)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    $"alert('Error generating quotation PDF: {ex.Message}');", true);
+                    $"alert('❌ Error generating quotation PDF: {ex.Message}');", true);
             }
         }
 

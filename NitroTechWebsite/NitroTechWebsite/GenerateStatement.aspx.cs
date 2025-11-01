@@ -28,7 +28,7 @@ namespace NitroTechWebsite
             if (string.IsNullOrEmpty(customerId))
             {
                 
-                Response.Write("<script>alert('Please select a customer ID');</script>");
+                Response.Write("<script>alert('⚠ Please select a customer ID');</script>");
                 return;
             }
             
@@ -43,7 +43,7 @@ namespace NitroTechWebsite
 
                 if (dtCustomer.Rows.Count == 0)
                 {
-                    Response.Write("<script>alert('Customer does not exist');</script>");
+                    Response.Write("<script>alert('⚠ Customer does not exist');</script>");
                     return;
                 }
 
@@ -95,7 +95,7 @@ namespace NitroTechWebsite
             }
             catch (Exception ex)
             {
-                Response.Write($"<script>alert('Error creating statement: {ex.Message}');</script>");
+                Response.Write($"<script>alert('❌ Error creating statement: {ex.Message}');</script>");
             }
 
 

@@ -18,7 +18,7 @@ namespace NitroTechWebsite
 
             if (string.IsNullOrEmpty(statementNumber) || string.IsNullOrEmpty(customerId))
             {
-                Response.Write("Invalid request – missing statement number or customer ID.");
+                Response.Write("⚠ Invalid request – missing statement number or customer ID.");
                 return;
             }
 
@@ -151,7 +151,7 @@ namespace NitroTechWebsite
             catch (Exception ex)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert",
-                    $"alert('Error generating statement PDF: {ex.Message}');", true);
+                    $"alert('❌ Error generating statement PDF: {ex.Message}');", true);
             }
         }
     }

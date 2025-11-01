@@ -19,25 +19,26 @@ namespace NitroTechWebsite
 
                 if (string.IsNullOrWhiteSpace(partName))
                 {
-                    Alert("Part name cannot be empty.");
+                    Alert("⚠ Part name cannot be empty");
                     return;
                 }
 
                 if (!decimal.TryParse(txtPrice.Text, out decimal price))
                 {
-                    Alert("Price must be a valid number (no letters or special characters).");
+                    Alert("⚠ Price must be a valid number (no letters or special characters).");
                     return;
+      
                 }
 
                 if (!int.TryParse(txtQuantity.Text, out int qty) || qty <= 0)
                 {
-                    Alert("Quantity must be greater than 0.");
+                    Alert("⚠ Quantity must be greater than 0.");
                     return;
                 }
 
                 if (!int.TryParse(txtReOrderAmt.Text, out int reorderLevel))
                 {
-                    Alert("Reorder level must be a valid number.");
+                    Alert("⚠ Reorder level must be a valid number.");
                     return;
                 }
 
@@ -54,7 +55,7 @@ namespace NitroTechWebsite
 
                         if (exists > 0)
                         {
-                            Alert("Part already exists in the database.");
+                            Alert("❌ Part already exists in the database.");
                             return;
                         }
                     }
@@ -86,7 +87,7 @@ namespace NitroTechWebsite
         {
             var cs = ConfigurationManager.ConnectionStrings["WstGrp4"]?.ConnectionString;
             if (string.IsNullOrWhiteSpace(cs))
-                throw new InvalidOperationException("Missing connection string in Web.config.");
+                throw new InvalidOperationException("❌ Missing connection string in Web.config.");
             return cs;
         }
 

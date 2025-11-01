@@ -96,7 +96,7 @@ namespace NitroTechWebsite
             {
                 ScriptManager.RegisterStartupScript(this, GetType(),
                     "alertMessage",
-                    "alert('Please select a quotation first.');",
+                    "alert('⚠ Please select a quotation first.');",
                     true);
             }
         }

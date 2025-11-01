@@ -24,14 +24,14 @@ namespace NitroTechWebsite
 
             if (string.IsNullOrEmpty(username))
             {
-                lblMessage.Text = "Please enter a username.";
+                lblMessage.Text = "⚠ Please enter a username.";
                 return;
             }
 
             if (!string.IsNullOrEmpty(currentUser) &&
                 username.Equals(currentUser, StringComparison.OrdinalIgnoreCase))
             {
-                lblMessage.Text = "You cannot archive your own account.";
+                lblMessage.Text = "⚠ You cannot archive your own account.";
                 return;
             }
 
@@ -48,13 +48,13 @@ namespace NitroTechWebsite
                         var result = checkCmd.ExecuteScalar();
                         if (result == null)
                         {
-                            lblMessage.Text = "User does not exist.";
+                            lblMessage.Text = "⚠ User does not exist.";
                             return;
                         }
 
                         if (Convert.ToInt32(result) == 0)
                         {
-                            lblMessage.Text = "User is already deactivated.";
+                            lblMessage.Text = "⚠ User is already deactivated.";
                             return;
                         }
                     }
@@ -84,7 +84,7 @@ namespace NitroTechWebsite
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Error archiving user: " + ex.Message;
+                lblMessage.Text = "❌ Error archiving user: " + ex.Message;
             }
         }
 
@@ -114,7 +114,7 @@ namespace NitroTechWebsite
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Log sync failed: " + ex.Message;
+                lblMessage.Text = "❌ Log sync failed: " + ex.Message;
             }
         }
     }

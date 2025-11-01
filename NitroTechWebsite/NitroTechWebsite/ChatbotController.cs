@@ -126,6 +126,11 @@ public class ChatbotController : ApiController
             return "Sure, where would you like to know or learn about?";
         }
 
+        if (userMessage.Contains("gay"))
+        {
+            return "Because you exist.";
+        }
+
 
         if (userMessage.Contains("football"))
         {

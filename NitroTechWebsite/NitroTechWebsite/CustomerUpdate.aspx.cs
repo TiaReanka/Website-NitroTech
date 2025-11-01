@@ -25,7 +25,7 @@ namespace NitroTechWebsite
 
             if (string.IsNullOrEmpty(searchCustomerID) && string.IsNullOrEmpty(searchVIN))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please enter Customer ID or VIN to search.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Please enter Customer ID or VIN to search.');", true);
 
                 // Clear all textboxes and reset dropdown
                 custID.Text = custName.Text = custPhone.Text = custEmail.Text = custAddress.Text = "";
@@ -80,7 +80,7 @@ namespace NitroTechWebsite
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Customer not found.');", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Customer not found.');", true);
 
                             // Clear fields
                             custID.Text = custName.Text = custPhone.Text = custEmail.Text = custAddress.Text = "";
@@ -97,7 +97,7 @@ namespace NitroTechWebsite
         {
             if (string.IsNullOrEmpty(custID.Text) || string.IsNullOrEmpty(vin.Text))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please search and select a customer before saving.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Please search and select a customer before saving.');", true);
                 return;
             }
 
@@ -156,7 +156,7 @@ namespace NitroTechWebsite
 
                     transaction.Commit();
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Customer and vehicle updated successfully.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Customer and vehicle updated successfully.');", true);
 
                     // Clear all textboxes and reset dropdown
                     ClearFields();
@@ -164,7 +164,7 @@ namespace NitroTechWebsite
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('Error: {ex.Message}');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('❌ Error: {ex.Message}');", true);
                 }
             }
         }

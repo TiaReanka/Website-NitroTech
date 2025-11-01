@@ -12,7 +12,7 @@ namespace NitroTechWebsite
         {
             var cs = ConfigurationManager.ConnectionStrings["WstGrp4"]?.ConnectionString;
             if (string.IsNullOrWhiteSpace(cs))
-                throw new InvalidOperationException("Missing connection string in Web.config.");
+                throw new InvalidOperationException("❌ Missing connection string in Web.config.");
             return cs;
         }
 
