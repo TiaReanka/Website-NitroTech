@@ -8,7 +8,7 @@
    <style>
     .powerbi-container {
       width: 100%;
-      height: 100vh; /* full viewport height */
+      height: 95vh; /* full viewport height */
       padding: 0;
       margin: 0;
     }
