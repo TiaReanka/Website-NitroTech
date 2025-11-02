@@ -19,49 +19,49 @@ namespace NitroTechWebsite
         {
 
         }
-        //    protected void btnAddUser_Click(object sender, EventArgs e)
-        //    {
-        //        string username = txtUsername.Text.Trim();
-        //        string password = txtPassword.Text.Trim();
-        //        string confirmPassword = txtConfirmPassword.Text.Trim();
-        //        string role = ddlRoles.SelectedValue;
-        //        string securityQuestion = txtSecurityQuestion.Text.Trim();
-        //        string securityAnswer = txtSecurityAnswer.Text.Trim();
+        protected void btnAddUser_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
+            string confirmPassword = txtConfirmPassword.Text.Trim();
+            string role = ddlRoles.SelectedValue;
+            string securityQuestion = txtSecurityQuestion.Text.Trim();
+            string securityAnswer = txtSecurityAnswer.Text.Trim();
 
-        //        if (isValidChange(username, password, confirmPassword, role))
-        //        {
-        //            try
-        //            {
-        //                string hashedPassword = HashText(password);
-        //                string hashedSQAnswer = HashText(securityAnswer);
+            if (isValidChange(username, password, confirmPassword, role))
+            {
+                try
+                {
+                    string hashedPassword = HashText(password);
+                    string hashedSQAnswer = HashText(securityAnswer);
 
-        //                // Insert into DB using DatabaseHelper
-        //                using (var conn = DatabaseHelper.OpenConnection())
-        //                using (var cmd = new SqlCommand(@"
-        //                            INSERT INTO tblUsers (Username, userPassword, userRole, userActiveStatus, SecurityQuestion, SecurityAnswer)
-        //                            VALUES (@Username, @Password, @Role, 1, @SecurityQuestion, @SecurityAnswer)", conn))
-        //                {
-        //                    cmd.Parameters.AddWithValue("@Username", username);
-        //                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-        //                    cmd.Parameters.AddWithValue("@Role", role);
-        //                    cmd.Parameters.AddWithValue("@SecurityQuestion", securityQuestion);
-        //                    cmd.Parameters.AddWithValue("@SecurityAnswer", hashedSQAnswer);
+                    // Insert into DB using DatabaseHelper
+                    using (var conn = DatabaseHelper.OpenConnection())
+                    using (var cmd = new SqlCommand(@"
+                                    INSERT INTO tblUsers (Username, userPassword, userRole, userActiveStatus, SecurityQuestion, SecurityAnswer)
+                                    VALUES (@Username, @Password, @Role, 1, @SecurityQuestion, @SecurityAnswer)", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                        cmd.Parameters.AddWithValue("@Role", role);
+                        cmd.Parameters.AddWithValue("@SecurityQuestion", securityQuestion);
+                        cmd.Parameters.AddWithValue("@SecurityAnswer", hashedSQAnswer);
 
-        //                    cmd.ExecuteNonQuery();
-        //                }
+                        cmd.ExecuteNonQuery();
+                    }
 
-        //                lblMessage.Text = "User registered successfully!";
-        //                LogUser(username);
-        //                SyncLogs();
+                    ShowAlert($"User registered successfully!");                   
+                    //LogUser(username);
+                    //SyncLogs();
 
-        //                ClearFields();
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                lblMessage.Text = "Error adding user: " + ex.Message;
-        //            }
-        //        }
-        //    }
+                    ClearFields();
+                }
+                catch (Exception ex)
+                {
+                    ShowAlert($"Error adding user: {ex.Message}");
+                }
+            }
+        }
 
         private string HashText(string input)
         {
@@ -85,55 +85,66 @@ namespace NitroTechWebsite
             return true;
         }
 
-        //    private bool isValidChange(string username, string newPassword, string confirmPassword, string role)
-        //    {
-        //        if (!isNullCheck())
-        //        {
-        //            lblMessage.Text = "Please fill in all fields.";
-        //            return false;
-        //        }
+        private bool isValidChange(string username, string newPassword, string confirmPassword, string role)
+        {
+            if (!isNullCheck())
+            {
+                ShowAlert($"Please fill in all fields.");
+                return false;
+            }
 
-        //        // Check if username exists
-        //        using (var conn = DatabaseHelper.OpenConnection())
-        //        using (var cmd = new SqlCommand("SELECT COUNT(*) FROM tblUsers WHERE Username=@Username", conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@Username", username);
-        //            int count = (int)cmd.ExecuteScalar();
-        //            if (count > 0)
-        //            {
-        //                lblMessage.Text = "That username is already taken.";
-        //                return false;
-        //            }
-        //        }
+            // Check if username exists
+            using (var conn = DatabaseHelper.OpenConnection())
+            using (var cmd = new SqlCommand("SELECT COUNT(*) FROM tblUsers WHERE Username=@Username", conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                int count = (int)cmd.ExecuteScalar();
+                if (count > 0)
+                {
+                    ShowAlert($"That username is already taken.");
 
-        //        if (!isValidPassword(newPassword, confirmPassword))
-        //        {
-        //            lblMessage.Text = "Invalid password. Must be at least 8 chars, contain a digit, special char, uppercase, and match confirm password.";
-        //            return false;
-        //        }
+                    return false;
+                }
+            }
 
-        //        return true;
-        //    }
+            if (!isValidPassword(newPassword, confirmPassword))
+            {
+                ShowAlert($"Invalid password. Must be at least 8 chars, contain a digit, special char, uppercase, and match confirm password.");
+                return false;
+            }
 
-        //    private bool isNullCheck()
-        //    {
-        //        return !(string.IsNullOrEmpty(txtUsername.Text) ||
-        //                 string.IsNullOrEmpty(txtPassword.Text) ||
-        //                 string.IsNullOrEmpty(txtSecurityQuestion.Text) ||
-        //                 string.IsNullOrEmpty(txtSecurityAnswer.Text) ||
-        //                 string.IsNullOrEmpty(txtConfirmPassword.Text) ||
-        //                 ddlRoles.SelectedIndex == -1);
-        //    }
+            return true;
+        }
 
-        //    private void ClearFields()
-        //    {
-        //        txtUsername.Text = "";
-        //        txtPassword.Text = "";
-        //        txtConfirmPassword.Text = "";
-        //        txtSecurityAnswer.Text = "";
-        //        txtSecurityQuestion.Text = "";
-        //        ddlRoles.SelectedIndex = -1;
-        //    }
+        private bool isNullCheck()
+        {
+            return !(string.IsNullOrEmpty(txtUsername.Text) ||
+                     string.IsNullOrEmpty(txtPassword.Text) ||
+                     string.IsNullOrEmpty(txtSecurityQuestion.Text) ||
+                     string.IsNullOrEmpty(txtSecurityAnswer.Text) ||
+                     string.IsNullOrEmpty(txtConfirmPassword.Text) ||
+                     ddlRoles.SelectedIndex == -1);
+        }
+
+        private void ClearFields()
+        {
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtConfirmPassword.Text = "";
+            txtSecurityAnswer.Text = "";
+            txtSecurityQuestion.Text = "";
+            ddlRoles.SelectedIndex = -1;
+        }
+
+        private void ShowAlert(string message)
+        {
+            ClientScript.RegisterStartupScript(
+                this.GetType(),
+                "alert",
+                $"alert('{message}');",
+                true
+            );
+        }
 
         //private void SyncLogs()
         //{
@@ -173,6 +184,7 @@ namespace NitroTechWebsite
             public string Username { get; set; }
             public string Action { get; set; }
         }
+
 
         //private void LogUser(string username)
         //{
