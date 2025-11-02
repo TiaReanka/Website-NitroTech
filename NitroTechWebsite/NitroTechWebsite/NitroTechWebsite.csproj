@@ -294,7 +294,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Invoices.aspx" />
-    <Content Include="Job Cards.aspx" />
     <Content Include="AddPart.aspx" />
     <Content Include="NewPassword.aspx" />
     <Content Include="Payments.aspx" />
@@ -446,13 +445,6 @@
     </Compile>
     <Compile Include="Invoices.aspx.designer.cs">
       <DependentUpon>Invoices.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Job Cards.aspx.cs">
-      <DependentUpon>Job Cards.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Job Cards.aspx.designer.cs">
-      <DependentUpon>Job Cards.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddPart.aspx.cs">
       <DependentUpon>AddPart.aspx</DependentUpon>

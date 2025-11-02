@@ -67,6 +67,11 @@ namespace NitroTechWebsite.Services
             //MigraDoc.DocumentObjectModel.Shapes.Image image = imagePara.AddImage(logoPath);
             //image.Height = "3cm";
             //image.LockAspectRatio = true;
+            string logoPath = System.Web.HttpContext.Current.Server.MapPath("~/Images/logo.jpg");
+
+            MigraDoc.DocumentObjectModel.Shapes.Image image = imagePara.AddImage(logoPath);
+            image.Height = "3cm";
+            image.LockAspectRatio = true;
 
             //Document Type
             var paragraph = section.AddParagraph();

@@ -66,10 +66,11 @@ namespace NitroTechWebsite.Services
             var rightCell = headerRow.Cells[1];
             Paragraph imagePara = rightCell.AddParagraph();
             imagePara.Format.Alignment = ParagraphAlignment.Right;
-            //string logoPath = Path.Combine(Application.StartupPath, "Resources", "Logo.jpeg");
-            //MigraDoc.DocumentObjectModel.Shapes.Image image = imagePara.AddImage(logoPath);
-            //image.Height = "3cm";
-            //image.LockAspectRatio = true;
+            string logoPath = System.Web.HttpContext.Current.Server.MapPath("~/Images/logo.jpg");
+
+            MigraDoc.DocumentObjectModel.Shapes.Image image = imagePara.AddImage(logoPath);
+            image.Height = "3cm";
+            image.LockAspectRatio = true;
 
             //Document Type
             var paragraph = section.AddParagraph();
