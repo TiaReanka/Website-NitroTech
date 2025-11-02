@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Parts" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReviewPart.aspx.cs" Inherits="NitroTechWebsite.ReviewPart" %>
 
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         .form-container {
@@ -92,10 +94,29 @@
                 
             </asp:DropDownList>
             <asp:Button ID="btnFind" runat="server" Text="Search" OnClick="btnFind_Click" Style="margin-left:15px;" />
+
+           
+        <cr:CrystalReportViewer 
+    ID="CrystalReportViewer1" 
+    runat="server" 
+    AutoDataBind="true"
+    Width="100%" 
+    Height="900px" 
+    ToolPanelView="None" />
+
+       
+
         </div>
 
         <div class="grid-container">
             <asp:GridView ID="PartsGrid" runat="server" AutoGenerateColumns="true" />
         </div>
+
+           
+
     </div>
+
+
+
+
 </asp:Content>

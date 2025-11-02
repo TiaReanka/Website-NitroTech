@@ -922,3 +922,4 @@ C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroT
 C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\EntityFramework.SqlServer.xml
 C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
 C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
+C:\Users\calvi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\CrystalDecisions.Web.dll

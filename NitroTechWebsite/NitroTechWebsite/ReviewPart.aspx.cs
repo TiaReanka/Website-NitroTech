@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Web;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -22,6 +24,7 @@ namespace NitroTechWebsite
             {
                 LoadPartsDropdown();
                 LoadAllParts();
+                LoadReport();
             }
         }
 
@@ -84,5 +87,46 @@ namespace NitroTechWebsite
                 LoadAllParts(); // If no part selected, show all
             }
         }
+
+        private void LoadReport()
+        {
+            string reportPath = Server.MapPath("~/PartsReport.rpt");
+
+            if (!System.IO.File.Exists(reportPath))
+                throw new Exception("Report not found at: " + reportPath);
+
+            ReportDocument rpt = new ReportDocument();
+            rpt.Load(reportPath);
+
+            Crystal ds = GetReportData();
+
+            if (ds.tblParts.Rows.Count == 0)
+            {
+                Response.Write("No parts found in the database.");
+                return;
+            }
+
+            rpt.SetDataSource(ds);
+
+            CrystalReportViewer1.ReportSource = rpt;
+            CrystalReportViewer1.DataBind();
+            CrystalReportViewer1.RefreshReport();
+        }
+
+        private Crystal GetReportData()
+        {
+            Crystal ds = new Crystal();
+
+            using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=WstGrp4;Persist Security Info=True;User ID=WstGrp4;Password=3d55d;Encrypt=True;TrustServerCertificate=True"))
+            {
+                con.Open();
+
+                SqlDataAdapter daParts = new SqlDataAdapter("SELECT * FROM tblParts", con);
+                daParts.Fill(ds, "tblParts"); // Must match DataTable name in Crystal.xsd
+            }
+
+            return ds;
+        }
+
     }
 }

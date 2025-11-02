@@ -54,6 +54,7 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -292,6 +293,17 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Crystal.xsc">
+      <DependentUpon>Crystal.xsd</DependentUpon>
+    </Content>
+    <None Include="Crystal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Crystal.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Crystal.xss">
+      <DependentUpon>Crystal.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Invoices.aspx" />
     <Content Include="AddPart.aspx" />
@@ -393,6 +405,11 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="CourierFontResolver.cs" />
+    <Compile Include="Crystal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Crystal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CustomerManage.aspx.cs">
       <DependentUpon>CustomerManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
