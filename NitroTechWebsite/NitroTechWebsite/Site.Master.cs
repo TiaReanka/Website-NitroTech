@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,6 +30,47 @@ namespace NitroTechWebsite
                 {
                     link.InnerText = "Forgot Password";
                 }
+
+                string role = Session["Role"]?.ToString() ?? "";
+
+                if (role.Equals("Director", StringComparison.OrdinalIgnoreCase) ||
+                    role.Equals("Manager", StringComparison.OrdinalIgnoreCase))
+                {
+                    // 1️⃣ Query for low stock parts using DatabaseHelper
+                    string sql = @"
+                    SELECT partName 
+                    FROM dbo.tblParts
+                    WHERE partReOrderLevel >= partQuantity;";
+
+                    DataTable lowStockParts = new DataTable();
+
+                    using (var conn = DatabaseHelper.OpenConnection())
+                    using (var cmd = new SqlCommand(sql, conn))
+                    using (var da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(lowStockParts);
+                    }
+
+                    // 2️⃣ If there are low stock parts, show a browser alert
+                    if (lowStockParts.Rows.Count > 0)
+                    {
+                        var partNames = lowStockParts.AsEnumerable()
+                                                     .Select(row => row.Field<string>("partName"))
+                                                     .ToList();
+
+                        string message = "The following parts are low in stock:\\n- " + string.Join("\\n- ", partNames);
+
+                        string script = $@"
+                        <script type='text/javascript'>
+                            setTimeout(function() {{
+                                alert('{message}');
+                            }}, 800);
+                        </script>";
+
+                       // ClientScript.RegisterStartupScript(this.GetType(), "LowStockAlert", script);
+                    }
+                }
+
             }
 
         }

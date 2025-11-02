@@ -33,24 +33,33 @@ namespace NitroTechWebsite
                 try
                 {
                     string hashedPassword = HashText(password);
-                    string hashedSQAnswer = HashText(securityAnswer);
 
                     // Insert into DB using DatabaseHelper
                     using (var conn = DatabaseHelper.OpenConnection())
                     using (var cmd = new SqlCommand(@"
-                                    INSERT INTO tblUsers (Username, userPassword, userRole, userActiveStatus, SecurityQuestion, SecurityAnswer)
+                                    INSERT INTO tblUsers (Username, userPassword, userRole, userActiveStatus, userSecurityQuestion, userSQAnswer)
                                     VALUES (@Username, @Password, @Role, 1, @SecurityQuestion, @SecurityAnswer)", conn))
                     {
                         cmd.Parameters.AddWithValue("@Username", username);
                         cmd.Parameters.AddWithValue("@Password", hashedPassword);
                         cmd.Parameters.AddWithValue("@Role", role);
                         cmd.Parameters.AddWithValue("@SecurityQuestion", securityQuestion);
-                        cmd.Parameters.AddWithValue("@SecurityAnswer", hashedSQAnswer);
+                        cmd.Parameters.AddWithValue("@SecurityAnswer", securityAnswer);
 
-                        cmd.ExecuteNonQuery();
+                        //cmd.ExecuteNonQuery();
+                        int rows = cmd.ExecuteNonQuery();
+                        if (rows > 0)
+                        {
+                            ShowAlert("User registered successfully!");
+                            ClearFields();
+                        }
+                        else
+                        {
+                            ShowAlert("No rows inserted. Check your database connection.");
+                        }
                     }
 
-                    ShowAlert($"User registered successfully!");                   
+                    
                     //LogUser(username);
                     //SyncLogs();
 
@@ -60,6 +69,10 @@ namespace NitroTechWebsite
                 {
                     ShowAlert($"Error adding user: {ex.Message}");
                 }
+            }
+            else
+            {
+                ShowAlert($"Problem!");
             }
         }
 
@@ -89,7 +102,13 @@ namespace NitroTechWebsite
         {
             if (!isNullCheck())
             {
-                ShowAlert($"Please fill in all fields.");
+                ShowAlert("Please fill in all fields.");
+                return false;
+            }
+
+            if (!isValidPassword(newPassword, confirmPassword))
+            {
+                ShowAlert($"Invalid password. Must be at least 8 chars, contain a digit, special char, uppercase, and match confirm password.");
                 return false;
             }
 
@@ -107,11 +126,7 @@ namespace NitroTechWebsite
                 }
             }
 
-            if (!isValidPassword(newPassword, confirmPassword))
-            {
-                ShowAlert($"Invalid password. Must be at least 8 chars, contain a digit, special char, uppercase, and match confirm password.");
-                return false;
-            }
+            
 
             return true;
         }
@@ -119,11 +134,11 @@ namespace NitroTechWebsite
         private bool isNullCheck()
         {
             return !(string.IsNullOrEmpty(txtUsername.Text) ||
-                     string.IsNullOrEmpty(txtPassword.Text) ||
-                     string.IsNullOrEmpty(txtSecurityQuestion.Text) ||
-                     string.IsNullOrEmpty(txtSecurityAnswer.Text) ||
-                     string.IsNullOrEmpty(txtConfirmPassword.Text) ||
-                     ddlRoles.SelectedIndex == -1);
+             string.IsNullOrEmpty(txtPassword.Text) ||
+             string.IsNullOrEmpty(txtConfirmPassword.Text) ||
+             string.IsNullOrEmpty(txtSecurityQuestion.Text) ||
+             string.IsNullOrEmpty(txtSecurityAnswer.Text) ||
+             ddlRoles.SelectedIndex == 0);
         }
 
         private void ClearFields()
@@ -133,13 +148,13 @@ namespace NitroTechWebsite
             txtConfirmPassword.Text = "";
             txtSecurityAnswer.Text = "";
             txtSecurityQuestion.Text = "";
-            ddlRoles.SelectedIndex = -1;
+            ddlRoles.SelectedIndex = 0;
         }
 
         private void ShowAlert(string message)
         {
-            ClientScript.RegisterStartupScript(
-                this.GetType(),
+
+                ScriptManager.RegisterStartupScript(this, GetType(),
                 "alert",
                 $"alert('{message}');",
                 true

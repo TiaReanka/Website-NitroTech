@@ -60,12 +60,26 @@ public class ChatbotController : ApiController
 
             // Customers
             if (((userMessage.Contains("update")) || (userMessage.Contains("change"))) && ((userMessage.Contains("details")) || (userMessage.Contains("information"))) && ((userMessage.Contains("customers")) || (userMessage.Contains("customer")))) return "Click on Customers in the top menu, then select Update Customer Details from the dropdown.";
-            if ((userMessage.Contains("transfer")) && (((userMessage.Contains("vehicle"))) || ((userMessage.Contains("vehicle"))))) return "Click on Customers in the top menu, then select Transfer Vehicles from the dropdown.";
+            if ((userMessage.Contains("transfer")) && (((userMessage.Contains("vehicle"))) || ((userMessage.Contains("vehicles"))))) return "Click on Customers in the top menu, then select Transfer Vehicles from the dropdown.";
             if ((userMessage.Contains("customers")) || (userMessage.Contains("customer")))
             {
                 state["expecting"] = "customers";
                 return "What would you like to see under Customers? (Update Customer Details, Transfer Vehicles)";
             }
+
+            // Reporting options
+            if (((userMessage.Contains("parts")) || (userMessage.Contains("report"))) || ((userMessage.Contains("crystal")) || (userMessage.Contains("reports"))))
+                return "Go to Review Parts Report and Find the Download button to view the Parts Report via Crystal Reports.";
+
+            if (((userMessage.Contains("analysis")) || (userMessage.Contains("data")) || (userMessage.Contains("dashboard"))) ||((userMessage.Contains("powerbi")) || (userMessage.Contains("power bi"))))
+                return "Click on PowerBI in the top menu to view the Analysis Dashboard.";
+
+            if ((userMessage.Contains("reporting")) || (userMessage.Contains("report")))
+            {
+                state["expecting"] = "reporting";
+                return "What would you like to see under Reporting? (Crystal Reports, Power BI Reports)";
+            }
+
 
             // Payments
             if ((userMessage.Contains("payment")) || (userMessage.Contains("payments"))) return "Click on Payments in the top menu to access payment options.";
@@ -95,7 +109,7 @@ public class ChatbotController : ApiController
             if (userMessage.Contains("about")) return "Click on About in the top menu to view more information about NitroTech.";
 
             // Feedback
-            if (userMessage.Contains("feedback")) return "Click on Feedback in the top menu to share your feedback to the developers.";
+            if ((userMessage.Contains("feedback")) || (userMessage.Contains("contact"))) return "Click on Feedback in the top menu to share your feedback to the developers.";
 
             // If no target found, ask follow-up
             state["expecting"] = "navigate";
@@ -121,6 +135,81 @@ public class ChatbotController : ApiController
             if ((userMessage.Contains("invoices")) || (userMessage.Contains("invoice")))
             {
                 return "This tab allows the user to select a quotation from the drop down list(the options are all jobs that have been closed aka. Finished). They are prompted to confirm their selection and thereafter can generate an invoice based on the selected quotation. Once the invoice is generated, it adds the amount to what the customer owes.";
+            }
+            if ((userMessage.Contains("generate")) && (userMessage.Contains("statement")))
+            {
+                return "The Generate Statement page lets you produce a financial summary for a customer. The statement aggregates invoices, payments, and costs for the past month, generating a statement number and showing a confirmation message once complete.";
+            }
+            if ((userMessage.Contains("review")) && (userMessage.Contains("statement")))
+            {
+                return "The Review Statements page lets you enter a customer ID to view all statements associated with that customer. The statements are displayed in a grid format for easy reference.";
+            }
+            if (((userMessage.Contains("update")) || (userMessage.Contains("change"))) &&
+    ((userMessage.Contains("details")) || (userMessage.Contains("information"))))
+            {
+                return "The Update Customer Details page allows you to modify a customer’s personal or contact information. Simply enter their ID, edit the details, and save the changes.";
+            }
+            if ((userMessage.Contains("transfer")) && (userMessage.Contains("vehicle")))
+            {
+                return "The Transfer Vehicles page lets you move a vehicle record from one customer to another. Enter both customer IDs and select the vehicle to complete the transfer.";
+            }
+            if ((userMessage.Contains("add")) && (userMessage.Contains("part")))
+            {
+                return "The Add Part page is used to add new parts into the system. You’ll enter the part number, name, description, and stock quantity before saving.";
+            }
+            if ((userMessage.Contains("update")) && (userMessage.Contains("part")))
+            {
+                return "The Update Part Levels page allows you to modify stock levels or other details for existing parts.";
+            }
+            if (((userMessage.Contains("review")) || (userMessage.Contains("history"))) && (userMessage.Contains("part")))
+            {
+                return "The Review Parts History page displays a list of parts used in quotations or jobs, along with historical data on quantities used and stock updates.";
+            }
+            if ((userMessage.Contains("payment")) || (userMessage.Contains("payments")))
+            {
+                return "The Payments page allows you to view, process, and record customer payments. Payments made here reduce the customer’s outstanding balance and are reflected in their statements.";
+            }
+            if ((userMessage.Contains("create")) && (userMessage.Contains("account")))
+            {
+                return "The Create Account page allows administrators to register new users. You’ll enter a username, password, and select a role before saving.";
+            }
+            if ((userMessage.Contains("archive")) && (userMessage.Contains("user")))
+            {
+                return "The Archive User page allows you to deactivate users who no longer need system access, while retaining their historical data.";
+            }
+            if ((userMessage.Contains("reset")) && (userMessage.Contains("password")))
+            {
+                return "The Reset Password page enables you to reset or change your login credentials. You can do this within your account settings or through the login screen via the 'Forgot Password' link.";
+            }
+            if ((userMessage.Contains("logout")) || (userMessage.Contains("log out")) || (userMessage.Contains("log off")))
+            {
+                return "Logging out ends your current session and returns you to the login page. It’s recommended to log out after each use for security.";
+            }
+            if (((userMessage.Contains("crystal")) || (userMessage.Contains("reports")) || (userMessage.Contains("parts"))))
+            {
+                return "The Crystal Reports page provides printable report, the Parts Report. You can view and export structured data summaries in PDF format for record-keeping.";
+            }
+            if ((userMessage.Contains("powerbi")) || (userMessage.Contains("power bi")) ||
+                (userMessage.Contains("analysis")) || (userMessage.Contains("dashboard")) || (userMessage.Contains("data")))
+            {
+                return "The Power BI Reports page offers dashboards and analytics visualizations, helping you monitor key business metrics like quotation nuumbers over the past month, payments, and active jobs.";
+            }
+            if (userMessage.Contains("about"))
+            {
+                return "The About page contains information about NitroTech, its mission, and development team.";
+            }
+            if ((userMessage.Contains("feedback")) || (userMessage.Contains("contact")))
+            {
+                return "The Feedback page allows you to submit comments or issues directly to the NitroTech development team.";
+
+            }
+            if (userMessage.Contains("profile"))
+            {
+                return "The Profile icon shows your account details, including username and role, which dictate permissions within the NitroTech system.";
+            }
+            if (userMessage.Contains("home"))
+            {
+                return "The Home Page provides an overview of your current session and shortcuts to all major sections of the system.";
             }
             state["expecting"] = "explain";
             return "Sure, where would you like to know or learn about?";
@@ -161,17 +250,6 @@ public class ChatbotController : ApiController
             return "What do you want to know about football?";
         }
 
-        // Direct contact commands in the same message
-        if (userMessage.Contains("contact"))
-        {
-            if (userMessage.Contains("support")) return "You can reach support at support@pain.com";
-            if (userMessage.Contains("sales")) return "Sales team: sales@pain.com";
-            if (userMessage.Contains("office")) return "Our office is at 123 Calvin is tired Street, City.";
-
-            // If no target found, ask follow-up
-            state["expecting"] = "contact";
-            return "Who would you like to contact? (Support / Sales / Office)";
-        }
 
         // Direct help commands in the same message
         if (userMessage.Contains("help") || userMessage.Contains("assistance"))
@@ -226,9 +304,30 @@ public class ChatbotController : ApiController
                     state["expecting"] = "account";
                     return "What would you like to see under Account? (Create an Account, Archive User, Reset Password, Logout)";
                 }
+                if ((userMessage.Contains("reporting")) || (userMessage.Contains("report")))
+                {
+                    state["expecting"] = "reporting";
+                    return "What would you like to see under Reporting? (Crystal Reports, PowerBI)";
+                }
 
                 return "I didn’t recognize that page. Try one of our services instead!";
             }
+            else if (expecting == "reporting")
+            {
+                // Crystal Reports options
+                if ((userMessage.Contains("crystal")) ||
+                    (userMessage.Contains("reports")) || (userMessage.Contains("parts")))
+                    return "Click on Review Parts Report in the top menu, then select Download Report to view the Parts Report via Crystal Reports.";
+
+                // Power BI options
+                if ((userMessage.Contains("powerbi")) || (userMessage.Contains("power bi")) ||
+                    (userMessage.Contains("analysis")) || (userMessage.Contains("dashboard")) || (userMessage.Contains("data")))
+                    return "Click on Power BI in the top menu to view the Analysis Dashboard.";
+
+                // Default fallback if the user didn’t specify which one
+                return "Please choose what you'd like to see under Reporting (Crystal Reports or Power BI Reports).";
+            }
+
             else if (expecting == "quotations")
             {
                 if ((userMessage.Contains("generate")) || ((userMessage.Contains("add"))) || (userMessage.Contains("create"))) return "Click on Quotations in the top menu, then select Generate Quotation from the dropdown.";
@@ -335,8 +434,86 @@ public class ChatbotController : ApiController
                 {
                     return "This tab allows the user to select a quotation from the drop down list(the options are all jobs that have been closed aka. Finished). They are prompted to confirm their selection and thereafter can generate an invoice based on the selected quotation. Once the invoice is generated, it adds the amount to what the customer owes.";
                 }
+                if ((userMessage.Contains("generate")) && (userMessage.Contains("statement")))
+                {
+                    return "The Generate Statement page lets you produce a financial summary for a customer. The statement aggregates invoices, payments, and costs for the past month, generating a statement number and showing a confirmation message once complete.";
+                }
+                if ((userMessage.Contains("review")) && (userMessage.Contains("statement")))
+                {
+                    return "The Review Statements page lets you enter a customer ID to view all statements associated with that customer. The statements are displayed in a grid format for easy reference.";
+                }
+                if (((userMessage.Contains("update")) || (userMessage.Contains("change"))) &&
+        ((userMessage.Contains("details")) || (userMessage.Contains("information"))))
+                {
+                    return "The Update Customer Details page allows you to modify a customer’s personal or contact information. Simply enter their ID, edit the details, and save the changes.";
+                }
+                if ((userMessage.Contains("transfer")) && (userMessage.Contains("vehicle")))
+                {
+                    return "The Transfer Vehicles page lets you move a vehicle record from one customer to another. Enter both customer IDs and select the vehicle to complete the transfer.";
+                }
+                if ((userMessage.Contains("add")) && (userMessage.Contains("part")))
+                {
+                    return "The Add Part page is used to add new parts into the system. You’ll enter the part number, name, description, and stock quantity before saving.";
+                }
+                if ((userMessage.Contains("update")) && (userMessage.Contains("part")))
+                {
+                    return "The Update Part Levels page allows you to modify stock levels or other details for existing parts.";
+                }
+                if (((userMessage.Contains("review")) || (userMessage.Contains("history"))) && (userMessage.Contains("part")))
+                {
+                    return "The Review Parts History page displays a list of parts used in quotations or jobs, along with historical data on quantities used and stock updates.";
+                }
+                if ((userMessage.Contains("payment")) || (userMessage.Contains("payments")))
+                {
+                    return "The Payments page allows you to view, process, and record customer payments. Payments made here reduce the customer’s outstanding balance and are reflected in their statements.";
+                }
+                if ((userMessage.Contains("create")) && (userMessage.Contains("account")))
+                {
+                    return "The Create Account page allows administrators to register new users. You’ll enter a username, password, and select a role before saving.";
+                }
+                if ((userMessage.Contains("archive")) && (userMessage.Contains("user")))
+                {
+                    return "The Archive User page allows you to deactivate users who no longer need system access, while retaining their historical data.";
+                }
+                if ((userMessage.Contains("reset")) && (userMessage.Contains("password")))
+                {
+                    return "The Reset Password page enables you to reset or change your login credentials. You can do this within your account settings or through the login screen via the 'Forgot Password' link.";
+                }
+                if ((userMessage.Contains("logout")) || (userMessage.Contains("log out")) || (userMessage.Contains("log off")))
+                {
+                    return "Logging out ends your current session and returns you to the login page. It’s recommended to log out after each use for security.";
+                }
+                if (((userMessage.Contains("crystal")) || (userMessage.Contains("reports")) || (userMessage.Contains("parts"))))
+                {
+                    return "The Crystal Reports page provides printable report, the Parts Report. You can view and export structured data summaries in PDF format for record-keeping.";
+                }
+                if ((userMessage.Contains("powerbi")) || (userMessage.Contains("power bi")) ||
+                    (userMessage.Contains("analysis")) || (userMessage.Contains("dashboard")) || (userMessage.Contains("data")))
+                {
+                    return "The Power BI Reports page offers dashboards and analytics visualizations, helping you monitor key business metrics like quotation nuumbers over the past month, payments, and active jobs.";
+                }
+                if (userMessage.Contains("about"))
+                {
+                    return "The About page contains information about NitroTech, its mission, and development team.";
+                }
+                if ((userMessage.Contains("feedback")) || (userMessage.Contains("contact")))
+                {
+                    return "The Feedback page allows you to submit comments or issues directly to the NitroTech development team.";
+
+                }
+                if (userMessage.Contains("profile"))
+                {
+                    return "The Profile icon shows your account details, including username and role, which dictate permissions within the NitroTech system.";
+                }
+                if (userMessage.Contains("home"))
+                {
+                    return "The Home Page provides an overview of your current session and shortcuts to all major sections of the system.";
+                }
                 return "Please specify what you want to know or learn about.";
             }
+
+            
+
         }
 
         // Custom phrases
