@@ -33,6 +33,27 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.Button btnFind;
 
         /// <summary>
+<<<<<<< Updated upstream
+=======
+        /// btnReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReport;
+
+        /// <summary>
+        /// CrystalReportViewer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CrystalDecisions.Web.CrystalReportViewer CrystalReportViewer1;
+
+        /// <summary>
+>>>>>>> Stashed changes
         /// PartsGrid control.
         /// </summary>
         /// <remarks>

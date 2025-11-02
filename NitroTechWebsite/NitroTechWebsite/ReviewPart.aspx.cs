@@ -22,6 +22,8 @@ namespace NitroTechWebsite
             {
                 LoadPartsDropdown();
                 LoadAllParts();
+                LoadDataset();
+                
             }
         }
 
@@ -83,6 +85,11 @@ namespace NitroTechWebsite
             {
                 LoadAllParts(); // If no part selected, show all
             }
+        }
+
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            DisplayReport();
         }
     }
 }

@@ -946,3 +946,4 @@ C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroT
 C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\roslyn\VBCSCompiler.exe
 C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\obj\Debug\NitroTec.C1FEC9F3.Up2Date
+C:\Users\tiadi\OneDrive\Documents\GitHub\ISTN3SI-Project\NitroTechWebsite\NitroTechWebsite\bin\CrystalDecisions.Web.dll
