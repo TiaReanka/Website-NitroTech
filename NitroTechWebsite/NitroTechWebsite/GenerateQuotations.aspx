@@ -54,9 +54,14 @@ Inherits="NitroTechWebsite.Quotations" %>
         .faults-summary textarea { width: 100%; box-sizing: border-box; resize: none; }
 
         .button-row { display: flex; justify-content: space-between; gap: 10px; margin-top: 15px; }
-        .btn-generate { display: block; margin: 15px 0; padding: 12px 25px; font-size: 16px; border-radius: 6px; background: #1a2db9; color: white; border: none; cursor: pointer; }
-        .btn-generate:hover { background: purple; }
-    </style>  
+        .btn-generate { display: block; margin: 15px 0; padding: 12px 25px; font-size: 16px; border-radius: 6px; background: #3c00a0; color: white; border: none; cursor: pointer; }
+            .btn-generate:hover {
+                background-color: #3c00a0;
+                color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+            }
+    </style>
 
     <div class="form-container">
         <h2>Generate Quotation</h2>

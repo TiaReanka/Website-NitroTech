@@ -54,18 +54,24 @@
             max-width: 600px;
             margin: 20px auto;
             padding: 12px;
-            background-color: purple;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            background: transparent;
+            border: 2px solid #3c00a0;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .form-container button:hover, .form-container input[type="submit"]:hover, 
-        .form-container input[type="button"]:hover, .form-container .aspNetButton:hover {
-            background-color: #1a2db9;
-        }
+            .form-container button:hover, .form-container input[type="submit"]:hover,
+            .form-container input[type="button"]:hover, .form-container .aspNetButton:hover {
+                background-color: #3c00a0;
+                color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+            }
 
         .section-title {
             margin-top: 30px;

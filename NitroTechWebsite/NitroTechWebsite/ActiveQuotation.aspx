@@ -50,18 +50,23 @@
             max-width: 200px; 
             margin: 20px auto; 
             padding: 14px; 
-            background-color: #1a2db9; 
+            background: transparent; 
             color: white; 
             border: none; 
             border-radius: 8px; 
             cursor: pointer; 
-            font-size: 17px; 
-        } 
- 
-        .form-container button:hover, 
-        .btn:hover { 
-            background-color: purple; 
-        } 
+            font-size: 17px;
+            border: 2px solid #3c00a0;
+            border-radius: 5px;
+        }
+
+            .form-container button:hover,
+            .btn:hover {
+                background-color: #3c00a0;
+                color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+            } 
 
         .gridview { 
             width: 90%; 

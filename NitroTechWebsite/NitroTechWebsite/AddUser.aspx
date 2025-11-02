@@ -44,19 +44,24 @@
         .form-container button {
             display: block;
             max-width: 600px;
-            margin: 20px auto;      
+            margin: 20px auto;
             padding: 12px;
-            background-color: #1a2db9;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            background: transparent;
+            border: 2px solid #3c00a0;
+            border-radius: 5px;
         }
 
-        .form-container button:hover {
-            background-color: purple;
-        }
+            .form-container button:hover {
+                background-color: #3c00a0;
+                color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+            }
 
         .text-align { 
             font-weight: bold;
@@ -82,6 +87,7 @@
         .form-group select option[value=""] {
             color: gray;
         }
+        </style>    
 
 
     <div class="form-container">

@@ -41,7 +41,7 @@
         }
 
         .form-container button {
-            text-align: center;   /* center the anchor inside */
+            text-align: center;  
             margin: 20px auto;
             padding: 10px 20px;
             color: #3c00a0;
@@ -53,15 +53,15 @@
             margin-top: 20px;
             letter-spacing: 4px;
             line-height: 20px;
-            width: 15%;             /* stretch across the form */
-            display: flex;           /* use flexbox */
-            justify-content: center; /* center child horizontally */
+            width: 15%;             
+            display: flex;        
+            justify-content: center; 
             margin-top: 20px;
         }
 
         .btn1 {
             display: flex;
-            justify-content: center; /* center horizontally */
+            justify-content: center; 
             margin-top: 20px;
         }
 

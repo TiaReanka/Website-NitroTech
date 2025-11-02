@@ -43,7 +43,7 @@
             }
 
         .btn1 a {
-            text-align: center;   /* center the anchor inside */
+            text-align: center;
             margin: 20px auto;
             padding: 10px 20px;
             color: #3c00a0;
@@ -55,11 +55,14 @@
             margin-top: 20px;
             letter-spacing: 4px;
             line-height: 20px;
-            width: 15%;             /* stretch across the form */
-            display: flex;           /* use flexbox */
-            justify-content: center; /* center child horizontally */
-            margin-top: 20px;  
+            width: 15%; 
+            display: flex; 
+            justify-content: center; 
+            margin-top: 20px;
+            border: 2px solid #3c00a0;
+            border-radius: 5px;
         }
+            
 
         .btn1 a:hover {
             background-color: #3c00a0;
@@ -95,7 +98,7 @@
         </div>
 
         <div class="btn1">
-            <a href="#" onclick="document.forms[0].submit(); return false;">Login</a>
+            <a href="#" style="color:white" onclick="document.forms[0].submit(); return false;">Login</a>
         </div>
 
         <div class="text-align">

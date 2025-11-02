@@ -40,7 +40,7 @@ namespace NitroTechWebsite
                 cmbSearch.DataBind();
 
                 // Add default placeholder again
-                cmbSearch.Items.Insert(0, new ListItem("-- Select Name of Part --", ""));
+                cmbSearch.Items.Insert(0, new ListItem("-- All Parts --", ""));
             }
         }
 

@@ -92,7 +92,6 @@
         <h2 style="text-align:center;"><%: Title %></h2>
         <h3 style="text-align:center;">Update Part</h3>
 
-        <!-- hidden field for active tab -->
         <asp:HiddenField ID="ActiveTab" runat="server" />
 
         <ul class="nav nav-tabs" id="partTabs" role="tablist">
@@ -105,7 +104,7 @@
         </ul>
 
         <div class="tab-content" style="margin-top:20px;">
-            <!-- Tab 1: Increase -->
+            
             <div class="tab-pane fade in active" id="tab1">
                 <div class="form-group">
                     <label for="partNameInc">Name of Part:</label>
@@ -124,7 +123,6 @@
                 <asp:Label ID="lblMessageInc" runat="server" CssClass="message"></asp:Label>
             </div>
 
-            <!-- Tab 2: Decrease -->
             <div class="tab-pane fade" id="tab2">
                 <div class="form-group">
                     <label for="partNameDec">Name of Part:</label>
@@ -146,14 +144,13 @@
     </div>
 
     <script>
-        // Save the selected tab before postback
+        
         $(function () {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 var activeTab = $(e.target).attr("href");
                 $('#<%= ActiveTab.ClientID %>').val(activeTab);
             });
 
-            // Restore the selected tab after postback
             var selectedTab = $('#<%= ActiveTab.ClientID %>').val();
             if (selectedTab) {
                 $('#partTabs a[href="' + selectedTab + '"]').tab('show');
