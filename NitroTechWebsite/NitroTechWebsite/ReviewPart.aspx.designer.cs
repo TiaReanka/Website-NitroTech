@@ -34,7 +34,10 @@ namespace NitroTechWebsite
 
         /// <summary>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         /// btnReport control.
         /// </summary>
         /// <remarks>

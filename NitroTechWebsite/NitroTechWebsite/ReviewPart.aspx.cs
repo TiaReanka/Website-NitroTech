@@ -91,5 +91,10 @@ namespace NitroTechWebsite
         {
             DisplayReport();
         }
+
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            DisplayReport();
+        }
     }
 }
