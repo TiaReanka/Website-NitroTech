@@ -26,8 +26,8 @@ namespace NitroTechWebsite
             {
                 LoadPartsDropdown();
                 LoadAllParts();
-                LoadDataset();
-                DisplayReport();
+                
+                
             }
         }
 
@@ -211,6 +211,12 @@ namespace NitroTechWebsite
                 $"alert('{message}');",
                 true
             );
+        }
+
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            LoadDataset();
+            DisplayReport();
         }
     }
 }
