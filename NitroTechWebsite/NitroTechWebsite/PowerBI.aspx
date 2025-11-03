@@ -23,7 +23,7 @@
 
   <div class="powerbi-container">
     <iframe title="NitroTechV3"
-      src="https://app.powerbi.com/view?r=eyJrIjoiYjRjYjU2NjYtMDUwZS00ZmQ3LWIxMzQtMzUxYzExMDQ1ZDU1IiwidCI6IjIyNjgyN2Q2LWE5ZDAtNDcwZC04YzE1LWIxNDZiMDE5MmQ1MSIsImMiOjh9&pageName=e973eb489fdf8cf01fc3"
+      src="https://app.powerbi.com/view?r=eyJrIjoiNmQ3M2JmYTAtYmZkYS00MWRjLThmMGEtOGFlNzE3N2Y5MzllIiwidCI6IjIyNjgyN2Q2LWE5ZDAtNDcwZC04YzE1LWIxNDZiMDE5MmQ1MSIsImMiOjh9"
       allowFullScreen>
     </iframe>
   </div>
