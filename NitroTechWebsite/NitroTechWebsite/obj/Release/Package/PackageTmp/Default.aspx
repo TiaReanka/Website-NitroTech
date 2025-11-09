@@ -1,0 +1,166 @@
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" 
+AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NitroTechWebsite._Default" 
+%> 
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <!-- Hidden audio -->
+    <audio id="introAudio" preload="auto">
+        <source src='<%= ResolveUrl("~/Audio/Ferrari V12 sound start up.mp3") %>' type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+
+   <style>
+        body, form {
+            margin: 0;
+            padding: 0;
+        }
+
+        .divider {
+            border: 0;
+            height: 2px;
+            background-color: white;
+            margin: 0 auto 30px auto;
+            width: 80%;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-box {
+    border: 2px solid white;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.3),
+                inset -2px -2px 5px rgba(255,255,255,0.2),
+                inset 2px 2px 5px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    /* Top header spacing */
+    margin: 66px auto 30px auto;
+    padding: 15px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;  /* This is the key change */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    color: white;
+}
+        .fade-box h1 {
+            margin: 0;
+            font-size: 50px;
+            white-space: nowrap;
+        }
+
+        .fade-box img {
+            height: 60px;
+            margin-left: 20px;
+        }
+
+        .fade-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tagline {
+            font-size: 20px;       /* small tagline */
+            margin: 0;       /* space under the H1 */
+            font-weight: normal;   /* not bold */
+            color: white;           /* optional softer color */
+        }
+
+        .tagline-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+    </style>
+
+  
+
+    <!-- Top rectangle header -->
+   <div class="fade-box" id="clickableBox">
+    <h1>Welcome To The JAE Online System</h1>
+    <div class="tagline-row">
+        <p class="tagline">Powered by NitroTech</p>
+        <img src='<%= ResolveUrl("~/Images/Made with insMind-Logo.png") %>' alt="Logo" />
+    </div>
+</div>
+
+    <div class="content-wrapper">
+        <!-- Horizontal white line separator -->
+        <hr class="divider" />
+
+        <!-- Banner image -->
+        <div style="display: flex; justify-content: center; margin-bottom: 30px;" class="fade-on-scroll">
+            <img src='<%= ResolveUrl("~/Images/bannerNew.jpg") %>' alt="Banner" style="max-width: 70%; height: auto;" />
+        </div>
+
+        <!-- Bottom paragraph -->
+        <div style="display: flex; justify-content: center; align-items: flex-start; padding-top: 20px; text-align: center;">
+            <div style="max-width: 80%;" class="fade-on-scroll">
+                <p style="font-size: 20px; color: white; margin-top: 20px;">
+                   Driven by Workmanship, Powered by Performance, Perfected in Efficiency.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade-in paragraph on scroll
+        document.addEventListener("DOMContentLoaded", () => {
+            const elements = document.querySelectorAll('.fade-on-scroll');
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            elements.forEach(el => observer.observe(el));
+        });
+
+        // Play audio on first click anywhere
+        document.addEventListener("DOMContentLoaded", () => {
+            const audio = document.getElementById("introAudio");
+            const box = document.getElementById("clickableBox");
+
+            document.addEventListener("click", function playAudio() {
+                audio.play().catch(err => console.log("Audio blocked:", err));
+
+                // Subtle bounce for the header
+                box.animate([
+                    { transform: 'scale(1)' },
+                    { transform: 'scale(0.97)' },
+                    { transform: 'scale(1)' }
+                ], {
+                    duration: 300,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
+
+                // Remove listener after first click
+                document.removeEventListener("click", playAudio);
+            }, { once: true });
+        });
+    </script>
+
+</asp:Content>
+
+

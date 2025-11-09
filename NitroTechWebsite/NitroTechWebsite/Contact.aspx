@@ -67,7 +67,7 @@
       <label for="txtFeedback">Your Feedback:</label>
       <asp:TextBox ID="txtFeedback" runat="server" TextMode="MultiLine" 
         placeholder="Type your feedback here..." 
-        style="color:black; background-color:white; width:100%; height:150px; padding:12px; border-radius:8px; border:1px solid #ccc;" />
+        style="color:black; background-color:white; width:100%; height:150px; padding:12px; border-radius:8px; border:1px solid #ccc;" OnTextChanged="txtFeedback_TextChanged" />
     </div>
 
 

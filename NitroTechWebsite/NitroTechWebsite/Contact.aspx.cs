@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Cmp;
+using System;
 using System.Net;
 using System.Net.Mail;
 using System.Web.UI;
@@ -22,45 +23,42 @@ namespace NitroTechWebsite
                 return;
             }
 
-            try
-            {
-                // --- Outlook account details ---
-                string fromEmail = "autoengineeringfeedback@outlook.com"; // sender Outlook email
-                string fromPassword = "Engineering4"; // or App Password
-                string toEmail = "tiarnaidoo2003@gmail.com";  // recipient
 
-                using (MailMessage mail = new MailMessage())
+            string fromAddress = "zanitrotech@gmail.com";
+            string toEmail = "tiarnaidoo2003@gmail.com";  // recipient
+            string fromPassword = "JuiceEminem#"; // Use the 16-character app password that is obtained from your Google Security settings
+            var smtpClient = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toEmail)
+            {
+                Subject = "Test Message from Google Mail Server",
+                Body = $"A new feedback has been submitted:\n\n{feedback}",
+                IsBodyHtml = true // Set to true if sending HTML content
+            })
+                try
                 {
-                    mail.From = new MailAddress(fromEmail);
-                    mail.To.Add(toEmail);
-                    mail.Subject = "New Feedback Submitted";
-                    mail.Body = $"A new feedback has been submitted:\n\n{feedback}";
-
-                    using (SmtpClient smtp = new SmtpClient("smtp.office365.com", 587))
-                    {
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(fromEmail, fromPassword);
-                        smtp.EnableSsl = true;
-                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-                        smtp.Send(mail);
-                    }
+                    smtpClient.Send(message);
+                    txtFeedback.Text = ""; // clear box
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "success",
+                        "alert('✔ Thank you for your feedback! Your message has been sent.');", true);
                 }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error",
+    $"alert('❌ General Error sending feedback: {ex.Message}');", true);
+                }
+        }
 
-                txtFeedback.Text = ""; // clear box
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "success",
-                    "alert('✔ Thank you for your feedback! Your message has been sent.');", true);
-            }
-            catch (SmtpException smtpEx)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error",
-                    $"alert('❌ SMTP Error sending feedback: {smtpEx.Message}');", true);
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error",
-                    $"alert('❌ General Error sending feedback: {ex.Message}');", true);
-            }
+        protected void txtFeedback_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

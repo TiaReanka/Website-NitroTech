@@ -1,0 +1,413 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="NitroTechWebsite.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - NitroTech Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to right, purple, #1a2db9);
+            color: white;
+        }
+        .navbar-nav.navbar-right img {
+            vertical-align: middle;
+        }
+        /* Optional: white background for dropdown */
+        .navbar-nav .dropdown-menu {
+            background-color: white;
+        }
+
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 55px;
+            height: 55px;
+            background-color: #0078d7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.2s ease;
+            overflow: hidden; /* keeps image inside circle */
+        }
+
+            #chatbot-toggle img {
+                width: 110%;
+                height: 110%;
+                object-fit: contain;
+            }
+
+            #chatbot-toggle:hover {
+                transform: scale(1.1);
+                background-color: #005fa3;
+            }
+
+
+
+        #chatbot-greeting {
+            position: fixed;
+            bottom: 90px; /* just above robot */
+            left: 80px; /* to the right of robot */
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-size: 14px;
+            display: none; /* hidden until login */
+            z-index: 1000;
+            animation: fadeInOut 5s forwards;
+            color: black;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
+
+        /* Chatbot Panel */
+        #chatbot-panel {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        #chatbot-header {
+            background: #0078d7;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        #chatbot-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+            #chatbot-input input {
+                flex: 1;
+                border: none;
+                padding: 10px;
+                outline: none;
+                color: black; /* <-- Add this line */
+            }
+
+            #chatbot-input button {
+                background: #0078d7;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                cursor: pointer;
+            }
+
+        #chatbot-messages div {
+            color: black; /* Make messages visible */
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+
+            #chatbot-messages div.user-message {
+                font-weight: bold; /* Optional: distinguish user messages */
+                color: #0078d7; /* Blue for user messages */
+            }
+
+            #chatbot-messages div.bot-message {
+                color: black; /* Bot messages */
+            }
+
+        
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">NitroTech</a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <!-- Left Menu -->
+                    <ul class="nav navbar-nav">
+                        <!--Quotations-->
+                        <li id="liQuotations" runat="server" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Quotations <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li id="liGenerateQuotation" runat="server"><a runat="server" href="~/GenerateQuotations">Generate Quotation</a></li>
+                                <li id="liActiveQuotation" runat="server"><a runat="server" href="~/ActiveQuotation">Active Quotation</a></li>
+                                <li id="liReviewQuotation" runat="server"><a runat="server" href="~/ReviewQuotation">Add Job</a></li>
+                                <li id="liCloseJob" runat="server"><a runat="server" href="~/CloseJob">Close Job</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Invoices-->
+                        <li id="liInvoices" runat="server"><a runat="server" href="~/Invoices">Invoices</a></li>
+
+                        <!--Statements-->
+                        <li id="liStatements" runat="server" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Statements <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li id="liGenerateStatement" runat="server"><a runat="server" href="~/GenerateStatement">Generate Statement</a></li>
+                                <li id="liReviewStatement" runat="server"><a runat="server" href="~/ReviewStatement">Review Statement</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Customer-->
+                        <li id="liCustomers" runat="server" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Customers <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li id="liCustomerUpdate" runat="server"><a runat="server" href="~/CustomerUpdate">Update Customer</a></li>
+                                <li id="liTransferVehicle" runat="server"><a runat="server" href="~/CustomerManage">Transfer Vehicle</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Payments-->
+                        <li id="liPayments" runat="server"><a runat="server" href="~/Payments">Payments</a></li>
+
+                        <!--Parts-->
+                        <li id="liParts" runat="server" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Parts <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li id="liAddPart" runat="server"><a runat="server" href="~/AddPart">Add Part</a></li>
+                                <li id="liUpdatePart" runat="server"><a runat="server" href="~/UpdatePart">Update Part</a></li>
+                                <li id="liReviewParts" runat="server"><a runat="server" href="~/ReviewPart">Review Parts History</a></li>
+                            </ul>
+                        </li>
+
+                        <!--Account-->
+                        <li id="liAccount" runat="server" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Account <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li id="liLoginOption" runat="server"><a runat="server" href="~/Account">Login</a></li>
+                                <li id="liAddUser" runat="server"><a runat="server" href="~/AddUser">Create an Account</a></li>
+                                <li id="liArchiveUser" runat="server"><a runat="server" href="~/ArchiveUser">Archive User</a></li>
+                                <li id="liForgotPassword" runat="server">
+                                    <a id="forgotPasswordLink" runat="server" href="~/NewPassword">Forgot Password</a>
+                                </li>
+                                <li id="liLogout" runat="server">
+                                    <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CssClass="nav-link">LogOut</asp:LinkButton>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--POWER BI-->
+                        <li id="liPowerBI" runat="server"><a runat="server" href="~/PowerBI.aspx">Power BI</a></li>
+
+                        <!--About-->
+                        <li id="liAbout" runat="server"><a runat="server" href="~/About">About</a></li>
+                        <!--Contact-->
+                        <li id="liContact" runat="server"><a runat="server" href="~/Contact">Feedback</a></li>
+                    </ul>
+
+                    <!-- Profile Icon on the Right -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="profileIcon" runat="server" visible="false" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img runat="server" id="imgProfileIcon" src="~/Images/profileIcon.jpg"
+                                     style="width:30px;height:30px;border-radius:50%; margin-right:5px;" />
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <span id="lblProfileName" runat="server" 
+                                          style="padding:5px 10px; display:block; color:black;"></span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="chatbot-toggle" onclick="toggleChatbot()">
+            <img src="Images/robot.png" alt="Chatbot" />
+        </div>
+
+        <div id="chatbot-greeting"></div>
+        <script>
+            window.onload = function () {
+                var showGreeting = '<%= Session["ShowGreeting"] != null ? "true" : "false" %>';
+                if (showGreeting === "true") {
+                    var userRole = '<%= Session["Role"] != null ? Session["Role"].ToString() : "" %>';
+        var userName = '<%= Session["UserName"] != null ? Session["UserName"].ToString() : "" %>';
+
+        var greeting = "";
+        if (userRole === "Admin") greeting = "Welcome back, Admin!";
+        else if (userRole === "Director") greeting = "Good day Boss!";
+        else if (userRole === "Manager") greeting = "Ready to work today?";
+        else if (userRole === "Clerk") greeting = "Let's get started shall we?";
+        else greeting = "Hello " + userName + "!";
+
+        var bubble = document.getElementById("chatbot-greeting");
+        bubble.textContent = greeting;
+        bubble.style.display = "block";
+
+        setTimeout(function () { bubble.style.display = "none"; }, 3000);
+
+        // Remove session so it only shows once
+        <% Session.Remove("ShowGreeting"); %>
+                }
+            };
+        </script>
+
+
+
+
+        
+        <div id="chatbot-panel">
+            <div id="chatbot-header">Plumeria</div>
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input">
+                <input type="text" id="chatbot-textbox" placeholder="Type your question..." />
+                <button type="button" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <script>
+            // Toggle the chatbot panel open/close
+            function toggleChatbot() {
+                var panel = document.getElementById("chatbot-panel");
+                panel.style.display = (panel.style.display === "flex") ? "none" : "flex";
+            }
+
+            // Send a message to the chatbot API
+            function sendMessage() {
+                let input = document.getElementById("chatbot-textbox");
+                let message = input.value.trim();
+                if (!message) return;
+
+                // Display user message
+                let msgDiv = document.createElement("div");
+                msgDiv.textContent = "You: " + message;
+                document.getElementById("chatbot-messages").appendChild(msgDiv);
+
+                input.value = "";
+
+                // Call your Web API
+                fetch("/api/chatbot/respond", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ text: message })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        let botDiv = document.createElement("div");
+                        botDiv.textContent = "Plumeria: " + data.reply;
+                        document.getElementById("chatbot-messages").appendChild(botDiv);
+
+                        // Scroll to bottom
+                        var chatMessages = document.getElementById("chatbot-messages");
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    })
+                    .catch(err => console.error("Chatbot API error:", err));
+            }
+
+            // Handle Enter key in the input box
+            document.getElementById("chatbot-textbox").addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault(); // Prevent form submission
+                    sendMessage();      // Send message
+                }
+            });
+        </script>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - AMG Petronas</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

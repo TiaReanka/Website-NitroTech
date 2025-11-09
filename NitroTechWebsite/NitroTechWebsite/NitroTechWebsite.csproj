@@ -304,6 +304,7 @@
     <Content Include="Crystal.xss">
       <DependentUpon>Crystal.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\IST-WST-Group-4 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Invoices.aspx" />
     <Content Include="AddPart.aspx" />
