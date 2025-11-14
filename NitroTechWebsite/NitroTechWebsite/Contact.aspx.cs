@@ -24,36 +24,29 @@ namespace NitroTechWebsite
             }
 
 
-            string fromAddress = "zanitrotech@gmail.com";
-            string toEmail = "tiarnaidoo2003@gmail.com";  // recipient
-            string fromPassword = "JuiceEminem#"; // Use the 16-character app password that is obtained from your Google Security settings
-            var smtpClient = new SmtpClient
+            try
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress, fromPassword)
-            };
-            using (var message = new MailMessage(fromAddress, toEmail)
-            {
-                Subject = "Test Message from Google Mail Server",
-                Body = $"A new feedback has been submitted:\n\n{feedback}",
-                IsBodyHtml = true // Set to true if sending HTML content
-            })
-                try
-                {
-                    smtpClient.Send(message);
-                    txtFeedback.Text = ""; // clear box
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "success",
+                MailMessage mail = new MailMessage();
+                SmtpClient smtpServer = new SmtpClient("smtp.gmail.com"); //dont change
+
+                mail.From = new MailAddress("zanitrotech@gmail.com");
+                mail.To.Add("zanitrotech@gmail.com");
+                mail.Subject = "Feedback Email from NitroTech Systems";
+                mail.Body = feedback;
+
+                smtpServer.Port = 587;//gmail port , dont change
+                smtpServer.Credentials = new NetworkCredential("zanitrotech@gmail.com", "tbke jmvx ttyg lyob");//dont change
+                smtpServer.EnableSsl = true;
+
+                smtpServer.Send(mail);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "success",
                         "alert('✔ Thank you for your feedback! Your message has been sent.');", true);
-                }
-                catch (Exception ex)
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error",
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "error",
     $"alert('❌ General Error sending feedback: {ex.Message}');", true);
-                }
+            }
         }
 
         protected void txtFeedback_TextChanged(object sender, EventArgs e)
