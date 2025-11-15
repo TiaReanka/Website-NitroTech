@@ -1,0 +1,20 @@
+{
+  "dependencies": {},
+  "parameters": {
+    "IST-WST-Group-4.resourceGroupName": {
+      "Name": "IST-WST-Group-4.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "IST-WST-Group-4"
+    },
+    "IST-WST-Group-4.subscriptionId": {
+      "Name": "IST-WST-Group-4.subscriptionId",
+      "Type": "subscription",
+      "Value": "020f3f4b-1ffc-4abe-859b-700313645bc7"
+    },
+    "IST-WST-Group-4.resourceName": {
+      "Name": "IST-WST-Group-4.resourceName",
+      "Type": null,
+      "Value": "IST-WST-Group-4"
+    }
+  }
+}
