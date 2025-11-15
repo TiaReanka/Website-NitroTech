@@ -272,6 +272,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Images\banner.jpg" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\Made with insMind-Logo.png" />
+    <Content Include="Images\profileIcon.jpg" />
+    <Content Include="Images\robot.png" />
     <Content Include="Invoices.aspx" />
     <Content Include="Job Cards.aspx" />
     <Content Include="AddPart.aspx" />
