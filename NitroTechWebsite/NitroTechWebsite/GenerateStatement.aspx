@@ -18,23 +18,24 @@
         color: white; 
     } 
  
-    .form-group { 
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between;
-        margin-bottom: 25px;            
-        max-width: 700px; 
-        margin-left: auto; 
-        margin-right: auto; 
-    } 
- 
-    .form-group label { 
-        width: 220px;                  
-        font-weight: bold; 
-        text-align: right; 
-        margin-right: 50px; 
-        color: white; 
-    } 
+    .form-group {
+    display: flex;
+    align-items: center;       /* vertically center label & dropdown */
+    justify-content: center;   /* center the whole group horizontally */
+    margin-bottom: 25px;
+    gap: 10px;                 /* space between label & dropdown */
+}
+
+.form-group label {
+    font-weight: bold;
+    color: white;
+    text-align: right;
+}
+
+.form-group select,
+.form-group .aspNetDropDown {
+    min-width: 200px;          /* ensures dropdown isn’t too small */
+}
  
     .form-group select, 
     .form-group .aspNetDropDown { 

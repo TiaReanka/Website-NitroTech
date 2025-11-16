@@ -131,8 +131,8 @@
         <h2><%: Title %></h2> 
  
         <div class="form-group"> 
-            <label for="txtCustomerName">Customer Name:</label> 
-            <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer ID..." /> 
+            <label for="txtCustomerName">Search customer name:</label> 
+            <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer Name..." /> 
         </div> 
     
         <div class="btn1">
