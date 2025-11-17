@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -12,14 +13,20 @@ namespace NitroTechWebsite
 {
     public partial class ArchiveUser : System.Web.UI.Page
     {
+
+        private readonly string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["WstGrp4"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoginUtility.EnsureLoggedIn(this, "Director");
+            if (!IsPostBack)
+            {
+                GetUsers();
+            }
         }
 
         protected void btnArchive_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text.Trim();
+            string username = ddlUser.SelectedValue;
             string currentUser = Session["Name"]?.ToString();
 
             if (string.IsNullOrEmpty(username))
@@ -80,7 +87,7 @@ namespace NitroTechWebsite
 
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = "User archived successfully.";
-                txtUsername.Text = "";
+                ddlUser.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -115,6 +122,30 @@ namespace NitroTechWebsite
             catch (Exception ex)
             {
                 lblMessage.Text = "❌ Log sync failed: " + ex.Message;
+            }
+        }
+
+        private void GetUsers()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT Username FROM tblUsers ORDER BY Username";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+
+                ddlUser.Items.Clear();
+                ddlUser.Items.Add(new ListItem("-- Select User --", ""));
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string text = $"{row["Username"]}";
+                    string value = row["Username"].ToString();
+                    ListItem item = new ListItem(text, value);
+                    item.Attributes.CssStyle.Add("color", "black");
+                    ddlUser.Items.Add(item);
+                }
             }
         }
     }

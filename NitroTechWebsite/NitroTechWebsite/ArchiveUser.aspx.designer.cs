@@ -33,13 +33,13 @@ namespace NitroTechWebsite
         protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
-        /// txtUsername control.
+        /// ddlUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsername;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUser;
 
         /// <summary>
         /// btnArchive control.

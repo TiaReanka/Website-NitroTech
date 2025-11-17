@@ -15,22 +15,22 @@ namespace NitroTechWebsite
     {
 
         /// <summary>
-        /// txtSearchCustomer control.
+        /// ddlCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
-        /// txtSearchVIN control.
+        /// ddlVIN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchVIN;
+        protected global::System.Web.UI.WebControls.DropDownList ddlVIN;
 
         /// <summary>
         /// btnSearch control.

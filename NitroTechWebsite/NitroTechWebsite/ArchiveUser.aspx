@@ -93,12 +93,8 @@
     <asp:Panel ID="pnlArchiveUser" runat="server" CssClass="form-group">
         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label><br />
 
-        <asp:TextBox 
-            ID="txtUsername" 
-            runat="server" 
-            CssClass="form-control" 
-            placeholder="Enter username">
-        </asp:TextBox>
+        <asp:DropDownList ID="ddlUser" runat="server" AutoPostBack="true"> 
+</asp:DropDownList> 
         <br />
 
         <asp:Button 

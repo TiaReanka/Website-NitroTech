@@ -1,12 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Timers;
 using System.Web;
 using System.Web.UI;
-using System.Timers;
 using System.Web.UI.WebControls;
 
 namespace NitroTechWebsite
@@ -50,10 +52,17 @@ namespace NitroTechWebsite
                 });
                 Session["ShowGreeting"] = true;
                 //StartLogSync();
-                Response.Redirect("Default.aspx");
+                if (role == "Director" || role == "Manager")
+                {
+                    Response.Redirect("PowerBI.aspx");
+                }
+                else
+                {
+                    Response.Redirect("Default.aspx");
+                }
+                
 
-
-                Response.Redirect("Default.aspx");
+                
                 return;
             }
             else
