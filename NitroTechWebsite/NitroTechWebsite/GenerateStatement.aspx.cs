@@ -104,17 +104,27 @@ namespace NitroTechWebsite
 
         private void LoadCustomerIDs()
         {
-            
-            DataTable dtCustomers = ExecuteDataTable("SELECT customerID FROM tblCustomer");
+            // Get both ID and Name
+            DataTable dtCustomers = ExecuteDataTable(
+                "SELECT customerID, customerName FROM tblCustomer ORDER BY customerName"
+            );
+
+            // Create a combined display column
+            dtCustomers.Columns.Add("DisplayText", typeof(string));
+
+            foreach (DataRow row in dtCustomers.Rows)
+            {
+                row["DisplayText"] = row["customerName"] + " (" + row["customerID"] + ")";
+            }
 
             // Bind to DropDownList
             customerID.DataSource = dtCustomers;
-            customerID.DataTextField = "customerID";   // What the user sees
-            customerID.DataValueField = "customerID";  // The value used in code
+            customerID.DataTextField = "DisplayText";   // what user sees
+            customerID.DataValueField = "customerID";   // value used in code
             customerID.DataBind();
 
-            
-            customerID.Items.Insert(0, new ListItem("-- Select Customer ID --", ""));
+            // Insert default item
+            customerID.Items.Insert(0, new ListItem("-- Select Customer --", ""));
         }
 
         //Helper Methods

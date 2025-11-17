@@ -20,10 +20,10 @@ namespace NitroTechWebsite
 
         private void LoadVehicles()
         {
-            // Assuming you want to list all VINs
+            
             DataTable dtVehicles = vehicleService.GetDataTable("SELECT VIN, vehicleMake, vehicleModel, vehicleYear FROM tblVehicle");
             ddlVIN.DataSource = dtVehicles;
-            ddlVIN.DataTextField = "VIN"; // or you can combine Make+Model+Year
+            ddlVIN.DataTextField = "VIN"; 
             ddlVIN.DataValueField = "VIN";
             ddlVIN.DataBind();
             ddlVIN.Items.Insert(0, "--Select Vehicle--");
@@ -32,10 +32,20 @@ namespace NitroTechWebsite
         private void LoadNewCustomers()
         {
             DataTable dtCustomers = vehicleService.GetAllCustomers();
+
+            // Create a combined display column
+            dtCustomers.Columns.Add("DisplayText", typeof(string));
+
+            foreach (DataRow row in dtCustomers.Rows)
+            {
+                row["DisplayText"] = row["customerName"] + " (" + row["customerID"] + ")";
+            }
+
             ddlCustomer.DataSource = dtCustomers;
-            ddlCustomer.DataTextField = "customerName";
+            ddlCustomer.DataTextField = "DisplayText";
             ddlCustomer.DataValueField = "customerID";
             ddlCustomer.DataBind();
+
             ddlCustomer.Items.Insert(0, "--Select Customer--");
         }
 

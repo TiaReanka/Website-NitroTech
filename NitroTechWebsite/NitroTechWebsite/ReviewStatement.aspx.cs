@@ -30,9 +30,9 @@ namespace NitroTechWebsite
 
         private void BindGrid()
         {
-            string customerID = txtCustomerName.Text.Trim(); // User must enter ID
+            string searchName = txtCustomerName.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(customerID))
+            if (string.IsNullOrWhiteSpace(searchName))
             {
                 gvStatements.DataSource = null;
                 gvStatements.DataBind();
@@ -41,17 +41,16 @@ namespace NitroTechWebsite
 
             using (SqlConnection sqlConnection = DatabaseHelper.OpenConnection())
             {
-            
-
                 string sql = @"
-                    SELECT s.statementNumber, c.customerName, s.statementDate, s.statementAmountDue
-                    FROM tblStatement s
-                    INNER JOIN tblCustomer c ON s.customerID = c.customerID
-                    WHERE s.customerID = @CustomerID";
+            SELECT s.statementNumber, c.customerName, s.statementDate, s.statementAmountDue
+            FROM tblStatement s
+            INNER JOIN tblCustomer c ON s.customerID = c.customerID
+            WHERE c.customerName LIKE @SearchName
+            ORDER BY c.customerName";
 
                 using (SqlCommand cmd = new SqlCommand(sql, sqlConnection))
                 {
-                    cmd.Parameters.AddWithValue("@CustomerID", customerID);
+                    cmd.Parameters.AddWithValue("@SearchName", "%" + searchName + "%");
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
