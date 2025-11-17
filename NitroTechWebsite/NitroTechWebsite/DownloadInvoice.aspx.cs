@@ -24,8 +24,8 @@ namespace NitroTechWebsite
 
         private void makeInvoice(string[,] products, string clientName, string clientAddress, string clientEmail, string clientPhone, string vehicleVIN, string vehicleName, string invoiceNumber, string labourFee, string total)
         {
-            var quotationService = new QuotationService();
-            var document = quotationService.GetQuotation(products, clientName, clientAddress, clientEmail, clientPhone, vehicleVIN, vehicleName, invoiceNumber, labourFee, total);
+            var invoiceService = new InvoiceService();
+            var document = invoiceService.GetInvoice(products, clientName, clientAddress, clientEmail, clientPhone, vehicleVIN, vehicleName, invoiceNumber, labourFee, total);
 
             Response.Clear();
             Response.ContentType = "application/pdf";

@@ -285,6 +285,49 @@ namespace NitroTechWebsite
 
         protected void btnGenerateQuotation_Click(object sender, EventArgs e)
         {
+                    
+            if ((txtCustID.Text.Length == 0) || (txtCustAddress.Text.Length == 0) || txtCustEmail.Text.Length == 0 || txtCustName.Text.Length == 0 || txtCustPhone.Text.Length == 0)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Please fill in all customer details.');", true);
+                return;
+            }
+
+            if ((txtVIN.Text.Length == 0) || (txtMake.Text.Length == 0) || (txtModel.Text.Length == 0) || (txtYear.Text.Length == 0) || (txtEngine.Text.Length == 0) || (txtTransmission.Text.Length == 0) || (txtDrivetrain.Text.Length == 0))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Please fill in all vehicle details.');", true);
+                return;
+            }
+
+            if (CheckValidID(txtCustID.Text) == false)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Invalid Customer ID number format.');", true);
+                return;
+            }
+
+            if (txtCustPhone.Text.Length != 10 || !txtCustPhone.Text.All(char.IsDigit))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Invalid Customer Phone Number format.');", true);
+                return;
+            }
+
+            if(txtCustEmail.Text.IndexOf('@') == -1 || txtCustEmail.Text.IndexOf('.') == -1)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Invalid Customer Email Address format.');", true);
+                return;
+            }
+
+            if (IsValidVin(txtVIN.Text) == false)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Invalid Vehicle VIN format.');", true);
+                return;
+            }
+
             if (Faults.Count == 0)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert",

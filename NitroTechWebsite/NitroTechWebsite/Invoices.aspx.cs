@@ -118,7 +118,8 @@ namespace NitroTechWebsite
                     }
 
                     // 3. Insert into tblInvoice
-                    string invoiceNumber = "I" + qNum + vehicleVIN;
+                    string qNumN = qNum.Remove(0,1); // Remove leading 'Q'
+                    string invoiceNumber = "I" + qNumN;
 
                     string insertQuery = @"INSERT INTO tblInvoice 
                                     (invoiceNumber, invoiceDate, customerID, quotationNumber, invoiceAmountDue, vehicleVIN)
