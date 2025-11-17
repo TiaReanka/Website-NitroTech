@@ -46,7 +46,7 @@ namespace NitroTechWebsite
                     Response.Write("<script>alert('⚠ Customer does not exist');</script>");
                     return;
                 }
-
+               
                 //Assign variables with details
 
                 DataRow row = dtCustomer.Rows[0];
@@ -114,7 +114,7 @@ namespace NitroTechWebsite
 
             foreach (DataRow row in dtCustomers.Rows)
             {
-                row["DisplayText"] = row["customerName"] + " (" + row["customerID"] + ")";
+                row["DisplayText"] = row["customerName"] + " - " + row["customerID"] + "";
             }
 
             // Bind to DropDownList
