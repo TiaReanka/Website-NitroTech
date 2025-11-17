@@ -21,11 +21,16 @@ namespace NitroTechWebsite
             try
             {
                 DataTable dt = GetCustomers();
-                ddlCustomerID.DataSource = dt;
-                ddlCustomerID.DataTextField = "customerID";   // or "customerName"
-                ddlCustomerID.DataValueField = "customerID";
-                ddlCustomerID.DataBind();
-                ddlCustomerID.Items.Insert(0, new System.Web.UI.WebControls.ListItem("-- Select Customer ID --", ""));
+                ddlCustomerID.Items.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string name = row["customerName"].ToString();
+                    string id = row["customerID"].ToString();
+                    ddlCustomerID.Items.Add(new System.Web.UI.WebControls.ListItem($"{name} - {id}", id));
+                }
+
+                ddlCustomerID.Items.Insert(0, new System.Web.UI.WebControls.ListItem("-- Select Customer --", ""));
             }
             catch (Exception ex)
             {
@@ -87,7 +92,7 @@ namespace NitroTechWebsite
         private DataTable GetCustomers()
         {
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("SELECT customerID, customerName FROM tblCustomer WHERE customerOwe > 0 ORDER BY customerID", conn))
+            using (var cmd = new SqlCommand("SELECT customerID, customerName FROM tblCustomer WHERE customerOwe > 0 ORDER BY customerName", conn))
             using (var da = new SqlDataAdapter(cmd))
             {
                 DataTable dt = new DataTable();

@@ -56,17 +56,18 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-        }
-
-        /* Custom color for danger button */
-        .btn-danger {
-            background-color: #1a2db9;
+            background: transparent;
+            border: 2px solid #3c00a0;
+            border-radius: 5px;
             color: white;
         }
 
-            .btn-danger:hover {
-                background-color: purple;
-            }
+        .btn1:hover {
+            background-color: #3c00a0;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+        }
 
         /* For any dropdowns later */
         .form-group select {
@@ -104,7 +105,7 @@
             ID="btnArchive" 
             runat="server" 
             Text="Archive User" 
-            CssClass="btn btn-danger"
+            CssClass="btn btn1"
             OnClick="btnArchive_Click" />
     </asp:Panel>
 </div>
