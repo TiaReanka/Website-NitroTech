@@ -58,14 +58,14 @@ namespace NitroTechWebsite
 
                 // Calculate total invoices from past month
                 decimal totalInvoices = ExecuteScalar<decimal>(
-                    "SELECT ISNULL(SUM(invoiceAmountDue), 0) " +
+                    "SELECT ISNULL(SUM(CONVERT(DECIMAL(18,2), invoiceAmountDue)), 0) " +
                     "FROM tblInvoice " +
                     "WHERE customerID=@id AND invoiceDate >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
                 // Calculate total payments from past month
                 decimal totalPayments = ExecuteScalar<decimal>(
-                    "SELECT ISNULL(SUM(paidAmount), 0) " +
+                    "SELECT ISNULL(SUM(CONVERT(DECIMAL(18,2), paidAmount)), 0)" +
                     "FROM tblPayment " +
                     "WHERE customerID=@id AND dateOfPayment >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
