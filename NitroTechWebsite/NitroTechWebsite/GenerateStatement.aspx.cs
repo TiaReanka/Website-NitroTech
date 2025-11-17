@@ -136,7 +136,15 @@ namespace NitroTechWebsite
                 if (parameters != null) cmd.Parameters.AddRange(parameters);
                 object result = cmd.ExecuteScalar();
                 if (result == null || result == DBNull.Value) return default(T);
-                return (T)Convert.ChangeType(result, typeof(T));
+                if (typeof(T) == typeof(decimal))
+                {
+                    return (T)(object)Convert.ToDecimal(
+                        result.ToString(),
+                        System.Globalization.CultureInfo.InvariantCulture
+                    );
+                }
+
+                return (T)Convert.ChangeType(result, typeof(T), System.Globalization.CultureInfo.InvariantCulture);
             }
         }
 
