@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Util;
+using System.Globalization;
+
 
 namespace NitroTechWebsite
 {
@@ -113,9 +115,8 @@ namespace NitroTechWebsite
                     string typeDesc =
                         t.Type == "P" ? "Payment" : "Invoice - " + t.ID;
 
-                    string formattedAmount = t.Amount
-                        .ToString("0.00")
-                        .Replace('.', ',');
+                    string formattedAmount = t.Amount.ToString("F2", CultureInfo.InvariantCulture);
+
 
                     transactions[i, 0] = typeDesc;
                     transactions[i, 1] = formattedAmount;

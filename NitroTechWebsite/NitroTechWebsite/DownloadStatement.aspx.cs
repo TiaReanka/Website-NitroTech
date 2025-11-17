@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Util;
+using System.Globalization;
+
 
 namespace NitroTechWebsite
 {
@@ -114,7 +116,7 @@ namespace NitroTechWebsite
                 {
                     string dtype;
                     var t = combined[i];
-                    string formattedAmount = t.Amount.ToString("0.00").Replace('.', ',');
+                    string formattedAmount = t.Amount.ToString("F2", CultureInfo.InvariantCulture);
                     if (t.Type == "P")
                     {
                         dtype = "Payment "; // Payments are negative
