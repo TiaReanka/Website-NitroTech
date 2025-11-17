@@ -1,6 +1,7 @@
 ﻿using MigraDoc.DocumentObjectModel.Tables;
 using NitroTechWebsite.Services;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -51,27 +52,81 @@ namespace NitroTechWebsite
 
                 DataRow row = dtCustomer.Rows[0];
                 string clientName = row["customerName"]?.ToString() ?? "";
-                decimal total = row["customerOwe"] != DBNull.Value ? Convert.ToDecimal(row["customerOwe"]) : 0m;
+
+                decimal currentBalance = row["customerOwe"] != DBNull.Value
+                    ? Convert.ToDecimal(row["customerOwe"])
+                    : 0m;
+
 
                 //Generate statement number
                 string statementNumber = GenerateStatementNumber(customerId, clientName);
 
-                // Calculate total invoices from past month
-                decimal totalInvoices = ExecuteScalar<decimal>(
-                    "SELECT ISNULL(SUM(CONVERT(DECIMAL(18,2), invoiceAmountDue)), 0) " +
+                // Get invoices from last 30 days
+                DataTable invoices = ExecuteDataTable(
+                    "SELECT invoiceNumber, invoiceAmountDue, invoiceDate " +
                     "FROM tblInvoice " +
                     "WHERE customerID=@id AND invoiceDate >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
-                // Calculate total payments from past month
-                decimal totalPayments = ExecuteScalar<decimal>(
-                    "SELECT ISNULL(SUM(CONVERT(DECIMAL(18,2), paidAmount)), 0)" +
+                // Get payments from last 30 days
+                DataTable payments = ExecuteDataTable(
+                    "SELECT paymentID, paidAmount, dateOfPayment " +
                     "FROM tblPayment " +
                     "WHERE customerID=@id AND dateOfPayment >= DATEADD(MONTH, -1, GETDATE())",
                     new SqlParameter("@id", customerId));
 
-                // Calculate statement amount: Previous balance + New invoices - Recent payments
-                decimal statementAmount = total + totalInvoices - totalPayments;
+                // 🔹 Combine into a single transaction list (I = Invoice, P = Payment)
+                List<(string ID, decimal Amount, DateTime Date, string Type)> combined =
+                    new List<(string ID, decimal Amount, DateTime Date, string Type)>();
+
+                foreach (DataRow r in invoices.Rows)
+                {
+                    combined.Add((
+                        ID: r["invoiceNumber"].ToString(),
+                        Amount: Convert.ToDecimal(r["invoiceAmountDue"]),
+                        Date: Convert.ToDateTime(r["invoiceDate"]),
+                        Type: "I"
+                    ));
+                }
+
+                foreach (DataRow r in payments.Rows)
+                {
+                    combined.Add((
+                        ID: r["paymentID"].ToString(),
+                        Amount: Convert.ToDecimal(r["paidAmount"]),
+                        Date: Convert.ToDateTime(r["dateOfPayment"]),
+                        Type: "P"
+                    ));
+                }
+
+                // 🔹 Sort by date ASC
+                combined = combined.OrderBy(t => t.Date).ToList();
+
+                // 🔹 Build string[,] for MigraDoc PDF
+                string[,] transactions = new string[combined.Count, 3];
+                decimal transactionSum = 0;
+
+                for (int i = 0; i < combined.Count; i++)
+                {
+                    var t = combined[i];
+
+                    string typeDesc =
+                        t.Type == "P" ? "Payment" : "Invoice - " + t.ID;
+
+                    string formattedAmount = t.Amount
+                        .ToString("0.00")
+                        .Replace('.', ',');
+
+                    transactions[i, 0] = typeDesc;
+                    transactions[i, 1] = formattedAmount;
+                    transactions[i, 2] = t.Date.ToString("yyyy/MM/dd");
+
+                    if (t.Type == "I") transactionSum += t.Amount;
+                    else transactionSum -= t.Amount;
+                }
+
+                // 🔹 Reverse calculate initial balance
+                string initialBalance = (currentBalance - transactionSum).ToString("0.00");
 
 
 
@@ -81,7 +136,7 @@ namespace NitroTechWebsite
                     "VALUES (@num, @date, @amt, @cid)",
                     new SqlParameter("@num", statementNumber),
                     new SqlParameter("@date", DateTime.Now),
-                    new SqlParameter("@amt", statementAmount),
+                    new SqlParameter("@amt", currentBalance),
                     new SqlParameter("@cid", customerId));
 
 
@@ -95,7 +150,8 @@ namespace NitroTechWebsite
             }
             catch (Exception ex)
             {
-                Response.Write($"<script>alert('❌ Error creating statement: {ex.Message}');</script>");
+                Response.Write($"<script>alert('❌ Error: {ex.Message.Replace("'", "")}');</script>");
+                Response.Write($"<pre>{ex}</pre>");
             }
 
 
