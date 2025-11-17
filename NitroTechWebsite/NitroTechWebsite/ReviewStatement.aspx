@@ -18,11 +18,15 @@
             color: white; 
         } 
  
-        .form-group { 
-            margin: 20px auto; 
-            max-width: 500px; 
-            text-align: center; 
-        } 
+       .form-group {
+    margin: 20px auto;
+    max-width: 500px;
+    display: flex;             /* make it flex container */
+    flex-direction: column;    /* stack label and dropdown vertically */
+    align-items: center;       /* center horizontally */
+    text-align: center;
+}
+
  
         .form-group label { 
             display: block; 
@@ -130,10 +134,18 @@
     <div class="form-container"> 
         <h2><%: Title %></h2> 
  
-        <div class="form-group"> 
-            <label for="txtCustomerName">Search customer name:</label> 
-            <asp:TextBox ID="txtCustomerName" runat="server" placeholder="Enter customer Name..." /> 
-        </div> 
+        <div class="form-group">
+    <label for="ddlCustomer">Search customer:</label>
+    <asp:DropDownList 
+        ID="ddlCustomer" 
+        runat="server"
+        CssClass="form-control">
+    </asp:DropDownList>
+</div>
+
+
+
+        
     
         <div class="btn1">
             <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn" OnClick="btnSearch_Click" /> 
