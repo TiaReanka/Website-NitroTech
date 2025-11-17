@@ -53,11 +53,17 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 17px;
+            background: transparent;
+            border: 2px solid #3c00a0;
+            border-radius: 5px;
         }
 
-        .btn:hover {
-            background-color: purple;
-        }
+            .btn:hover {
+                background-color: #3c00a0;
+                color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 5px #3c00a0, 0 0 25px #3c00a0, 0 0 50px #3c00a0, 0 0 100px #3c00a0;
+            }
     </style>
 
     <div class="form-container">
