@@ -41,6 +41,7 @@ namespace NitroTechWebsite
                 smtpServer.Send(mail);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "success",
                         "alert('✔ Thank you for your feedback! Your message has been sent.');", true);
+                txtFeedback.Text = string.Empty; // Clear the textbox after successful submission
             }
             catch (Exception ex)
             {
