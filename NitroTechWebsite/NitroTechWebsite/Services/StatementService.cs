@@ -133,16 +133,22 @@ namespace NitroTechWebsite.Services
                 string dateStr = transactions[i, 2];      // e.g. "2025/06/01"
 
                 // Parse amount as double directly (no currency symbol expected)
-                double parsedAmount;
 
-                try
-                {
-                    parsedAmount = Convert.ToDouble(amountStr);
-                }
-                catch
+                string clean = amountStr
+    .Replace("R", "")
+    .Replace(" ", "")
+    .Replace(",", ".")
+    .Trim();
+
+                // Try parse safely
+                double parsedAmount;
+                if (!double.TryParse(clean, System.Globalization.NumberStyles.Any,
+                                     System.Globalization.CultureInfo.InvariantCulture,
+                                     out parsedAmount))
                 {
                     parsedAmount = 0.0;
                 }
+
 
                 // Determine if transaction is an Invoice (positive amount) or Payment (negative amount)
                 bool isInvoice = refNum.StartsWith("I", StringComparison.OrdinalIgnoreCase);

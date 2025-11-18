@@ -115,7 +115,8 @@ namespace NitroTechWebsite
                     string typeDesc =
                         t.Type == "P" ? "Payment" : "Invoice - " + t.ID;
 
-                    string formattedAmount = t.Amount.ToString("F2", CultureInfo.InvariantCulture);
+                    string formattedAmount = t.Amount.ToString("N2", CultureInfo.GetCultureInfo("en-ZA"));
+
 
 
                     transactions[i, 0] = typeDesc;
