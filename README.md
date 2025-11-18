@@ -56,7 +56,7 @@ This information is pre-populated.
 
 Firstly, ensure that you are connected to Global Protect via the UKZN network.
 
-- Double click on the "NitroTech.sln" file.
+- Double click on the "NitroTechWebsite.sln" file.
 - Ensure that the your visual studio runs on "Debug" or "Release"
 - Click on the start icon and the application will run.
 
