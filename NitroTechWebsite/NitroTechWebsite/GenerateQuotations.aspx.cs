@@ -137,6 +137,10 @@ namespace NitroTechWebsite
 
             ToggleVehicleInputs(true);
             pnlVehicle.Visible = true;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "stayOnVehicle",
+    "showTab('pnlVehicle', document.querySelectorAll('.tab-header')[1]);", true);
+
         }
 
         private void ToggleInputs(bool enabled)
