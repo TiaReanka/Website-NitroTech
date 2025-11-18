@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,8 +10,8 @@ namespace NitroTechWebsite
     public partial class Customers : Page
     {
         private readonly string connectionString =
-System.Configuration.ConfigurationManager.ConnectionStrings["WstGrp4"].ConnectionString;
-
+System.Configuration.ConfigurationManager.ConnectionStrings["WstGrp4"].ConnectionString; 
+ 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,7 +20,7 @@ System.Configuration.ConfigurationManager.ConnectionStrings["WstGrp4"].Connectio
 
                 ddlVIN.Items.Clear();
                 ddlVIN.Items.Add(new ListItem("-- Select VIN --", ""));
-                ddlVIN.Enabled = false; // VIN disabled initially 
+                ddlVIN.Enabled = false; // VIN disabled initially  
             }
         }
 
@@ -88,6 +89,7 @@ System.Configuration.ConfigurationManager.ConnectionStrings["WstGrp4"].Connectio
             string customerID = ddlCustomer.SelectedValue;
             string vinNumber = ddlVIN.SelectedValue;
 
+            // Existing validation: Check if both are empty 
             if (string.IsNullOrEmpty(customerID) && string.IsNullOrEmpty(vinNumber))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Please select Customer and / or VIN to search.');", true); 
@@ -97,19 +99,26 @@ System.Configuration.ConfigurationManager.ConnectionStrings["WstGrp4"].Connectio
                 return;
             }
 
+            //     NEW VALIDATION: If a Customer is selected, a VIN must also be selected. 
+            if (!string.IsNullOrEmpty(customerID) && string.IsNullOrEmpty(vinNumber))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('⚠ Please select a VIN number to search for the customer and vehicle information.');", true); 
+                return;
+            }
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string query = @" 
-                    SELECT c.customerID, c.customerName, c.customerAddress, 
-c.customerContactNumber, c.customerEmailAddress, 
-                           v.VIN, v.vehicleMake, v.vehicleModel, v.vehicleTrim, v.vehicleYear, 
-v.vehicleEngine, 
-                           v.vehicleTransmission, v.vehicleDriveTrain, v.vehicleFuelType 
-                    FROM tblCustomer c 
-                    INNER JOIN tblVehicle v ON c.customerID = v.customerID 
-                    WHERE (@customerID = '' OR c.customerID = @customerID) 
-                      AND (@vin = '' OR v.VIN = @vin);";
+                string query = @"  
+                    SELECT c.customerID, c.customerName, c.customerAddress,  
+customerContactNumber, c.customerEmailAddress,  
+                        v.VIN, v.vehicleMake, v.vehicleModel, v.vehicleTrim, v.vehicleYear,  
+v.vehicleEngine,  
+                        v.vehicleTransmission, v.vehicleDriveTrain, v.vehicleFuelType  
+                    FROM tblCustomer c  
+                    INNER JOIN tblVehicle v ON c.customerID = v.customerID  
+                    WHERE (@customerID = '' OR c.customerID = @customerID)  
+                     AND (@vin = '' OR v.VIN = @vin);";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@customerID", customerID ?? "");
@@ -160,6 +169,24 @@ v.vehicleEngine,
                 return;
             }
 
+            //INSERT VALIDATIONS HERE// 
+            if (custPhone.Text.Length != 10 || !custPhone.Text.All(char.IsDigit))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Invalid Customer Phone Number format.');", true);
+                return;
+            }
+
+            if (custEmail.Text.IndexOf('@') == -1 || custEmail.Text.IndexOf('.') == -1)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "alert('⚠ Invalid Customer Email Address format.');", true);
+                return;
+            }
+
+            //cpush test 
+
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -167,12 +194,13 @@ v.vehicleEngine,
 
                 try
                 {
-                    string updateCustomer = @" 
-                        UPDATE tblCustomer 
-                        SET customerName=@name, customerContactNumber=@contact, 
-customerEmailAddress=@email, customerAddress=@address 
+                    string updateCustomer = @"  
+                        UPDATE tblCustomer  
+                        SET customerName=@name, customerContactNumber=@contact,  
+customerEmailAddress=@email, customerAddress=@address  
                         WHERE customerID=@cid";
-                    SqlCommand cmdCust = new SqlCommand(updateCustomer, conn, transaction);
+                    SqlCommand cmdCust = new SqlCommand(updateCustomer, conn,
+transaction);
                     cmdCust.Parameters.AddWithValue("@cid", customerID);
                     cmdCust.Parameters.AddWithValue("@name", custName.Text);
                     cmdCust.Parameters.AddWithValue("@contact", custPhone.Text);
@@ -180,14 +208,15 @@ customerEmailAddress=@email, customerAddress=@address
                     cmdCust.Parameters.AddWithValue("@address", custAddress.Text);
                     cmdCust.ExecuteNonQuery();
 
-                    string updateVehicle = @" 
-                        UPDATE tblVehicle 
-                        SET vehicleMake=@make, vehicleModel=@model, vehicleTrim=@trim, 
-vehicleYear=@year, 
-                            vehicleEngine=@engine, vehicleTransmission=@trans, 
-vehicleDriveTrain=@drive, vehicleFuelType=@fuel 
+                    string updateVehicle = @"  
+                        UPDATE tblVehicle  
+                        SET vehicleMake=@make, vehicleModel=@model, vehicleTrim=@trim,  
+vehicleYear=@year,  
+                            vehicleEngine=@engine, vehicleTransmission=@trans,  
+vehicleDriveTrain=@drive, vehicleFuelType=@fuel  
                         WHERE VIN=@vin";
-                    SqlCommand cmdVeh = new SqlCommand(updateVehicle, conn, transaction);
+                    SqlCommand cmdVeh = new SqlCommand(updateVehicle, conn,
+transaction);
                     cmdVeh.Parameters.AddWithValue("@vin", vinNumber);
                     cmdVeh.Parameters.AddWithValue("@make", make.Text);
                     cmdVeh.Parameters.AddWithValue("@model", model.Text);
@@ -203,6 +232,7 @@ vehicleDriveTrain=@drive, vehicleFuelType=@fuel
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('✔ Customer and vehicle updated successfully.');", true); 
 
 
+
                     ClearFields();
                     ddlCustomer.SelectedIndex = 0;
                     ddlVIN.Items.Clear();
@@ -212,18 +242,16 @@ vehicleDriveTrain=@drive, vehicleFuelType=@fuel
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert(' ❌ Error:{ ex.Message}');", true); 
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('  Error:{ ex.Message}');", true); 
                 }
             }
         }
 
         private void ClearFields()
         {
-            custID.Text = custName.Text = custPhone.Text = custEmail.Text = custAddress.Text = "";
-            vin.Text = make.Text = model.Text = year.Text = trim.Text = engine.Text =
-transmission.Text = drivetrain.Text = "";
+            custID.Text = custName.Text = custPhone.Text = custEmail.Text = custAddress.Text= "";
+            vin.Text = make.Text = model.Text = year.Text = trim.Text = engine.Text =transmission.Text = drivetrain.Text = "";
             fuelType.SelectedIndex = 0;
         }
     }
 }
-
