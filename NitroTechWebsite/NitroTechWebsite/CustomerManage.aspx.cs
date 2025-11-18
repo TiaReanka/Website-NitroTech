@@ -97,7 +97,11 @@ namespace NitroTechWebsite
         {
             if (ddlVIN.SelectedIndex <= 0 || ddlCustomer.SelectedIndex <= 0)
             {
-                lblMessage.Text = "Please select a vehicle and a new customer.";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(),
+                        "error",
+                        $"alert('❌ Please select a vehicle and a new customer');",
+                        true);
                 return;
             }
 
@@ -114,7 +118,11 @@ namespace NitroTechWebsite
             string newCustomerId = ddlCustomer.SelectedValue;
 
             var result = vehicleService.TransferVehicle(vin, oldCustomerId, newCustomerId);
-            lblMessage.Text = result.Message;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(),
+                        "error",
+                        $"alert('{result.Message}');",
+                        true);
 
             if (result.Success)
             {

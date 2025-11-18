@@ -66,10 +66,10 @@ namespace NitroTechWebsite
                     )?.ToString();
 
                     if (currentCustomerId == null)
-                        return new TransferResult { Success = false, Message = "Vehicle not found" };
+                        return new TransferResult { Success = false, Message = "❌ Vehicle not found" };
 
                     if (currentCustomerId != oldCustomerId)
-                        return new TransferResult { Success = false, Message = "Vehicle does not belong to this customer" };
+                        return new TransferResult { Success = false, Message = "❌ Vehicle does not belong to this customer" };
 
                     //Verify new customer exists
                     var customerExists = Convert.ToInt32(ExecuteScalar(
@@ -79,7 +79,7 @@ namespace NitroTechWebsite
                     )) > 0;
 
                     if (!customerExists)
-                        return new TransferResult { Success = false, Message = "New customer not found" };
+                        return new TransferResult { Success = false, Message = "❌ New customer not found" };
 
                     //  Update ownership
                     ExecuteNonQuery(
@@ -90,12 +90,12 @@ namespace NitroTechWebsite
                     );
 
                     transaction.Commit();
-                    return new TransferResult { Success = true, Message = "Vehicle transferred successfully" };
+                    return new TransferResult { Success = true, Message = "✔️ Vehicle transferred successfully" };
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    return new TransferResult { Success = false, Message = $"Transfer failed: {ex.Message}" };
+                    return new TransferResult { Success = false, Message = $"❌ Transfer failed: {ex.Message}" };
                 }
             }
         }

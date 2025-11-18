@@ -160,10 +160,10 @@ namespace NitroTechWebsite
                     LoadQuotations();
                     btnGenerateInvoice.Enabled = false;
                     // ✅ Show popup
-                    ScriptManager.RegisterStartupScript(this, this.GetType(),
-                        "success",
-                        $"alert('✔ Invoice {invoiceNumber} successfully generated for quotation {qNum}. Customer balance updated.');",
-                        true);
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(),
+                    //    "success",
+                    //    $"alert('✔ Invoice {invoiceNumber} successfully generated for quotation {qNum}. Customer balance updated.');",
+                    //    true);
                     // Refresh dropdown and disable Generate button until new confirm
                     
                 }
