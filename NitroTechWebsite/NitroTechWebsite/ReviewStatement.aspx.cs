@@ -54,7 +54,7 @@ namespace NitroTechWebsite
             FROM tblStatement s
             INNER JOIN tblCustomer c ON s.customerID = c.customerID
             WHERE s.customerID = @CustomerID
-            ORDER BY s.statementDate DESC";
+            ORDER BY s.statementDate ASC";
 
                 using (SqlCommand cmd = new SqlCommand(sql, sqlConnection))
                 {

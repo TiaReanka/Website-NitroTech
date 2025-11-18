@@ -136,8 +136,6 @@ namespace NitroTechWebsite
             ddlFuel.SelectedIndex = 0;
 
             ToggleVehicleInputs(true);
-
-            pnlCustomer.Visible = false;
             pnlVehicle.Visible = true;
         }
 
