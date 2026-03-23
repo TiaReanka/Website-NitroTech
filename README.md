@@ -1,64 +1,130 @@
-# ISTN3SI-Project
-Website version of ISTN3AS Project
+**NitroTech Workshop Manager 💼**
+Streamlined web-based workshop management system for handling business operations efficiently.
 
-~ User Roles:
+NitroTech Workshop Manager is a full-featured web application developed as a university project to simplify and centralize workshop operations. The system focuses on role-based access control, ensuring that each user interacts with the platform according to their responsibilities, while maintaining security and operational efficiency.
 
-User roles are implemented in the system to ensure security, clarity of responsibilities, and efficient access control. 
-Each user has a specific function within the organization, and assigning roles helps the system support operations more effectively.
+---
 
+## 📌 Features
 
-- Director: 
-The director has full access to the entire system. This role oversees all operations and has the authority to 
-create, view and manage all quotations, invoices, statements, payments as well as updating customer details and inventory reports. He can also add 
-or archive users and assign roles.
+* 🔐 **Role-Based Access Control** – Four distinct roles (Director, Manager, Administrator, Clerk) with clearly defined permissions.
+* 📊 **Comprehensive Management System** – Create, view, and manage quotations, invoices, statements, and payments.
+* 👥 **User Management (Director Only)** – Add, archive, and assign roles to users.
+* 🧾 **Financial Tracking** – Maintain accurate records of transactions and statements.
+* 📦 **Inventory Reporting** – Monitor and update inventory (restricted to higher-level roles).
+* 🧑‍💼 **Customer Management** – Update and maintain customer information across all relevant roles.
+* ⚙️ **Pre-Populated Login System** – Ready-to-use accounts for testing different access levels.
 
-- Manager: 
-The Manager has access to all system functionalities except user role management. This role can create, view, and manage quotations,
-invoices, statements and payments, including updating customer details and inventory reports.
+---
 
-- Administrator:
-The administrator can only view and manage quotations, invoices, statements, payments. They can also update customer details.
-They cannot modify inventory data or manage user accounts and roles.
+## 🛠 Built With:
 
--Clerk: 
-The clerk only has access to create, view and manage quotations and invoices and updating customer details.
+* ASP.NET Web Application (Visual Studio Solution)
+* C#
+* SQL Database (via TableAdapters)
+* Visual Studio 2022
 
-~ Login Information:
-This information is pre-populated.
+Custom system design includes:
 
-	Username: JadenNaidoo
-	Role: Director
-	Password: #carloVer87.
-	Security Question: What is your favourite car brand?
-	Security Question Answer: VW
+* Role-based authentication and authorization
+* Modular structure for handling invoices, quotations, payments, and reports
+* Secure login system with security questions
 
-	Username: DesanNaidoo 
-  	Role: Manager
-  	Password: NaiMDes23!
-	Security Question: What is your favourite animal?
-	Security Question Answer: Dog
+---
 
-	Username: MarguGovender
-	Role: Administrator
-	Password: mAr@jaE.gov1
-	Security Question: What is your favourite childhood toy?
-	Security Question Answer: Doll
-	
-	Username: CarlSainz
-	Role: Clerk
-	Password: L$FerrAr9W
-	Security Question: Which is your favourite F1 team?
-	Security Question Answer: Williams Racing
+## 👤 User Roles
 
-	
+* **Director**
+  Full system access, including user management, inventory, financial records, and reporting.
 
-~ How to Run the Application from Visual Studio:
+* **Manager**
+  Full operational access except user role management.
 
-Firstly, ensure that you are connected to Global Protect via the UKZN network.
+* **Administrator**
+  Can manage financial documents and customer details but cannot modify inventory or users.
 
-- Double click on the "NitroTechWebsite.sln" file.
-- Ensure that the your visual studio runs on "Debug" or "Release"
-- Click on the start icon and the application will run.
+* **Clerk**
+  Limited to quotations, invoices, and customer updates.
 
+---
 
-Created by Tia Dindayal, Deanna Gounden, Prineshan Govender, Tia Naidoo and Calvin Pillay
+## 🔑 Sample Login Credentials
+
+* **Director**
+  Username: JadenNaidoo
+  Password: #carloVer87.
+
+* **Manager**
+  Username: DesanNaidoo
+  Password: NaiMDes23!
+
+* **Administrator**
+  Username: MarguGovender
+  Password: mAr@jaE.gov1
+
+* **Clerk**
+  Username: CarlSainz
+  Password: L$FerrAr9W
+
+---
+
+## 📁 Folder Structure
+
+```
+NitroTechWebsite/  
+│  
+├── NitroTechWebsite.sln        # Visual Studio solution file  
+├── Controllers/               # Handles application logic  
+├── Models/                    # Data models and database interaction  
+├── Views/                     # Frontend UI pages  
+├── Scripts/                   # Client-side scripts  
+├── Content/                   # Styling and static assets  
+├── App_Data/                  # Database files  
+├── README.md  
+```
+
+---
+
+## 🚀 How to Run
+
+### 🧰 Requirements
+
+* Visual Studio 2022
+* .NET Framework / ASP.NET support
+* Access to UKZN network (via Global Protect VPN)
+
+### 🔧 Build Instructions (Visual Studio)
+
+1. Connect to Global Protect (UKZN network).
+2. Open `NitroTechWebsite.sln` in Visual Studio.
+3. Select **Debug** or **Release** mode.
+4. Click the **Start** button to run the application.
+
+---
+
+## 🎯 System Capabilities
+
+* Secure multi-user access
+* Efficient business workflow automation
+* Centralized data handling for workshop operations
+* Scalable structure for future enhancements
+
+---
+
+## 🧠 Developer Insight
+
+This project demonstrates:
+
+* Implementation of **role-based system design**
+* Strong **Object-Oriented Programming (OOP)** in C#
+* Database integration using **TableAdapters**
+* Designing secure authentication systems
+* Building scalable, maintainable web applications
+* Team collaboration in a full-stack development environment
+
+---
+
+## 📫 Contact
+
+Created by Tia Dindayal, Deanna Gounden, Prineshan Govender, Tia Naidoo, and Calvin Pillay as part of a university IT project.
+Email: [tiarnaidoo@gmail.com](mailto:tiarnaidoo@gmail.com)
