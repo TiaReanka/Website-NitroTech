@@ -126,5 +126,5 @@ This project demonstrates:
 
 ## 📫 Contact
 
-Created by Tia Dindayal, Deanna Gounden, Prineshan Govender, Tia Naidoo, and Calvin Pillay as part of a university IT project.
-Email: [tiarnaidoo@gmail.com](mailto:tiarnaidoo@gmail.com)
+Created by Tia Reanka Naidoo, Calvin Pillay, Prineshan Govender, Tia Dindayal,and Deanna Gounden as part of a university IT project.
+Email: [tiarnaidoo@gmail.com]
